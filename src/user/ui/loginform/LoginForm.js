@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 
-class SignUpForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      name: '',
       username: '',
       password: ''
     }
@@ -13,9 +12,7 @@ class SignUpForm extends Component {
 
   onInputChange(event) {
     let value = event.target.value
-    if (event.target.id == 'name'){
-      this.setState({ name: value })
-    } else if (event.target.id == 'username'){
+    if (event.target.id == 'username'){
       this.setState({ username: value })
     } else if (event.target.id == 'password'){
       this.setState({ password: value })
@@ -24,10 +21,6 @@ class SignUpForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
-    if (this.state.name.length < 2){
-      return alert('Please fill in your name.')
-    }
 
     if (this.state.username.length < 2){
       return alert('Please fill in your username.')
@@ -38,18 +31,13 @@ class SignUpForm extends Component {
     }
 
 
-    this.props.onSignUpFormSubmit(this.state.name, this.state.username, this.state.password)
+    this.props.onLoginFormSubmit(this.state.username, this.state.password)
   }
 
   render() {
     return(
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange.bind(this)} placeholder="Name" />
-          <span className="pure-form-message">This is a required field.</span>
-
-          <br />
           <label htmlFor="username">Username</label>
           <input id="username" type="text" value={this.state.username} onChange={this.onInputChange.bind(this)} placeholder="Username" />
           <span className="pure-form-message">This is a required field.</span>
@@ -61,11 +49,11 @@ class SignUpForm extends Component {
 
           <br />
 
-          <button type="submit" className="pure-button pure-button-primary">Sign Up</button>
+          <button type="submit" className="pure-button pure-button-primary">Login</button>
         </fieldset>
       </form>
     )
   }
 }
 
-export default SignUpForm
+export default LoginForm

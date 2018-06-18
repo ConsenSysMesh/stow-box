@@ -3,7 +3,6 @@ import { Link } from 'react-router'
 import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
 
 // UI Components
-import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
 import LogoutButtonContainer from './user/ui/logoutbutton/LogoutButtonContainer'
 
 // Styles
@@ -31,7 +30,9 @@ class App extends Component {
         <li className="pure-menu-item">
           <Link to="/signup" className="pure-menu-link">Sign Up</Link>
         </li>
-        <LoginButtonContainer />
+        <li className="pure-menu-item">
+          <Link to="/login" className="pure-menu-link">Login</Link>
+        </li>
       </span>
     )
 
