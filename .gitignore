@@ -35,3 +35,5 @@ chrome-user-data
 *.sublime-workspace
 .idea
 *.iml
+
+src/firebase.js
