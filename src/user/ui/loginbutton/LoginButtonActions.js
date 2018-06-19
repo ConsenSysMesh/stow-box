@@ -10,6 +10,7 @@ function userLoggedIn(user) {
 }
 
 export function loginUser(user) {
+  console.log('Login user')
   const usersRef = firebase.database().ref('users')
 
   return function(dispatch) {

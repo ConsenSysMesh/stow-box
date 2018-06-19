@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 
 class Dashboard extends Component {
-  constructor(props, { authData }) {
+  constructor(props) {
     super(props)
-    authData = this.props
   }
 
   render() {

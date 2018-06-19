@@ -7,7 +7,8 @@ class SignUpForm extends Component {
     this.state = {
       name: '',
       username: '',
-      password: ''
+      password: '',
+      password_confirmation: ''
     }
   }
 
@@ -19,6 +20,8 @@ class SignUpForm extends Component {
       this.setState({ username: value })
     } else if (event.target.id == 'password'){
       this.setState({ password: value })
+    } else if (event.target.id == 'password_confirmation'){
+      this.setState({ password_confirmation: value })
     }
   }
 
@@ -35,6 +38,10 @@ class SignUpForm extends Component {
 
     if (this.state.password.length < 6){
       return alert('Password require at least 6 characters')
+    }
+
+    if (this.state.password != this.state.password_confirmation){
+      return alert('Password and Password Confirmation does not match')
     }
 
 
@@ -57,6 +64,11 @@ class SignUpForm extends Component {
           <br />
           <label htmlFor="password">Password</label>
           <input id="password" type="password" value={this.state.password} onChange={this.onInputChange.bind(this)} placeholder="Password" />
+          <span className="pure-form-message">This is a required field.</span>
+
+          <br />
+          <label htmlFor="password_confirmation">Password Confirmation</label>
+          <input id="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.onInputChange.bind(this)} placeholder="Password Confirmation" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
