@@ -6,7 +6,7 @@ class SignUpForm extends Component {
 
     this.state = {
       name: '',
-      username: '',
+      address: '',
       password: '',
       password_confirmation: ''
     }
@@ -16,8 +16,8 @@ class SignUpForm extends Component {
     let value = event.target.value
     if (event.target.id == 'name'){
       this.setState({ name: value })
-    } else if (event.target.id == 'username'){
-      this.setState({ username: value })
+    } else if (event.target.id == 'address'){
+      this.setState({ address: value })
     } else if (event.target.id == 'password'){
       this.setState({ password: value })
     } else if (event.target.id == 'password_confirmation'){
@@ -32,8 +32,12 @@ class SignUpForm extends Component {
       return alert('Please fill in your name.')
     }
 
-    if (this.state.username.length < 2){
-      return alert('Please fill in your username.')
+    if (this.state.address.length != 42){
+      return alert('Please enter a valid ethereum address.')
+    }
+
+    if (this.state.address.substring(0,2) != '0x'){
+      return alert('The address should start with 0x')
     }
 
     if (this.state.password.length < 6){
@@ -45,7 +49,7 @@ class SignUpForm extends Component {
     }
 
 
-    this.props.onSignUpFormSubmit(this.state.name, this.state.username, this.state.password)
+    this.props.onSignUpFormSubmit(this.state.name, this.state.address, this.state.password)
   }
 
   render() {
@@ -57,8 +61,8 @@ class SignUpForm extends Component {
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
-          <label htmlFor="username">Username</label>
-          <input id="username" type="text" value={this.state.username} onChange={this.onInputChange.bind(this)} placeholder="Username" />
+          <label htmlFor="address">Address</label>
+          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange.bind(this)} placeholder="Address" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />

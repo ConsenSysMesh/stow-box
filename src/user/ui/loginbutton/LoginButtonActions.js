@@ -14,7 +14,7 @@ export function loginUser(user) {
   const usersRef = firebase.database().ref('users')
 
   return function(dispatch) {
-    usersRef.orderByChild("username").equalTo(user.username).once("value",snapshot => {
+    usersRef.orderByChild("address").equalTo(user.address).once("value",snapshot => {
       const userData = snapshot.val();
       if (userData){
         dispatch(userLoggedIn(user))

@@ -2,30 +2,31 @@ import { loginUser } from '../loginbutton/LoginButtonActions'
 import firebase from '../../../firebase.js'
 const bcrypt = require('bcryptjs')
 
-export function tryLoginUser(username, password) {
+export function tryLoginUser(address, password) {
 
   // Login with firebase
   return function(dispatch) {  
     const usersRef = firebase.database().ref('users')
-    usersRef.orderByChild('username').equalTo(username).once('value',snapshot => {
+    usersRef.orderByChild('address').equalTo(address).once('value',snapshot => {
       const userData = snapshot.val();
       for(var i in userData){
         var hash = userData[i].password
         var name = userData[i].name
       }
 
-      // Check username and password
+      // Check address and password
+      console.log(userData)
       if (userData && bcrypt.compareSync(password, hash)){
         const user = {
           name: name,
-          username: username
+          address: address
         }
         return dispatch(loginUser(user))
-      } 
+      }
       
-      // Wrong username or password does not exists
+      // Wrong address or password does not exists
       else {
-        return alert('Wrong username or password')
+        return alert('Wrong address or password')
       }
     });
   }
