@@ -8,6 +8,7 @@ class GetRecord extends Component {
         <div className="pure-g">
           <div className="pure-u-1-1">
             <h1>Get Record</h1>
+            <h4>User Address: {this.props.authData.address}</h4>
             <GetRecordFormContainer />
           </div>
         </div>

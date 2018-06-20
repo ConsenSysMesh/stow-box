@@ -39,7 +39,7 @@ ReactDOM.render((
           <Route path="signup" component={UserIsNotAuthenticated(SignUp)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="login" component={UserIsNotAuthenticated(Login)} />
-          <Route path="get_record" component={UserIsNotAuthenticated(GetRecord)} />
+          <Route path="get_record" component={UserIsAuthenticated(GetRecord)} />
         </Route>
       </Router>
     </Provider>
