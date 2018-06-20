@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "linnia": "git+ssh://git@github.com/ConsenSys/linnia-js.git",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
