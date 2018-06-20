@@ -3,7 +3,7 @@ import GetRecordForm from './GetRecordForm'
 import { getRecord } from './GetRecordFormActions'
 
 const mapStateToProps = (state, ownProps) => {
-  return {}
+  return { record: state.record }
 }
 
 const mapDispatchToProps = (dispatch) => {
