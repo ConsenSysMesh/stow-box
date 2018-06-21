@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "ethereumjs-util": "^5.2.0",
     "ipfs-api": "^22.1.0",
     "linnia": "git+ssh://git@github.com/ConsenSys/linnia-js.git",
     "react": "^15.4.2",
