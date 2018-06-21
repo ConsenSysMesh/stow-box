@@ -2,7 +2,7 @@
 
 
 
-In order to run the server you should create a file called `firebase.js` with your firebase settings, below there is a sample file
+In order to run the server you should create a file called `firebase.js`  inside the `src/` folder with your firebase settings, below there is a sample file. Go here: https://firebase.google.com/ and click Get Started in order to setup your firebase database.
 
 ### firebase.js
 
