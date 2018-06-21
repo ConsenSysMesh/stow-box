@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
+import store from '../../../store'
 
 class SignUpForm extends Component {
   constructor(props) {
     super(props)
 
+    let web3 = store.getState().web3.web3Instance
+    let address = ''
+
+    if (typeof web3 !== 'undefined') {
+      address = web3.eth.accounts[0]
+    }
+
     this.state = {
       name: '',
-      address: '',
+      address: address,
       password: '',
       password_confirmation: ''
     }
