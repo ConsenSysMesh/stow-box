@@ -12,7 +12,7 @@ function ipfsInitialized(results) {
 let getIPFS = new Promise(function(resolve, reject) {
   window.addEventListener('load', function(dispatch) {
     var results
-    const ipfs = new IPFS({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
+    const ipfs = new IPFS({host: process.env.LINNIA_IPFS_HOST, port: process.env.LINNIA_IPFS_PORT, protocol: process.env.LINNIA_IPFS_PROTOCOL})
 
     results = {
       ipfsInstance: ipfs

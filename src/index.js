@@ -6,6 +6,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { UserIsAuthenticated, UserIsNotAuthenticated } from './util/wrappers.js'
 import getWeb3 from './util/web3/getWeb3'
 import getIPFS from './util/ipfs/getIPFS'
+import getLinnia from './util/linnia/getLinnia'
 
 // Layouts
 import App from './App'
@@ -26,19 +27,27 @@ const history = syncHistoryWithStore(browserHistory, store)
 getWeb3
 .then(results => {
   console.log('Web3 initialized!')
+  // Initialize ipfs and set in Redux.
+  getIPFS
+  .then(results => {
+    console.log('IPFS initialized!')
+    // Initialize linnia and set in Redux.
+    getLinnia
+    .then(results => {
+      console.log('Linnia initialized!')
+    })
+    .catch(() => {
+      console.log('Error in Linnia initialization.')
+    })
+  })
+  .catch(() => {
+    console.log('Error in IPFS initialization.')
+  })
 })
 .catch(() => {
   console.log('Error in web3 initialization.')
 })
 
-// Initialize ipfs and set in Redux.
-getIPFS
-.then(results => {
-  console.log('IPFS initialized!')
-})
-.catch(() => {
-  console.log('Error in IPFS initialization.')
-})
 
 ReactDOM.render((
     <Provider store={store}>

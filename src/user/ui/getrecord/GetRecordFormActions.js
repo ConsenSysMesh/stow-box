@@ -1,4 +1,3 @@
-import Linnia from 'linnia'
 const bs58 = require('bs58')
 const eutil = require('ethereumjs-util')
 const multihashes = require('multihashes')
@@ -17,14 +16,10 @@ export function getRecord(dataHash) {
 
   // Get Record from Linnia
   return async function(dispatch) {
-    let web3 = store.getState().web3.web3Instance
-    let ipfs = store.getState().ipfs.ipfsInstance
+    let linnia = store.getState().linnia.linniaInstance
 
     // Double-check web3's status.
-    if (typeof web3 !== 'undefined') {
-      const linnia = new Linnia(web3, ipfs, {
-        hubAddress: '0x8cdaf0cd259887258bc13a92c0a6da92698644c0'
-      });
+    if (typeof store.getState().web3.web3Instance !== 'undefined') {
       let record = await linnia.getRecord(dataHash)
       record.dataHash = dataHash
       record.ipfsHash = bs58.encode(multihashes.encode(eutil.toBuffer(record.dataUri), 18, 32))
@@ -57,6 +52,7 @@ export function getDecryptedRecord(record, privateKey) {
       dispatch(assignRecord(record))
     } catch(e){
       console.log(e)
+      return(alert("Error decrypting data. Probably wrong private key"))
     }
 
   }
