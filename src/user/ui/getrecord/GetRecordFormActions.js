@@ -1,4 +1,3 @@
-import IPFS from 'ipfs-api'
 import Linnia from 'linnia'
 const bs58 = require('bs58')
 const eutil = require('ethereumjs-util')
@@ -19,10 +18,10 @@ export function getRecord(dataHash) {
   // Get Record from Linnia
   return async function(dispatch) {
     let web3 = store.getState().web3.web3Instance
+    let ipfs = store.getState().ipfs.ipfsInstance
 
     // Double-check web3's status.
     if (typeof web3 !== 'undefined') {
-      const ipfs = new IPFS({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
       const linnia = new Linnia(web3, ipfs, {
         hubAddress: '0x8cdaf0cd259887258bc13a92c0a6da92698644c0'
       });
@@ -43,7 +42,7 @@ export function getDecryptedRecord(record, privateKey) {
 
   // Get Record from Linnia
   return async function(dispatch) {
-    const ipfs = new IPFS({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
+    let ipfs = store.getState().ipfs.ipfsInstance
 
     if (record.owner == "0x0000000000000000000000000000000000000000") {
       return(alert("Error: owner address is zero. does the file exist?"))
