@@ -53,6 +53,7 @@
     "ethereumjs-util": "^5.2.0",
     "ipfs-api": "^22.1.0",
     "linnia": "git+ssh://git@github.com/ConsenSys/linnia-js.git",
+    "prop-types": "^15.6.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",

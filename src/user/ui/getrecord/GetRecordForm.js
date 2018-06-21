@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import DecryptForm from './DecryptForm'
+import Decrypted from './Decrypted'
+import RecordForm from './RecordForm'
 
 class GetRecordForm extends Component {
   constructor(props) {
@@ -10,16 +13,16 @@ class GetRecordForm extends Component {
     }
   }
 
-  onInputChange(event) {
+  onInputChange = (event) => {
     let value = event.target.value
-    if (event.target.id == 'dataHash'){
+    if (event.target.id === 'dataHash'){
       this.setState({ dataHash: value })
-    } else if (event.target.id == 'privateKey'){
+    } else if (event.target.id === 'privateKey'){
       this.setState({ privateKey: value })
     }
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
 
     if (this.state.dataHash.length < 2){
@@ -29,7 +32,7 @@ class GetRecordForm extends Component {
     this.props.onGetRecordSubmit(this.state.dataHash)
   }
 
-  handleDecrypt(event) {
+  handleDecrypt = (event) => {
     event.preventDefault()
 
     if (this.state.privateKey.length < 2){
@@ -40,73 +43,43 @@ class GetRecordForm extends Component {
   }
 
   render() {
-    const comp1 = () =>         
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
-        <fieldset>
-          <label htmlFor="dataHash">Data Hash</label>
-          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
-          <span className="pure-form-message">This is a required field.</span>
-
-          <br />
-
-          <button type="submit" className="pure-button pure-button-primary">Get Record</button>
-        </fieldset>
-      </form>
-
-    const comp2 = () =>
-      <div>
-        <h2>Record: {this.props.record.data.dataHash}</h2>
-        <p>Owner: {this.props.record.data.owner}</p>
-        <p>metadataHash: {this.props.record.data.metadataHash}</p>
-        <p>sigCount: {this.props.record.data.sigCount.toString()}</p>
-        <p>irisScore: {this.props.record.data.irisScore.toString()}</p>
-        <p>dataUri: {this.props.record.data.dataUri}</p>
-        <p>ipfsHash: {this.props.record.data.ipfsHash}</p>
-      </div>
-
+    const { record } = this.props;
+    const { privateKey, dataHash } = this.state;
     //Got Results
-    if(this.props.record.data){
-      
+    if (record.data) {
+
       //To decrypt
-      if(!this.props.record.data.decrypted){
-        return(
-          <div>
-            {comp1()}
-            {comp2()}
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt.bind(this)}>
-              <fieldset>
-                <label htmlFor="privateKey">Private Key</label>
-                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange.bind(this)} placeholder="Private Key" />
-                <span className="pure-form-message">This is a required field.</span>
-      
-                <br />
-      
-                <button type="submit" className="pure-button pure-button-primary">Decrypt Data</button>
-              </fieldset>
-            </form>
-          </div>
-        )
+      if (!record.data.decrypted) {
+        return (<DecryptForm
+          record={record}
+          privateKey={privateKey}
+          onInputChange={this.onInputChange}
+          handleDecrypt={this.handleDecrypt}
+          handleSubmit={this.handleSubmit}
+          dataHash={dataHash}
+        />)
       }
 
       //Decrypted File
-      else{
-        return(
-          <div>
-            {comp1()}
-            {comp2()}
-            <div>
-              <h2>Decryted Data</h2>
-              <p>{this.props.record.data.decrypted}</p>
-            </div>
-          </div>
-        )
+      else {
+        return (<Decrypted
+          onInputChange={this.onInputChange}
+          handleSubmit={this.handleSubmit}
+          record={record}
+        />)
       }
 
     }
 
     //New Search
     else {
-      return(comp1())
+      return (
+        <RecordForm
+          onInputChange={this.onInputChange}
+          handleSubmit={this.handleSubmit}
+          dataHash={dataHash}
+        />
+      );
     }
   }
 }
