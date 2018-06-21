@@ -40,33 +40,39 @@ class GetRecordForm extends Component {
   }
 
   render() {
+    const comp1 = () =>         
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+        <fieldset>
+          <label htmlFor="dataHash">Data Hash</label>
+          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
+          <span className="pure-form-message">This is a required field.</span>
+
+          <br />
+
+          <button type="submit" className="pure-button pure-button-primary">Get Record</button>
+        </fieldset>
+      </form>
+
+    const comp2 = () =>
+      <div>
+        <h2>Record: {this.props.record.data.dataHash}</h2>
+        <p>Owner: {this.props.record.data.owner}</p>
+        <p>metadataHash: {this.props.record.data.metadataHash}</p>
+        <p>sigCount: {this.props.record.data.sigCount.toString()}</p>
+        <p>irisScore: {this.props.record.data.irisScore.toString()}</p>
+        <p>dataUri: {this.props.record.data.dataUri}</p>
+        <p>ipfsHash: {this.props.record.data.ipfsHash}</p>
+      </div>
+
     //Got Results
     if(this.props.record.data){
-
+      
       //To decrypt
       if(!this.props.record.data.decrypted){
         return(
           <div>
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
-              <fieldset>
-                <label htmlFor="dataHash">Data Hash</label>
-                <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
-                <span className="pure-form-message">This is a required field.</span>
-      
-                <br />
-      
-                <button type="submit" className="pure-button pure-button-primary">Get Record</button>
-              </fieldset>
-            </form>
-            <div>
-              <h2>Record: {this.props.record.data.dataHash}</h2>
-              <p>Owner: {this.props.record.data.owner}</p>
-              <p>metadataHash: {this.props.record.data.metadataHash}</p>
-              <p>sigCount: {this.props.record.data.sigCount.toString()}</p>
-              <p>irisScore: {this.props.record.data.irisScore.toString()}</p>
-              <p>dataUri: {this.props.record.data.dataUri}</p>
-              <p>ipfsHash: {this.props.record.data.ipfsHash}</p>
-            </div>
+            {comp1()}
+            {comp2()}
             <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt.bind(this)}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
@@ -86,26 +92,8 @@ class GetRecordForm extends Component {
       else{
         return(
           <div>
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
-              <fieldset>
-                <label htmlFor="dataHash">Data Hash</label>
-                <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
-                <span className="pure-form-message">This is a required field.</span>
-      
-                <br />
-      
-                <button type="submit" className="pure-button pure-button-primary">Get Record</button>
-              </fieldset>
-            </form>
-            <div>
-              <h2>Record: {this.props.record.data.dataHash}</h2>
-              <p>Owner: {this.props.record.data.owner}</p>
-              <p>metadataHash: {this.props.record.data.metadataHash}</p>
-              <p>sigCount: {this.props.record.data.sigCount.toString()}</p>
-              <p>irisScore: {this.props.record.data.irisScore.toString()}</p>
-              <p>dataUri: {this.props.record.data.dataUri}</p>
-              <p>ipfsHash: {this.props.record.data.ipfsHash}</p>
-            </div>
+            {comp1()}
+            {comp2()}
             <div>
               <h2>Decryted Data</h2>
               <p>{this.props.record.data.decrypted}</p>
@@ -118,19 +106,7 @@ class GetRecordForm extends Component {
 
     //New Search
     else {
-      return(
-        <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
-          <fieldset>
-            <label htmlFor="dataHash">Data Hash</label>
-            <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
-            <span className="pure-form-message">This is a required field.</span>
-  
-            <br />
-  
-            <button type="submit" className="pure-button pure-button-primary">Get Record</button>
-          </fieldset>
-        </form>
-      )
+      return(comp1())
     }
   }
 }
