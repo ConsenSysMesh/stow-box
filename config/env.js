@@ -5,7 +5,6 @@ var REACT_APP = /^REACT_APP_/i;
 require('dotenv').load()
 
 function getClientEnvironment(publicUrl) {
-  console.log(process.env)
   var processEnv = Object
     .keys(process.env)
     .filter(key => REACT_APP.test(key))
