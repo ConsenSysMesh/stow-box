@@ -10,8 +10,10 @@ export function tryLoginUser(address, password) {
     usersRef.orderByChild('address').equalTo(address).once('value',snapshot => {
       const userData = snapshot.val();
       for(var i in userData){
-        var hash = userData[i].password
-        var name = userData[i].name
+        if (userData[i]) {
+          var hash = userData[i].password
+          var name = userData[i].name
+        }
       }
 
       // Check address and password

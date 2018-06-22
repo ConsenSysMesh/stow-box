@@ -20,9 +20,9 @@ class LoginForm extends Component {
 
   onInputChange(event) {
     let value = event.target.value
-    if (event.target.id == 'address'){
+    if (event.target.id === 'address'){
       this.setState({ address: value })
-    } else if (event.target.id == 'password'){
+    } else if (event.target.id === 'password'){
       this.setState({ password: value })
     }
   }
@@ -30,11 +30,11 @@ class LoginForm extends Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    if (this.state.address.length != 42){
+    if (this.state.address.length !== 42){
       return alert('Please enter a valid ethereum address.')
     }
 
-    if (this.state.address.substring(0,2) != '0x'){
+    if (this.state.address.substring(0,2) !== '0x'){
       return alert('The address should start with 0x')
     }
 

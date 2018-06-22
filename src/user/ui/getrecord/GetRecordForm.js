@@ -12,9 +12,9 @@ class GetRecordForm extends Component {
 
   onInputChange(event) {
     let value = event.target.value
-    if (event.target.id == 'dataHash'){
+    if (event.target.id === 'dataHash'){
       this.setState({ dataHash: value })
-    } else if (event.target.id == 'privateKey'){
+    } else if (event.target.id === 'privateKey'){
       this.setState({ privateKey: value })
     }
   }

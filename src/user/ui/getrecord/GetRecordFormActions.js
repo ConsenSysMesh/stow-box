@@ -39,7 +39,7 @@ export function getDecryptedRecord(record, privateKey) {
   return async function(dispatch) {
     let ipfs = store.getState().ipfs.ipfsInstance
 
-    if (record.owner == "0x0000000000000000000000000000000000000000") {
+    if (record.owner === "0x0000000000000000000000000000000000000000") {
       return(alert("Error: owner address is zero. does the file exist?"))
     }
     const ipfsRes = await ipfs.files.get(record.ipfsHash)

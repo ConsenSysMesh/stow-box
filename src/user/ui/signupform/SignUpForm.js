@@ -21,14 +21,14 @@ class SignUpForm extends Component {
   }
 
   onInputChange(event) {
-    let value = event.target.value
-    if (event.target.id == 'name'){
+    let value = event.target.value.toString()
+    if (event.target.id === 'name'){
       this.setState({ name: value })
-    } else if (event.target.id == 'address'){
+    } else if (event.target.id === 'address'){
       this.setState({ address: value })
-    } else if (event.target.id == 'password'){
+    } else if (event.target.id === 'password'){
       this.setState({ password: value })
-    } else if (event.target.id == 'password_confirmation'){
+    } else if (event.target.id === 'password_confirmation'){
       this.setState({ password_confirmation: value })
     }
   }
@@ -40,11 +40,11 @@ class SignUpForm extends Component {
       return alert('Please fill in your name.')
     }
 
-    if (this.state.address.length != 42){
+    if (this.state.address.length !== 42){
       return alert('Please enter a valid ethereum address.')
     }
 
-    if (this.state.address.substring(0,2) != '0x'){
+    if (this.state.address.substring(0,2) !== '0x'){
       return alert('The address should start with 0x')
     }
 
@@ -52,7 +52,7 @@ class SignUpForm extends Component {
       return alert('Password require at least 6 characters')
     }
 
-    if (this.state.password != this.state.password_confirmation){
+    if (this.state.password !== this.state.password_confirmation){
       return alert('Password and Password Confirmation does not match')
     }
 
