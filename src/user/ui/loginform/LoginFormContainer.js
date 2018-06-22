@@ -8,8 +8,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLoginFormSubmit: (username, password) => {
-      dispatch(tryLoginUser(username, password))
+    onLoginFormSubmit: (address, password) => {
+      dispatch(tryLoginUser(address, password))
     }
   }
 }

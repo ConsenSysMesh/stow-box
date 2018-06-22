@@ -34,6 +34,10 @@ code {
   border-color: #0c1a2b;
 }
 
+.pure-form, input {
+  width: 400px;
+}
+
 /* NAVBAR */
 
 .navbar {

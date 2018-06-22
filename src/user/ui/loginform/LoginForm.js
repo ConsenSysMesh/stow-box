@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
+import store from '../../../store'
 
 class LoginForm extends Component {
   constructor(props) {
     super(props)
 
+    let web3 = store.getState().web3.web3Instance
+    let address = ''
+
+    if (typeof web3 !== 'undefined') {
+      address = web3.eth.accounts[0]
+    }
+
     this.state = {
-      username: '',
+      address: address,
       password: ''
     }
   }
 
   onInputChange(event) {
     let value = event.target.value
-    if (event.target.id == 'username'){
-      this.setState({ username: value })
-    } else if (event.target.id == 'password'){
+    if (event.target.id === 'address'){
+      this.setState({ address: value })
+    } else if (event.target.id === 'password'){
       this.setState({ password: value })
     }
   }
@@ -22,8 +30,12 @@ class LoginForm extends Component {
   handleSubmit(event) {
     event.preventDefault()
 
-    if (this.state.username.length < 2){
-      return alert('Please fill in your username.')
+    if (this.state.address.length !== 42){
+      return alert('Please enter a valid ethereum address.')
+    }
+
+    if (this.state.address.substring(0,2) !== '0x'){
+      return alert('The address should start with 0x')
     }
 
     if (this.state.password.length < 6){
@@ -31,15 +43,15 @@ class LoginForm extends Component {
     }
 
 
-    this.props.onLoginFormSubmit(this.state.username, this.state.password)
+    this.props.onLoginFormSubmit(this.state.address, this.state.password)
   }
 
   render() {
     return(
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
-          <label htmlFor="username">Username</label>
-          <input id="username" type="text" value={this.state.username} onChange={this.onInputChange.bind(this)} placeholder="Username" />
+          <label htmlFor="address">Address</label>
+          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange.bind(this)} placeholder="Address" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />

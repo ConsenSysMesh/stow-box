@@ -1,26 +1,34 @@
 import React, { Component } from 'react'
+import store from '../../../store'
 
 class SignUpForm extends Component {
   constructor(props) {
     super(props)
 
+    let web3 = store.getState().web3.web3Instance
+    let address = ''
+
+    if (typeof web3 !== 'undefined') {
+      address = web3.eth.accounts[0]
+    }
+
     this.state = {
       name: '',
-      username: '',
+      address: address,
       password: '',
       password_confirmation: ''
     }
   }
 
   onInputChange(event) {
-    let value = event.target.value
-    if (event.target.id == 'name'){
+    let value = event.target.value.toString()
+    if (event.target.id === 'name'){
       this.setState({ name: value })
-    } else if (event.target.id == 'username'){
-      this.setState({ username: value })
-    } else if (event.target.id == 'password'){
+    } else if (event.target.id === 'address'){
+      this.setState({ address: value })
+    } else if (event.target.id === 'password'){
       this.setState({ password: value })
-    } else if (event.target.id == 'password_confirmation'){
+    } else if (event.target.id === 'password_confirmation'){
       this.setState({ password_confirmation: value })
     }
   }
@@ -32,20 +40,24 @@ class SignUpForm extends Component {
       return alert('Please fill in your name.')
     }
 
-    if (this.state.username.length < 2){
-      return alert('Please fill in your username.')
+    if (this.state.address.length !== 42){
+      return alert('Please enter a valid ethereum address.')
+    }
+
+    if (this.state.address.substring(0,2) !== '0x'){
+      return alert('The address should start with 0x')
     }
 
     if (this.state.password.length < 6){
       return alert('Password require at least 6 characters')
     }
 
-    if (this.state.password != this.state.password_confirmation){
+    if (this.state.password !== this.state.password_confirmation){
       return alert('Password and Password Confirmation does not match')
     }
 
 
-    this.props.onSignUpFormSubmit(this.state.name, this.state.username, this.state.password)
+    this.props.onSignUpFormSubmit(this.state.name, this.state.address, this.state.password)
   }
 
   render() {
@@ -57,8 +69,8 @@ class SignUpForm extends Component {
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
-          <label htmlFor="username">Username</label>
-          <input id="username" type="text" value={this.state.username} onChange={this.onInputChange.bind(this)} placeholder="Username" />
+          <label htmlFor="address">Address</label>
+          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange.bind(this)} placeholder="Address" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
