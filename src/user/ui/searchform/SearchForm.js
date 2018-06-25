@@ -1,0 +1,97 @@
+import React, { Component } from 'react'
+
+class SearchForm extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      dataHash: '',
+      owner: '',
+      property: ''
+    }
+  }
+
+  onInputChange(event) {
+    let value = event.target.value
+    if (event.target.id === 'dataHash'){
+      this.setState({ dataHash: value })
+    } else if (event.target.id === 'owner'){
+      this.setState({ owner: value })
+    } else if (event.target.id === 'property'){
+      this.setState({ property: value })
+    }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.onSearchSubmit(this.state.dataHash, this.state.owner, this.state.property)
+  }
+
+  render() {
+    const searchForm = () =>         
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+        <fieldset>
+          <label htmlFor="dataHash">Data Hash</label>
+          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
+
+          <br />
+
+          <label htmlFor="owner">Owner</label>
+          <input id="owner" type="text" value={this.state.owner} onChange={this.onInputChange.bind(this)} placeholder="Owner" />
+
+          <br />
+
+          <label htmlFor="property">Property</label>
+          <input id="property" type="text" value={this.state.property} onChange={this.onInputChange.bind(this)} placeholder="Property" />
+
+          <br />
+
+          <button type="submit" className="pure-button pure-button-primary">Search</button>
+        </fieldset>
+      </form>
+
+  const searchResults = (records) => 
+    records.map(record => {
+      return(
+        <div>
+          <h2>Record: {record.dataHash}</h2>
+          <p>Owner: {record.owner}</p>
+          <p>metadata: {record.metadata}</p>
+          <p>sigCount: {record.sigCount.toString()}</p>
+          <p>irisScore: {record.irisScore.toString()}</p>
+          <p>dataUri: {record.dataUri}</p>
+        </div>)
+    });
+
+    if(this.props.search.results){
+      var res = JSON.parse(this.props.search.results)
+      if(! res instanceof Array){
+        res = [res]
+      }
+      if(res.message){
+        return(
+          <div>
+            <p className="error-message">{res.message}</p>
+            {searchForm()}
+          </div>
+        ) 
+      }else{
+        return(
+          <div>
+            {searchForm()}
+            {searchResults(res)}
+          </div>
+        )
+      }
+    }
+    else{
+      return(
+        <div>
+          {searchForm()}
+        </div>
+      ) 
+    }
+  }
+}
+
+export default SearchForm

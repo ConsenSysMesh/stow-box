@@ -38,6 +38,11 @@ code {
   width: 400px;
 }
 
+.error-message {
+  color: red;
+  font-size: 18px;
+}
+
 /* NAVBAR */
 
 .navbar {

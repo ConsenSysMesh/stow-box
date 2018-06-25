@@ -24,6 +24,9 @@ class App extends Component {
         <li className="pure-menu-item">
           <Link to="/get_record" className="pure-menu-link">Get Record</Link>
         </li>
+        <li className="pure-menu-item">
+          <Link to="/search" className="pure-menu-link">Search</Link>
+        </li>
         <LogoutButtonContainer />
       </span>
     )

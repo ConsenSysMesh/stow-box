@@ -16,6 +16,7 @@ import SignUp from './user/layouts/signup/SignUp'
 import Profile from './user/layouts/profile/Profile'
 import Login from './user/layouts/login/Login'
 import GetRecord from './user/layouts/getrecord/GetRecord'
+import Search from './user/layouts/search/Search'
 
 // Redux Store
 import store from './store'
@@ -59,6 +60,7 @@ ReactDOM.render((
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="login" component={UserIsNotAuthenticated(Login)} />
           <Route path="get_record" component={UserIsAuthenticated(GetRecord)} />
+          <Route path="search" component={UserIsAuthenticated(Search)} />
         </Route>
       </Router>
     </Provider>
