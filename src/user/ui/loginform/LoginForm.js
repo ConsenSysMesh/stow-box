@@ -13,8 +13,7 @@ class LoginForm extends Component {
     }
 
     this.state = {
-      address: address,
-      password: ''
+      address: address
     }
   }
 
@@ -26,7 +25,6 @@ class LoginForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const address = event.target.elements.address.value
-    const password = event.target.elements.password.value
 
     if (address.length !== 42){
       return alert('Please enter a valid ethereum address.')
@@ -36,12 +34,7 @@ class LoginForm extends Component {
       return alert('The address should start with 0x')
     }
 
-    if (password.length < 6){
-      return alert('The password cannot be empty')
-    }
-
-
-    this.props.onLoginFormSubmit(address, password)
+    this.props.onLoginFormSubmit(address)
   }
 
   render() {
@@ -50,11 +43,6 @@ class LoginForm extends Component {
         <fieldset>
           <label htmlFor="address">Address</label>
           <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />
-          <span className="pure-form-message">This is a required field.</span>
-
-          <br />
-          <label htmlFor="password">Password</label>
-          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange('password')} placeholder="Password" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />

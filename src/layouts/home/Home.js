@@ -8,9 +8,9 @@ class Home extends Component {
           <div className="pure-u-1-1">
             <h1>Good to Go!</h1>
             <p>Your Truffle Box is installed and ready.</p>
-            <h2>Firebase Authentication</h2>
-            <p>This particular box comes with autentication via Firebase.</p>
-            <p>In the upper-right corner, you'll see a login button. Click it to login. There are two authenticated routes: "/dashboard", which displays the user's name once authenticated; and "/profile", which allows a user to update their name.</p>
+            <h2>Metamask Authentication</h2>
+            <p>This particular box comes with autentication via Metamask.</p>
+            <p>In the upper-right corner, you'll see a login button. Click it to login</p>
             <h3>Redirect Path</h3>
             <p>This example redirects home ("/") when trying to access an authenticated route without first authenticating. You can change this path in the failureRedriectUrl property of the UserIsAuthenticated wrapper on <strong>line 9</strong> of util/wrappers.js.</p>
             <h3>Accessing User Data</h3>
