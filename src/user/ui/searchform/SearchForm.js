@@ -11,15 +11,9 @@ class SearchForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    let value = event.target.value
-    if (event.target.id === 'dataHash'){
-      this.setState({ dataHash: value })
-    } else if (event.target.id === 'owner'){
-      this.setState({ owner: value })
-    } else if (event.target.id === 'property'){
-      this.setState({ property: value })
-    }
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
   handleSubmit(event) {
@@ -32,17 +26,17 @@ class SearchForm extends Component {
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <label htmlFor="dataHash">Data Hash</label>
-          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
+          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder="Data Hash" />
 
           <br />
 
           <label htmlFor="owner">Owner</label>
-          <input id="owner" type="text" value={this.state.owner} onChange={this.onInputChange.bind(this)} placeholder="Owner" />
+          <input id="owner" type="text" value={this.state.owner} onChange={this.onInputChange('owner')} placeholder="Owner" />
 
           <br />
 
           <label htmlFor="property">Property</label>
-          <input id="property" type="text" value={this.state.property} onChange={this.onInputChange.bind(this)} placeholder="Property" />
+          <input id="property" type="text" value={this.state.property} onChange={this.onInputChange('property')} placeholder="Property" />
 
           <br />
 

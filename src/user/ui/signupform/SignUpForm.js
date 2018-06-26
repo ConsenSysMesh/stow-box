@@ -20,17 +20,9 @@ class SignUpForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    let value = event.target.value.toString()
-    if (event.target.id === 'name'){
-      this.setState({ name: value })
-    } else if (event.target.id === 'address'){
-      this.setState({ address: value })
-    } else if (event.target.id === 'password'){
-      this.setState({ password: value })
-    } else if (event.target.id === 'password_confirmation'){
-      this.setState({ password_confirmation: value })
-    }
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
   handleSubmit(event) {
@@ -65,22 +57,22 @@ class SignUpForm extends Component {
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <label htmlFor="name">Name</label>
-          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange.bind(this)} placeholder="Name" />
+          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange('name')} placeholder="Name" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="address">Address</label>
-          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange.bind(this)} placeholder="Address" />
+          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange.bind(this)} placeholder="Password" />
+          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange('password')} placeholder="Password" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="password_confirmation">Password Confirmation</label>
-          <input id="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.onInputChange.bind(this)} placeholder="Password Confirmation" />
+          <input id="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.onInputChange('password_confirmation')} placeholder="Password Confirmation" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />

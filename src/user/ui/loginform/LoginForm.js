@@ -18,13 +18,9 @@ class LoginForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    let value = event.target.value
-    if (event.target.id === 'address'){
-      this.setState({ address: value })
-    } else if (event.target.id === 'password'){
-      this.setState({ password: value })
-    }
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
   handleSubmit(event) {
@@ -51,12 +47,12 @@ class LoginForm extends Component {
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <label htmlFor="address">Address</label>
-          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange.bind(this)} placeholder="Address" />
+          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange.bind(this)} placeholder="Password" />
+          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange('password')} placeholder="Password" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />

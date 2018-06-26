@@ -9,8 +9,9 @@ class ProfileForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    this.setState({ name: event.target.value })
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
   handleSubmit(event) {
@@ -29,7 +30,7 @@ class ProfileForm extends Component {
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <label htmlFor="name">Name</label>
-          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange.bind(this)} placeholder="Name" />
+          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange('name')} placeholder="Name" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />

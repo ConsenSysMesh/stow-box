@@ -10,13 +10,9 @@ class GetRecordForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    let value = event.target.value
-    if (event.target.id === 'dataHash'){
-      this.setState({ dataHash: value })
-    } else if (event.target.id === 'privateKey'){
-      this.setState({ privateKey: value })
-    }
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
   handleSubmit(event) {
@@ -44,7 +40,7 @@ class GetRecordForm extends Component {
       <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
         <fieldset>
           <label htmlFor="dataHash">Data Hash</label>
-          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
+          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder="Data Hash" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
@@ -76,7 +72,7 @@ class GetRecordForm extends Component {
             <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt.bind(this)}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
-                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange.bind(this)} placeholder="Private Key" />
+                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
                 <span className="pure-form-message">This is a required field.</span>
       
                 <br />
