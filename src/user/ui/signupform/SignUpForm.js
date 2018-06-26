@@ -25,36 +25,39 @@ class SignUpForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = () => (event) => {
     event.preventDefault()
-
-    if (this.state.name.length < 2){
+    const name = event.target.elements.name.value
+    const address = event.target.elements.address.value
+    const password = event.target.elements.password.value
+    const password_confirmation = event.target.elements.password_confirmation.value
+    
+    if (name.length < 2){
       return alert('Please fill in your name.')
     }
 
-    if (this.state.address.length !== 42){
+    if (address.length !== 42){
       return alert('Please enter a valid ethereum address.')
     }
 
-    if (this.state.address.substring(0,2) !== '0x'){
+    if (address.substring(0,2) !== '0x'){
       return alert('The address should start with 0x')
     }
 
-    if (this.state.password.length < 6){
+    if (password.length < 6){
       return alert('Password require at least 6 characters')
     }
 
-    if (this.state.password !== this.state.password_confirmation){
+    if (password !== password_confirmation){
       return alert('Password and Password Confirmation does not match')
     }
 
-
-    this.props.onSignUpFormSubmit(this.state.name, this.state.address, this.state.password)
+    this.props.onSignUpFormSubmit(name, address, password)
   }
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
         <fieldset>
           <label htmlFor="name">Name</label>
           <input id="name" type="text" value={this.state.name} onChange={this.onInputChange('name')} placeholder="Name" />

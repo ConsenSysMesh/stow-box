@@ -16,14 +16,17 @@ class SearchForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = () => (event) => {
     event.preventDefault()
-    this.props.onSearchSubmit(this.state.dataHash, this.state.owner, this.state.property)
+    const dataHash = event.target.elements.dataHash.value
+    const owner = event.target.elements.owner.value
+    const property = event.target.elements.property.value
+    this.props.onSearchSubmit(dataHash, owner, property)
   }
 
   render() {
     const searchForm = () =>         
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
         <fieldset>
           <label htmlFor="dataHash">Data Hash</label>
           <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder="Data Hash" />

@@ -15,29 +15,31 @@ class GetRecordForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = () => (event) => {
     event.preventDefault()
+    const dataHash = event.target.elements.dataHash.value
 
-    if (this.state.dataHash.length < 2){
+    if (dataHash.length < 2){
       return alert('Please fill the data hash.')
     }
 
-    this.props.onGetRecordSubmit(this.state.dataHash)
+    this.props.onGetRecordSubmit(dataHash)
   }
 
-  handleDecrypt(event) {
+  handleDecrypt = (data) => (event) => {
     event.preventDefault()
+    const privateKey = event.target.elements.privateKey.value
 
-    if (this.state.privateKey.length < 2){
+    if (privateKey.length < 2){
       return alert('Please fill the Private Key.')
     }
 
-    this.props.onGetRecordDecrypt(this.props.record.data, this.state.privateKey)
+    this.props.onGetRecordDecrypt(data, privateKey)
   }
 
   render() {
     const comp1 = () =>         
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
         <fieldset>
           <label htmlFor="dataHash">Data Hash</label>
           <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder="Data Hash" />
@@ -69,7 +71,7 @@ class GetRecordForm extends Component {
           <div>
             {comp1()}
             {comp2()}
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt.bind(this)}>
+            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt(this.props.record.data)}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
                 <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />

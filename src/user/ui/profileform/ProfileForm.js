@@ -14,20 +14,21 @@ class ProfileForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = () => (event) => {
     event.preventDefault()
+    const name = event.target.elements.name.value
 
-    if (this.state.name.length < 2)
+    if (name.length < 2)
     {
       return alert('Please fill in your name.')
     }
 
-    this.props.onProfileFormSubmit(this.state.name)
+    this.props.onProfileFormSubmit(name)
   }
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
         <fieldset>
           <label htmlFor="name">Name</label>
           <input id="name" type="text" value={this.state.name} onChange={this.onInputChange('name')} placeholder="Name" />

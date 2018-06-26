@@ -23,28 +23,30 @@ class LoginForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = () => (event) => {
     event.preventDefault()
+    const address = event.target.elements.address.value
+    const password = event.target.elements.password.value
 
-    if (this.state.address.length !== 42){
+    if (address.length !== 42){
       return alert('Please enter a valid ethereum address.')
     }
 
-    if (this.state.address.substring(0,2) !== '0x'){
+    if (address.substring(0,2) !== '0x'){
       return alert('The address should start with 0x')
     }
 
-    if (this.state.password.length < 6){
-      return alert('Password require at least 6 characters')
+    if (password.length < 6){
+      return alert('The password cannot be empty')
     }
 
 
-    this.props.onLoginFormSubmit(this.state.address, this.state.password)
+    this.props.onLoginFormSubmit(address, password)
   }
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
         <fieldset>
           <label htmlFor="address">Address</label>
           <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />
