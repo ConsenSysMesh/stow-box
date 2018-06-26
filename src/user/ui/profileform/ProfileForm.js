@@ -14,7 +14,7 @@ class ProfileForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit = () => (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
     const name = event.target.elements.name.value
 
@@ -28,7 +28,7 @@ class ProfileForm extends Component {
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor="name">Name</label>
           <input id="name" type="text" value={this.state.name} onChange={this.onInputChange('name')} placeholder="Name" />

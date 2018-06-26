@@ -23,7 +23,7 @@ class LoginForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit = () => (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
     const address = event.target.elements.address.value
     const password = event.target.elements.password.value
@@ -46,7 +46,7 @@ class LoginForm extends Component {
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor="address">Address</label>
           <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />

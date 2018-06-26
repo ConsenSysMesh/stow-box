@@ -16,7 +16,7 @@ class SearchForm extends Component {
     this.setState({ [property] : value });
   }
 
-  handleSubmit = () => (event) => {
+  handleSubmit = (event) => {
     event.preventDefault()
     const dataHash = event.target.elements.dataHash.value
     const owner = event.target.elements.owner.value
@@ -26,7 +26,7 @@ class SearchForm extends Component {
 
   render() {
     const searchForm = () =>         
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit()}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor="dataHash">Data Hash</label>
           <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder="Data Hash" />
