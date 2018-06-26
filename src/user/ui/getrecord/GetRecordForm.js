@@ -26,7 +26,7 @@ class GetRecordForm extends Component {
     this.props.onGetRecordSubmit(dataHash)
   }
 
-  handleDecrypt = (data) => (event) => {
+  handleDecrypt = () => (event) => {
     event.preventDefault()
     const privateKey = event.target.elements.privateKey.value
 
@@ -34,7 +34,7 @@ class GetRecordForm extends Component {
       return alert('Please fill the Private Key.')
     }
 
-    this.props.onGetRecordDecrypt(data, privateKey)
+    this.props.onGetRecordDecrypt(this.props.record.data, privateKey)
   }
 
   render() {
@@ -71,7 +71,7 @@ class GetRecordForm extends Component {
           <div>
             {comp1()}
             {comp2()}
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt(this.props.record.data)}>
+            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt()}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
                 <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
