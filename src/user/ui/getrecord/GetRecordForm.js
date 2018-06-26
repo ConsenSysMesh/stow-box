@@ -10,41 +10,39 @@ class GetRecordForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    let value = event.target.value
-    if (event.target.id === 'dataHash'){
-      this.setState({ dataHash: value })
-    } else if (event.target.id === 'privateKey'){
-      this.setState({ privateKey: value })
-    }
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
+    const dataHash = event.target.elements.dataHash.value
 
-    if (this.state.dataHash.length < 2){
+    if (dataHash.length < 2){
       return alert('Please fill the data hash.')
     }
 
-    this.props.onGetRecordSubmit(this.state.dataHash)
+    this.props.onGetRecordSubmit(dataHash)
   }
 
-  handleDecrypt(event) {
+  handleDecrypt = (event) => {
     event.preventDefault()
+    const privateKey = event.target.elements.privateKey.value
 
-    if (this.state.privateKey.length < 2){
+    if (privateKey.length < 2){
       return alert('Please fill the Private Key.')
     }
 
-    this.props.onGetRecordDecrypt(this.props.record.data, this.state.privateKey)
+    this.props.onGetRecordDecrypt(this.props.record.data, privateKey)
   }
 
   render() {
     const comp1 = () =>         
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor="dataHash">Data Hash</label>
-          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange.bind(this)} placeholder="Data Hash" />
+          <input id="dataHash" type="text" value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder="Data Hash" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
@@ -73,10 +71,10 @@ class GetRecordForm extends Component {
           <div>
             {comp1()}
             {comp2()}
-            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt.bind(this)}>
+            <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
-                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange.bind(this)} placeholder="Private Key" />
+                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
                 <span className="pure-form-message">This is a required field.</span>
       
                 <br />

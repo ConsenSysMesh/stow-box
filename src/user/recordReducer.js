@@ -9,6 +9,12 @@ const recordReducer = (state = initialState, action) => {
       data: action.payload
     })
   }
+  if (action.type === 'REMOVE_RECORD')
+  {
+    return Object.assign({}, state, {
+      data: null
+    })
+  }
 
   return state
 }

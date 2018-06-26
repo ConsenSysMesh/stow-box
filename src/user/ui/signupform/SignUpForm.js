@@ -20,67 +20,62 @@ class SignUpForm extends Component {
     }
   }
 
-  onInputChange(event) {
-    let value = event.target.value.toString()
-    if (event.target.id === 'name'){
-      this.setState({ name: value })
-    } else if (event.target.id === 'address'){
-      this.setState({ address: value })
-    } else if (event.target.id === 'password'){
-      this.setState({ password: value })
-    } else if (event.target.id === 'password_confirmation'){
-      this.setState({ password_confirmation: value })
-    }
+  onInputChange = (property) => (event) => {
+    const value = event.target.value;
+    this.setState({ [property] : value });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault()
-
-    if (this.state.name.length < 2){
+    const name = event.target.elements.name.value
+    const address = event.target.elements.address.value
+    const password = event.target.elements.password.value
+    const password_confirmation = event.target.elements.password_confirmation.value
+    
+    if (name.length < 2){
       return alert('Please fill in your name.')
     }
 
-    if (this.state.address.length !== 42){
+    if (address.length !== 42){
       return alert('Please enter a valid ethereum address.')
     }
 
-    if (this.state.address.substring(0,2) !== '0x'){
+    if (address.substring(0,2) !== '0x'){
       return alert('The address should start with 0x')
     }
 
-    if (this.state.password.length < 6){
+    if (password.length < 6){
       return alert('Password require at least 6 characters')
     }
 
-    if (this.state.password !== this.state.password_confirmation){
+    if (password !== password_confirmation){
       return alert('Password and Password Confirmation does not match')
     }
 
-
-    this.props.onSignUpFormSubmit(this.state.name, this.state.address, this.state.password)
+    this.props.onSignUpFormSubmit(name, address, password)
   }
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor="name">Name</label>
-          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange.bind(this)} placeholder="Name" />
+          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange('name')} placeholder="Name" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="address">Address</label>
-          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange.bind(this)} placeholder="Address" />
+          <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="password">Password</label>
-          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange.bind(this)} placeholder="Password" />
+          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange('password')} placeholder="Password" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
           <label htmlFor="password_confirmation">Password Confirmation</label>
-          <input id="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.onInputChange.bind(this)} placeholder="Password Confirmation" />
+          <input id="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.onInputChange('password_confirmation')} placeholder="Password Confirmation" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
