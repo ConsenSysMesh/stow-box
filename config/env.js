@@ -30,8 +30,6 @@ function getClientEnvironment(publicUrl) {
       'LINNIA_IPFS_PROTOCOL': JSON.stringify(process.env.LINNIA_IPFS_PROTOCOL),
       'LINNIA_CONTRACT_GAS': JSON.stringify(process.env.LINNIA_CONTRACT_GAS),
       'LINNIA_HUB_ADDRESS': JSON.stringify(process.env.LINNIA_HUB_ADDRESS),
-      'LINNIA_SERVER_HOST': JSON.stringify(process.env.LINNIA_SERVER_HOST),
-      'LINNIA_SERVER_PORT': JSON.stringify(process.env.LINNIA_SERVER_PORT),
       'LINNIA_SEARCH_URI': JSON.stringify(process.env.LINNIA_SEARCH_URI)
     });
   return {'process.env': processEnv};
