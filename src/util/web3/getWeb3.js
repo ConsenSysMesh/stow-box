@@ -20,8 +20,15 @@ let getWeb3 = new Promise(function(resolve, reject) {
       // Use Mist/MetaMask's provider.
       web3 = new Web3(web3.currentProvider)
 
+      var web3Account = false
+      if (web3.eth.accounts.length > 0) {
+        console.log('Account found');
+        web3Account = true
+      }
+
       results = {
-        web3Instance: web3
+        web3Instance: web3,
+        web3Account: web3Account
       }
 
       console.log('Injected web3 detected.');
@@ -35,8 +42,15 @@ let getWeb3 = new Promise(function(resolve, reject) {
 
       web3 = new Web3(provider)
 
+      var web3Account = false
+      if (web3.eth.accounts.length > 0) {
+        console.log('Account found');
+        web3Account = true
+      }
+
       results = {
-        web3Instance: web3
+        web3Instance: web3,
+        web3Account: web3Account
       }
 
       console.log('No web3 instance injected, using Local web3.');

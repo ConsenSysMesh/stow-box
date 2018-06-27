@@ -10,6 +10,7 @@ class LoginForm extends Component {
 
     if (typeof web3 !== 'undefined') {
       address = web3.eth.accounts[0]
+      this.props.onLoginFormSubmit(address)
     }
 
     this.state = {
