@@ -14,14 +14,20 @@ let getWeb3 = new Promise(function(resolve, reject) {
   window.addEventListener('load', function(dispatch) {
     var results
     var web3 = window.web3
+    var web3Account = null
 
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof web3 !== 'undefined') {
       // Use Mist/MetaMask's provider.
       web3 = new Web3(web3.currentProvider)
 
+      if (web3.eth.accounts.length > 0) {
+        web3Account = web3.eth.accounts[0]
+      }
+
       results = {
-        web3Instance: web3
+        web3Instance: web3,
+        web3Account: web3Account
       }
 
       console.log('Injected web3 detected.');
@@ -35,8 +41,13 @@ let getWeb3 = new Promise(function(resolve, reject) {
 
       web3 = new Web3(provider)
 
+      if (web3.eth.accounts.length > 0) {
+        web3Account = web3.eth.accounts[0]
+      }
+
       results = {
-        web3Instance: web3
+        web3Instance: web3,
+        web3Account: web3Account
       }
 
       console.log('No web3 instance injected, using Local web3.');

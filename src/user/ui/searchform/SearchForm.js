@@ -50,7 +50,7 @@ class SearchForm extends Component {
   const searchResults = (records) => 
     records.map(record => {
       return(
-        <div>
+        <div key={record.dataHash}>
           <h2>Record: {record.dataHash}</h2>
           <p>Owner: {record.owner}</p>
           <p>metadata: {record.metadata}</p>
@@ -62,7 +62,7 @@ class SearchForm extends Component {
 
     if(this.props.search.results){
       var res = JSON.parse(this.props.search.results)
-      if(! res instanceof Array){
+      if (res.constructor !== Array) {
         res = [res]
       }
       if(res.message){

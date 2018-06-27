@@ -14,9 +14,7 @@ class SignUpForm extends Component {
 
     this.state = {
       name: '',
-      address: address,
-      password: '',
-      password_confirmation: ''
+      address: address
     }
   }
 
@@ -29,8 +27,6 @@ class SignUpForm extends Component {
     event.preventDefault()
     const name = event.target.elements.name.value
     const address = event.target.elements.address.value
-    const password = event.target.elements.password.value
-    const password_confirmation = event.target.elements.password_confirmation.value
     
     if (name.length < 2){
       return alert('Please fill in your name.')
@@ -44,15 +40,7 @@ class SignUpForm extends Component {
       return alert('The address should start with 0x')
     }
 
-    if (password.length < 6){
-      return alert('Password require at least 6 characters')
-    }
-
-    if (password !== password_confirmation){
-      return alert('Password and Password Confirmation does not match')
-    }
-
-    this.props.onSignUpFormSubmit(name, address, password)
+    this.props.onSignUpFormSubmit(name, address)
   }
 
   render() {
@@ -66,16 +54,6 @@ class SignUpForm extends Component {
           <br />
           <label htmlFor="address">Address</label>
           <input id="address" type="text" value={this.state.address} onChange={this.onInputChange('address')} placeholder="Address" />
-          <span className="pure-form-message">This is a required field.</span>
-
-          <br />
-          <label htmlFor="password">Password</label>
-          <input id="password" type="password" value={this.state.password} onChange={this.onInputChange('password')} placeholder="Password" />
-          <span className="pure-form-message">This is a required field.</span>
-
-          <br />
-          <label htmlFor="password_confirmation">Password Confirmation</label>
-          <input id="password_confirmation" type="password" value={this.state.password_confirmation} onChange={this.onInputChange('password_confirmation')} placeholder="Password Confirmation" />
           <span className="pure-form-message">This is a required field.</span>
 
           <br />
