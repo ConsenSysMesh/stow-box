@@ -234,3 +234,11 @@ Then go to your browser and check localhost:3000 or whatever port you use for th
 
 Congrats your Linnia App is running!!
 
+
+
+### Run Tests
+
+```
+npm run test
+```
+
