@@ -230,7 +230,7 @@ Run the linnia box, go to linnia-box directory and run:
 npm start
 ```
 
-Then go to your browser and check localhost:3000 or whatever pot you use for the linnia box.
+Then go to your browser and check localhost:3000 or whatever port you use for the linnia box.
 
 Congrats your Linnia App is running!!
 
