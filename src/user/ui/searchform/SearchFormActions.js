@@ -12,7 +12,7 @@ export function search(dataHash, owner, property) {
 
   // Get Record from Linnia
   return async function(dispatch) {
-    var req = 'http://localhost:5002/records'
+    var req = process.env.LINNIA_SEARCH_URI + '/records'
     if(dataHash){
       req = req + '/'+dataHash
     }
