@@ -1,6 +1,6 @@
 # Linnia, truffle box starter kit
 
-This is a starter kit to start developing your app using the decentralized protocol Linnia as the backend and data manager.. Linnia is going to be used to store any data you want and relate it to your users.
+This is a starter kit to start developing your app using the decentralized protocol Linnia as the backend and data manager. Linnia is going to be used to store any data you want and relate it to your users.
 
 This starter kit is powered by Truffle Box and uses Metamask to authenticate users and sign transactions.
 
@@ -46,9 +46,9 @@ cd ../..
 
 
 
-### Metamask
+## Metamask
 
-In order to be able to fully use your starter kit you need to download Metmask to manage your Web3 instance and you connection to the Ethereum Blockchain Network.
+In order to be able to fully use your starter kit you need to download Metamask to manage your Web3 instance and you connection to the Ethereum Blockchain Network.
 
 If you don't have Metamask yet, go to the following link, download and install it https://metamask.io/
 
@@ -56,27 +56,65 @@ If you don't have Metamask yet, go to the following link, download and install i
 
 ## Run
 
-You have everything setup, now we have to run all the services we need in order to start running our first Linnia app.
+You have everything setup, now you have to run some services in order to have you first Linnia app working.
 
-There are 3 services the the starter kit need. For all of them you have the default runnins verision or you local one.
+There are 3 services that the starter kit need. For all of them you have the default running version or you local one.
 
 
+
+## Services Needed
+
+In order to start using your Linnia Box you need to use 3 services: IPFS, Ethereum Client (With Linnia SC), Linnia-Server
+
+
+
+
+
+
+
+## Quick Start
+
+For the quick start we are going to use Infura (IPFS), Ropsten (Ethereum Client), AWS Linnia-Server
+
+This is the easiest way to start but if you have time we recommend to take a look at the full installation in which we explain how to run a local version of all of this services which is very helpful for development purposes. (Check the full installation here)
 
 ### Config
 
-In order to config which instances of the services do you want to use. You have to create enviromental variables in a  `.env` file with the following variables
+In order to config which instances of the services do you want to use. You have to create environmental variables in a  `.env` file in the root of the project with the following variables:
 
 #### .env (Sample file, this file has to be in the root of the project)
 
 ```
-LINNIA_ETH_PROVIDER=http://localhost:8545
+LINNIA_ETH_PROVIDER=http://localhost:7545
 LINNIA_IPFS_HOST=ipfs.infura.io
 LINNIA_IPFS_PORT=5001
 LINNIA_IPFS_PROTOCOL=https
 LINNIA_CONTRACT_GAS=4000000
-LINNIA_HUB_ADDRESS=0x8cdaf0cd259887258bc13a92c0a6da92698644c0
-LINNIA_SEARCH_URI=http://localhost:5002
+LINNIA_HUB_ADDRESS=0xc39f2e4645de2550ee3b64e6dc47f927e8a98934
+LINNIA_SEARCH_URI=[TODO PASTE AWS SERVER ADDRESS HERE]
 ```
+
+Go to your Metamask and swich to Ropsten Test Network
+
+#### Run
+
+```
+npm start
+```
+
+Congrats your Linnia App is running!!
+
+
+
+
+
+
+
+## Full installation
+
+For the full installation we are going to run out local verion of IPFS, our local Ethereum Client with the linnia contracts deployed there and our local verion of Linnia-Server.
+
+This is the recommended setup for development purposes
 
 
 
@@ -86,19 +124,7 @@ LINNIA_SEARCH_URI=http://localhost:5002
 
 IPFS is a storage network that we are going to use in order to store the encrypted data of the users.
 
-#### Our recomendation is to use Infura (For more information https://infura.io/)
-
-If you want to use infura you should the set the following env variables in the env file
-
-```
-...
-LINNIA_IPFS_HOST=ipfs.infura.io
-LINNIA_IPFS_PORT=5001
-LINNIA_IPFS_PROTOCOL=https
-...
-```
-
-For development purposes we strongly recomend to use a local version of IPFS, this way you don't waste resource of the infura network (Have in mind that when you add a file to infura it will be there forever)
+For development purposes we strongly recommend to use a local version of IPFS, this way you don't waste resource of the Infura network (Have in mind that when you add a file to Infura it will be there forever)
 
 #### In order to launch your local version of IPFS
 
@@ -125,21 +151,23 @@ ipfs init
 ipfs daemon
 ```
 
+#### Change env IPFS variables (.env file)
+
+```
+..
+LINNIA_IPFS_HOST=localhost
+LINNIA_IPFS_PORT=5001
+LINNIA_IPFS_PROTOCOL=http
+...
+```
+
+
+
+
+
 
 
 ### 2. Ethereum Network
-
-#### Our recomendation is to use our TestNet version (NOT AVAILABLE YET)
-
-If you want to use this version, you should set the following in your env file
-
-```
-...
-LINNIA_HUB_ADDRESS=[TODO]
-...
-```
-
-You also need to switch you Metamask app to Ropsten Test Network
 
 #### In order to launch your local Ethereum Client
 
@@ -151,61 +179,52 @@ First you have to run your local ethereum client. In order to do this, you can u
 npm install -g ganache-cli
 ```
 
-#### Run your local Ethereum Client (This will launch your client in the localhost port 8545)
+#### Run your local Ethereum Client (This will launch your client in the localhost port 7545)
 
 ```
-ganache-cli -p 8545 -i 5777 -m 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'
+npm run ganache
 ```
+
+Now go to your Metamask and swich to Custom RPC and set the New RPC URL to: `http://localhost:7545`
+
+Keep that running and continue in another terminal window
 
 #### Now you have to deploy the Linnia Smart Contracts to your local Ethereum Client
 
-To do this, you have to download the Linnia Library. With this library you can deploy the Linnia contracts to the network.
+In order to deploy the contracts to the local ethereum client you just launch run:
 
-- First go to https://github.com/ConsenSys/linnia-js/ and install the library locally
+```
+node scripts/deploy-linnia.js
+```
 
-- After you have Linnia JS installed, use the library to deploy the contracts:
+You will see an output like this:
 
-  - In order to deploy the contracts, go to the Linnia-js directory and run the following commands:
+```
+Linnia instance deployed. Hub address is
+0x8acee021a27779d8e98b9650722676b850b25e11
+```
 
-  - ```
-    node
-    var Linnia = require('./lib')
-    var Web3 = require('web3')
-    var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
-    const ipfsapi = require('ipfs-api')
-    const ipfs = new ipfsapi({host: 'ipfs.infura.io', port: 5001, protocol: 'https'})
-    var linnia = Linnia.deploy(web3, ipfs, { from: web3.eth.accounts[0], gas: 4000000 })
-    linnia
-    ```
+Then copy the address, "0x..." and paste it in the .env file
 
-- After that you will find in the output, close to the bottom a line like this
+#### Change env Linnia HUB variable (.env file)
 
-  `_hubAddress: '0x8cdaf0cd259887258bc13a92c0a6da92698644c0' },` 
+```
+..
+LINNIA_HUB_ADDRESS=[PASTE ADDRESS HERE]
+...
+```
 
-- Take the address and paste it in the env file
 
-  ```
-  ...
-  LINNIA_HUB_ADDRESS=[Paste address here]
-  ...
-  ```
 
-You also need to switch you Metamask app to localhost 8545
+
 
 
 
 ### 3. Linnia Server
 
-#### The fast and easy way is to use our deployed central server  (NOT AVAILABLE YET)
+The Linnia Server is a server that uses Node and Express with a Postgres DB and store every Log that the Linnia Smart Contracts emit. This is very useful to query the data.
 
-In order to use our server you have to setup the following in you env file
-
-```
-...
-LINNIA_SEARCH_URI=[TODO Server URI]
-```
-
-#### Run your version of the server
+#### In order to launch your local Linnia Server
 
 If you don't want to trust the Linnia server, you can run your version of the server
 
@@ -222,15 +241,13 @@ In the code above the linnia-server is running in the port 5002. Be careful that
 
 
 
-### After you have the 3 services running
+### Run
 
 Run the linnia box, go to linnia-box directory and run:
 
 ```
 npm start
 ```
-
-Then go to your browser and check localhost:3000 or whatever port you use for the linnia box.
 
 Congrats your Linnia App is running!!
 
