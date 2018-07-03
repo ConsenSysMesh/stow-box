@@ -39,9 +39,6 @@ Install the dependencies:
 
 ```
 npm install
-cd node_modules/linnia
-npm install
-cd ../..
 ```
 
 
