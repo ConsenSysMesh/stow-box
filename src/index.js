@@ -14,6 +14,7 @@ import SignUp from './user/layouts/signup/SignUp'
 import Login from './user/layouts/login/Login'
 import GetRecord from './user/layouts/getrecord/GetRecord'
 import Search from './user/layouts/search/Search'
+import Permissions from './user/layouts/permissions/Permissions'
 
 // Redux Store
 import store from './store'
@@ -55,6 +56,7 @@ ReactDOM.render((
           <Route path="login" component={Login} />
           <Route path="get_record" component={GetRecord} />
           <Route path="search" component={Search} />
+          <Route path="permissions" component={Permissions} />
         </Route>
       </Router>
     </Provider>

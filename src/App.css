@@ -22,6 +22,22 @@ code {
   padding: 45px 20px;
 }
 
+.permissions-form {
+  vertical-align: top;
+}
+
+.error {
+  color: red;
+  margin-top: 0px;
+}
+
+.permissions {
+  margin-left: 50px;
+}
+.inline-block {
+  display: inline-block;
+}
+
 .pure-button-primary {
   background-color: #0c1a2b;
 }

@@ -5,6 +5,8 @@ import ipfsReducer from './util/ipfs/ipfsReducer'
 import linniaReducer from './util/linnia/linniaReducer'
 import recordReducer from './user/recordReducer'
 import searchReducer from './user/searchReducer'
+import permissionsReducer from './user/permissionsReducer'
+import permissionsErrorReducer from './user/permissionsErrorReducer'
 
 const reducer = combineReducers({
   routing: routerReducer,
@@ -12,7 +14,9 @@ const reducer = combineReducers({
   record: recordReducer,
   search: searchReducer,
   ipfs: ipfsReducer,
-  linnia: linniaReducer
+  linnia: linniaReducer,
+  permissions: permissionsReducer,
+  permissionsError: permissionsErrorReducer
 })
 
 export default reducer

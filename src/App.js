@@ -20,6 +20,9 @@ class App extends Component {
               <li className="pure-menu-item">
                 <Link to="/search" className="pure-menu-link">Search</Link>
               </li>
+              <li className="pure-menu-item">
+                <Link to="/permissions" className="pure-menu-link">Permissions</Link>
+              </li>
             </span>
           </ul>
           <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>

@@ -1,7 +1,7 @@
-const bs58 = require('bs58')
-const eutil = require('ethereumjs-util')
-const multihashes = require('multihashes')
-const ecies = require('eth-ecies')
+import bs58 from 'bs58'
+import eutil from 'ethereumjs-util'
+import multihashes from 'multihashes'
+import ecies from 'eth-ecies'
 import store from '../../../store'
 
 export const GET_RECORD = 'GET_RECORD'
