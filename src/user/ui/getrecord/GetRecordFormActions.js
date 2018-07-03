@@ -22,7 +22,6 @@ export function getRecord(dataHash) {
     if (typeof store.getState().web3.web3Instance !== 'undefined') {
       let record = await linnia.getRecord(dataHash)
       record.dataHash = dataHash
-      record.ipfsHash = bs58.encode(multihashes.encode(eutil.toBuffer(record.dataUri), 18, 32))
   
       dispatch(assignRecord(record))
     }
