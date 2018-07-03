@@ -36,12 +36,13 @@ export function getDecryptedRecord(record, privateKey) {
 
   // Get Record from Linnia
   return async function(dispatch) {
+    console.log('here')
     let ipfs = store.getState().ipfs.ipfsInstance
 
     if (record.owner === "0x0000000000000000000000000000000000000000") {
       return(alert("Error: owner address is zero. does the file exist?"))
     }
-    const ipfsRes = await ipfs.files.get(record.ipfsHash)
+    const ipfsRes = await ipfs.files.get(record.dataUri)
     const encrypted = ipfsRes[0].content
 
     // Try to decrypt with the provided key
