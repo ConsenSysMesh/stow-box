@@ -59,7 +59,6 @@ class GetRecordForm extends Component {
         <p>sigCount: {this.props.record.data.sigCount.toString()}</p>
         <p>irisScore: {this.props.record.data.irisScore.toString()}</p>
         <p>dataUri: {this.props.record.data.dataUri}</p>
-        <p>ipfsHash: {this.props.record.data.ipfsHash}</p>
       </div>
 
     //Got Results
