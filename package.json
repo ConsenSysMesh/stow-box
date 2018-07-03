@@ -64,7 +64,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/testRun.js --env=jsdom",
-    "ganache": "ganache-cli -p 7545 -i 5777 -a 61 -m 'candy maple cake sugar pudding cream honey rich smooth crumble sweet treat'"
+    "ganache": "ganache-cli -p 7545 -i 5777 -a 61 -m 'drastic outer student holiday hour ordinary reduce absurd clever govern ensure merry keen sound pelican'"
   },
   "jest": {
     "collectCoverageFrom": [
