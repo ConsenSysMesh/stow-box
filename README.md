@@ -70,13 +70,19 @@ In order to start using your Linnia Box you need to use 3 services: IPFS, Ethere
 
 
 
-
-
 ## Quick Start
 
 For the quick start we are going to use Infura (IPFS), Ropsten (Ethereum Client), AWS Linnia-Server
 
 This is the easiest way to start but if you have time we recommend to take a look at the full installation in which we explain how to run a local version of all of this services which is very helpful for development purposes. (Check the full installation here)
+
+
+
+## Infura Ropsten Network Connection
+
+Go to https://infura.io/signup, signup and get you API KEY, then in the next step paste that where is says [INFURA API KEY] in the .env file.
+
+
 
 ### Config
 
@@ -85,13 +91,13 @@ In order to config which instances of the services do you want to use. You have 
 #### .env (Sample file, this file has to be in the root of the project)
 
 ```
-LINNIA_ETH_PROVIDER=http://localhost:7545
+LINNIA_ETH_PROVIDER=https://ropsten.infura.io/[INFURA API KEY]
 LINNIA_IPFS_HOST=ipfs.infura.io
 LINNIA_IPFS_PORT=5001
 LINNIA_IPFS_PROTOCOL=https
 LINNIA_CONTRACT_GAS=4000000
 LINNIA_HUB_ADDRESS=0xc39f2e4645de2550ee3b64e6dc47f927e8a98934
-LINNIA_SEARCH_URI=[TODO PASTE AWS SERVER ADDRESS HERE]
+LINNIA_SEARCH_URI=http://18.222.147.7:3000
 ```
 
 Go to your Metamask and swich to Ropsten Test Network
@@ -143,6 +149,18 @@ Install IPFS if you don't have it already:
 - For Windows:
 
 - After downloading, unzip the archive, and move `ipfs.exe` somewhere in your `%PATH%`
+
+
+
+- Configure IPFS CORS in order to be able to access from the browser:
+
+  ```
+  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
+  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["GET", "POST"]'
+  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Headers '["Authorization"]'
+  ipfs config --json API.HTTPHeaders.Access-Control-Expose-Headers '["Location"]'
+  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials '["true"]'
+  ```
 
 - Run IPFS locally
 
@@ -259,3 +277,10 @@ Congrats your Linnia App is running!!
 npm run test
 ```
 
+
+
+
+
+### Decryption keys
+
+In order to decrypt the test files that we uploaded to the contracts, click [HERE](KEYS.md)
