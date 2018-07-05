@@ -280,4 +280,16 @@ npm run test
 
 ### Decryption keys
 
-In order to decrypt the test files that we uploaded to the contracts, click [HERE](KEYS.md)
+In order to decrypt the test files that we uploaded to the contracts, click [HERE](PrivateKeys.md)
+
+
+
+### Sharing keys
+
+In order to share a files you have to use the public key of the receiver, to find them click [HERE](PublicKeys.md)
+
+
+
+### Addresses
+
+Here you can check the address of each test user, click [HERE](Addresses.md)
