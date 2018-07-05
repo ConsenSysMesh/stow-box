@@ -6,6 +6,7 @@ export const SET_PERMISSIONS = 'SET_PERMISSIONS'
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION'
 export const ADD_PERMISSION = 'ADD_PERMISSION'
 export const PERMISSION_ERROR = 'PERMISSION_ERROR'
+export const UPLOADING_PERMISSION ='UPLOADING_PERMISSION'
 
 const assignPermissions = (permissions) => ({
   type: SET_PERMISSIONS,
@@ -19,12 +20,19 @@ const removePermission = (permission) => ({
 
 const appendPermission = (permission) => ({
   type: ADD_PERMISSION,
-  payload: permission
+  payload: permission,
+  isLoading: false
 })
 
 const showPermissionError = (message) => ({
   type: PERMISSION_ERROR,
+  isLoading: false,
   message
+})
+
+const uploadingPermission = () => ({
+  type: UPLOADING_PERMISSION,
+  isLoading: true
 })
 
 export const clearPermissionsError = () => async (dispatch) => {
@@ -47,13 +55,16 @@ export const revokePermission = (permission) => async (dispatch) => {
   const { permissions } = await linnia.getContractInstances()
   await permissions.revokeAccess(dataHash, viewer, {
     from: ownerAddress,
-    gas: 400000
+    gas: 500000,
+    gasPrice: 20
   })
   dispatch(removePermission(permission))
 }
 
 export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey) => async (dispatch) => {
   let file, decryptedData, reencrypted, viewerFile
+
+  dispatch(uploadingPermission())
 
   const linnia = store.getState().linnia.linniaInstance
   const ipfs = linnia.ipfs
@@ -101,10 +112,12 @@ export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey
     const { permissions } = await linnia.getContractInstances()
     await permissions.grantAccess(dataHash, viewer, dataUri, {
         from: owner,
-        gas: 500000
+        gas: 500000,
+        gasPrice: 20
     })
   } catch (e) {
-    dispatch(showPermissionError('Unable to create permission. Does this permission already exist?'))
+    console.error(e)
+    dispatch(showPermissionError('Transaction to ethereum network failed! Please check your console for errors.'))
     return    
   }
 

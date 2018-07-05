@@ -1,12 +1,16 @@
 import { 
   SET_PERMISSIONS, 
   REMOVE_PERMISSION,
-  ADD_PERMISSION
+  ADD_PERMISSION,
+  UPLOADING_PERMISSION,
+  PERMISSION_ERROR
 } from './ui/permissions/PermissionsActions'
 
 const initialState = {
   asOwner: [],
-  asViewer: []
+  asViewer: [],
+  isLoading: false,
+  message: ''
 }
 
 const permissionsReducer = (state = initialState, action) => {
@@ -18,9 +22,16 @@ const permissionsReducer = (state = initialState, action) => {
     asOwner.splice(index, 1)
     return Object.assign({}, state, { asOwner })
   } else if (action.type === ADD_PERMISSION) {
+    const { isLoading } = action
     const asOwner = state.asOwner.slice()
     asOwner.push(action.payload)
-    return Object.assign({}, state, { asOwner })
+    return Object.assign({}, state, { asOwner, isLoading })
+  } else if (action.type === UPLOADING_PERMISSION) {
+    const isLoading = true
+    return Object.assign({}, state, { isLoading })
+  } else if (action.type === PERMISSION_ERROR) {
+    const { message, isLoading } = action
+    return Object.assign({}, state, { message, isLoading })
   }
 
   return state

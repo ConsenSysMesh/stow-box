@@ -1,6 +1,3 @@
-import bs58 from 'bs58'
-import eutil from 'ethereumjs-util'
-import multihashes from 'multihashes'
 import ecies from 'eth-ecies'
 import store from '../../../store'
 

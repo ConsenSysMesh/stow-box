@@ -8,12 +8,14 @@ import {
 } from './PermissionsActions'
 
 const mapStateToProps = (state, ownProps) => {
-	const permissions = state.permissions
-  const errorMessage = state.permissionsError.message
-
+	const permissions = state.permissions.asOwner
+  const errorMessage = state.permissions.message
+  const isLoading = state.permissions.isLoading
+  
   return {
   	permissions,
-    errorMessage
+    errorMessage,
+    isLoading
   }
 }
 

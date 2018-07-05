@@ -15,6 +15,11 @@ class AddPermission extends Component {
     this.setState({ [property]: value })
   }
 
+  camelToPretty = (string) => {
+  return string.replace(/([A-Z])/g, (match) => ` ${match}`)
+    .replace(/^./, (match) => match.toUpperCase());
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
 
@@ -32,7 +37,7 @@ class AddPermission extends Component {
         <h2>Add Permission</h2>
         <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
           {Object.keys(this.state).map((property, i) => {
-            return (<label key={i}>{property}
+            return (<label key={i}>{this.camelToPretty(property)}
               <input 
                 name={property}
                 value={this.state[property]}

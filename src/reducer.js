@@ -6,7 +6,6 @@ import linniaReducer from './util/linnia/linniaReducer'
 import recordReducer from './user/recordReducer'
 import searchReducer from './user/searchReducer'
 import permissionsReducer from './user/permissionsReducer'
-import permissionsErrorReducer from './user/permissionsErrorReducer'
 
 const reducer = combineReducers({
   routing: routerReducer,
@@ -15,8 +14,7 @@ const reducer = combineReducers({
   search: searchReducer,
   ipfs: ipfsReducer,
   linnia: linniaReducer,
-  permissions: permissionsReducer,
-  permissionsError: permissionsErrorReducer
+  permissions: permissionsReducer
 })
 
 export default reducer
