@@ -97,7 +97,7 @@ LINNIA_HUB_ADDRESS=0xc39f2e4645de2550ee3b64e6dc47f927e8a98934
 LINNIA_SEARCH_URI=http://18.222.147.7:3000
 ```
 
-Go to your Metamask and swich to Ropsten Test Network
+Go to your Metamask and switch to Ropsten Test Network
 
 #### Run
 
@@ -115,9 +115,13 @@ Congrats your Linnia App is running!!
 
 ## Full installation
 
-For the full installation we are going to run out local verion of IPFS, our local Ethereum Client with the linnia contracts deployed there and our local verion of Linnia-Server.
+For the full installation we are going to run out local version of IPFS, our local Ethereum Client with the linnia contracts deployed there and your local version of Linnia-Server.
 
-This is the recommended setup for development purposes
+This is the recommended setup for development purposes for the following reasons:
+
+- IPFS locally because otherwise you are going to contaminate Infura IPFS with a bunch of trash files. That data will persist there.
+- Local ethereum client for the same reason, if you use the ropsten contracts for development puposes, the data will keep there forever.
+- Local version of Linnia Server is because that way you don't need to trust any central server and you keep track directly of the data that is added to the linnia contracts.
 
 
 
@@ -200,7 +204,7 @@ npm install -g ganache-cli
 npm run ganache
 ```
 
-Now go to your Metamask and swich to Custom RPC and set the New RPC URL to: `http://localhost:7545`
+Now go to your Metamask and switch to Custom RPC and set the New RPC URL to: `http://localhost:7545`
 
 Keep that running and continue in another terminal window
 
