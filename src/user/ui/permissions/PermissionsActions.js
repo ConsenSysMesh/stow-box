@@ -60,7 +60,7 @@ export const revokePermission = (permission) => async (dispatch) => {
     await permissions.revokeAccess(dataHash, viewer, {
       from: ownerAddress,
       gas: 500000,
-      gasPrice: 20
+      gasPrice: 20000000000
     })
   } catch (e) {
     console.error(e)
@@ -123,7 +123,7 @@ export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey
     await permissions.grantAccess(dataHash, viewer, dataUri, {
         from: owner,
         gas: 500000,
-        gasPrice: 20
+        gasPrice: 20000000000
     })
   } catch (e) {
     console.error(e)
