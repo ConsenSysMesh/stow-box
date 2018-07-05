@@ -19,8 +19,9 @@ const permissionsReducer = (state = initialState, action) => {
   } else if (action.type === REMOVE_PERMISSION) {
     const index = state.asOwner.indexOf(action.payload)
     const asOwner = state.asOwner.slice()
+    const { isLoading } = action
     asOwner.splice(index, 1)
-    return Object.assign({}, state, { asOwner })
+    return Object.assign({}, state, { asOwner, isLoading })
   } else if (action.type === ADD_PERMISSION) {
     const { isLoading } = action
     const asOwner = state.asOwner.slice()

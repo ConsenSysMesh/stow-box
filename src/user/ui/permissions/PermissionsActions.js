@@ -8,6 +8,10 @@ export const ADD_PERMISSION = 'ADD_PERMISSION'
 export const PERMISSION_ERROR = 'PERMISSION_ERROR'
 export const UPLOADING_PERMISSION ='UPLOADING_PERMISSION'
 
+const gasPrice = 20000000000
+const gas = 500000
+const canAccess = true
+
 const assignPermissions = (permissions) => ({
   type: SET_PERMISSIONS,
   payload: permissions
@@ -15,7 +19,8 @@ const assignPermissions = (permissions) => ({
 
 const removePermission = (permission) => ({
   type: REMOVE_PERMISSION,
-  payload: permission
+  payload: permission,
+  isLoading: false
 })
 
 const appendPermission = (permission) => ({
@@ -59,8 +64,8 @@ export const revokePermission = (permission) => async (dispatch) => {
   try {
     await permissions.revokeAccess(dataHash, viewer, {
       from: ownerAddress,
-      gas: 500000,
-      gasPrice: 20000000000
+      gasPrice,
+      gas
     })
   } catch (e) {
     console.error(e)
@@ -122,8 +127,8 @@ export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey
     const { permissions } = await linnia.getContractInstances()
     await permissions.grantAccess(dataHash, viewer, dataUri, {
         from: owner,
-        gas: 500000,
-        gasPrice: 20000000000
+        gasPrice,
+        gas
     })
   } catch (e) {
     console.error(e)
@@ -136,7 +141,7 @@ export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey
     owner,
     dataUri,
     dataHash,
-    canAccess: true,
+    canAccess
   };
 
   dispatch(appendPermission(permission))
