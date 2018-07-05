@@ -48,16 +48,26 @@ export const getPermissions = () => async (dispatch) => {
 }
 
 export const revokePermission = (permission) => async (dispatch) => {
+  dispatch(uploadingPermission())
+
   const linnia = store.getState().linnia.linniaInstance
   const ownerAddress = store.getState().web3.web3Instance.eth.accounts[0]
   const dataHash = permission.dataHash
   const viewer = permission.viewer
   const { permissions } = await linnia.getContractInstances()
-  await permissions.revokeAccess(dataHash, viewer, {
-    from: ownerAddress,
-    gas: 500000,
-    gasPrice: 20
-  })
+
+  try {
+    await permissions.revokeAccess(dataHash, viewer, {
+      from: ownerAddress,
+      gas: 500000,
+      gasPrice: 20
+    })
+  } catch (e) {
+    console.error(e)
+    dispatch(showPermissionError('Transaction to ethereum network failed! Please check your console for errors.'))
+    return
+  }
+
   dispatch(removePermission(permission))
 }
 
