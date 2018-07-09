@@ -59,6 +59,11 @@ code {
   display: inline-block;
 }
 
+.auth-error {
+  text-align: center;
+  margin-top: 40px;
+}
+
 .pure-button-primary {
   background-color: #0c1a2b;
 }
@@ -89,13 +94,16 @@ code {
   font-family: 'Oswald', 'Arial Narrow', sans-serif;
 }
 
-.navbar span {
-  color: #fff;
+.pure-menu-item {
+  margin: 0px 5px;
 }
 
-.navbar a:active,
-.navbar a:focus,
-.navbar a:hover {
+.navbar span {
+  color: #fff;
+  cursor: pointer;
+}
+
+.pure-menu-link:hover {
   background: #233e5e;
 }
 

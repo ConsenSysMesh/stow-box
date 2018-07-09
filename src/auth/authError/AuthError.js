@@ -5,13 +5,15 @@ import PropTypes from 'prop-types';
 import { 
   LOCKED_METAMASK, 
   NO_METAMASK, 
-  WRONG_HUB_ADDRESS 
+  LINNIA_MISCONFIGURED,
+  IPFS_MISCONFIGURED
 } from './../AuthActions';
 
 const errorCopy = {
   [NO_METAMASK]: 'No Metamask found. Please install Metamask and try again.',
   [LOCKED_METAMASK]: 'Please unlock Metamask and refresh to continue.',
-  [WRONG_HUB_ADDRESS]: 'No hub found at supplied address on supplied network. Please check your configuration and try again.'
+  [LINNIA_MISCONFIGURED]: 'No hub found at supplied address on supplied network. Please check your configuration and network and try again.',
+  [IPFS_MISCONFIGURED]: 'Connect to IPFS failed. Are you sure you configured it correctly?'
 }
 
 class AuthError extends Component {
@@ -31,7 +33,7 @@ class AuthError extends Component {
     const { authError } = this.props;
 
     return (
-      <div>
+      <div className="auth-error">
         <div id="metamask-logo-container"></div>
         <h2>{errorCopy[authError]}</h2>
       </div>
@@ -40,7 +42,7 @@ class AuthError extends Component {
 }
 
 AuthError.propTypes = {
-  AuthError: PropTypes.string.isRequired
+  authError: PropTypes.string.isRequired
 };
 
 export default AuthError;

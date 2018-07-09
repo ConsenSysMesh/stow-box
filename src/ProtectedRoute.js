@@ -6,7 +6,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   return <Route {...rest} render={(props) => {
     return isAuthenticated ? <Component {...props} /> : 
       <Redirect to={{
-        pathname: '/auth_error',
+        pathname: '/',
         state: { from: props.location }
       }} />
   }} />

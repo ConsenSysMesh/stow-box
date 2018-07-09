@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, Switch } from 'react-router-dom';
-import store from './store';
 import createHistory from 'history/createBrowserHistory';
 
 // Styles
@@ -16,14 +14,11 @@ import Header from './layouts/header/Header';
 import GetRecord from './user/layouts/getrecord/GetRecord';
 import Search from './user/layouts/search/Search';
 
-import AuthError from './auth/authError/AuthError';
 import ProtectedRoute from './ProtectedRoute';
 
-const browserHistory =  createHistory({
+const history =  createHistory({
   basename: ''
 });
-
-const history = syncHistoryWithStore(browserHistory, store);
 
 class App extends Component {
   componentDidMount() {
@@ -35,13 +30,12 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header history={history}/>
+        <Header authError={authError} history={history}/>
           <Router history={history}>
           <Switch>
-            <Route path="/" component={Home} />
             <ProtectedRoute isAuthenticated={isAuthenticated} path="/get_record" component={GetRecord} />
             <ProtectedRoute isAuthenticated={isAuthenticated} path="/search" component={Search} />
-            <Route path="/auth_error" component={AuthError} />
+            <Route exact path="*" render={() => <Home authError={authError}/>} />
           </Switch>
         </Router>
       </div>

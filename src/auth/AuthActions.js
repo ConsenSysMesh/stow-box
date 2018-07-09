@@ -45,7 +45,7 @@ const getWeb3 = () => {
 
 
 export const authenticate = () => async (dispatch) => {
-  let web3, address, ipfs, linnia;
+  let web3;
 
   try {
     web3 = await getWeb3();
@@ -54,26 +54,31 @@ export const authenticate = () => async (dispatch) => {
     return dispatch(authFailure(NO_METAMASK));
   }
 
-  address = web3.eth.accounts[0];
+  const accounts = await web3.eth.getAccounts();
+  const address = accounts[0];
 
   if (!address) {
     console.error('Metamask is locked!');
     return dispatch(authFailure(LOCKED_METAMASK));
   }
 
+  const ipfs = new IPFS({ host, port, protocol });
+
   try {
-    ipfs = new IPFS({ host , port, protocol });
+    await ipfs.id();
   } catch (e) {
-    console.error(e);
+    console.error('IPFS is not configured correctly!');
     return dispatch(authFailure(IPFS_MISCONFIGURED));
   }
 
-  try {
-    linnia = new Linnia(web3, ipfs, { hubAddress });
-  } catch(e) {
-    console.error(e);
+  // checking to see if contract exists at address since truffle-contract doesnt expose error
+  const code = await web3.eth.getCode(hubAddress);
+  if (!code || code === '0x0' || code === '0x') {
+    console.error('Linnia is not configured correctly!');
     return dispatch(authFailure(LINNIA_MISCONFIGURED));
   }
+  
+  const linnia = new Linnia(web3, ipfs, { hubAddress });
 
   dispatch(authSuccess(web3, ipfs, linnia));
 }
