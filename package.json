@@ -47,11 +47,16 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "@material-ui/core": "^1.3.0",
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^2.0.0",
+    "eth-ecies": "^1.0.3",
     "ethereumjs-util": "^5.2.0",
     "ipfs-api": "^22.1.0",
     "linnia": "git+https://github.com/ConsenSys/linnia-js.git",
+    "material-ui": "^0.20.1",
+    "prop-types": "^15.6.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
