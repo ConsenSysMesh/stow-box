@@ -13,6 +13,7 @@ import Home from './layouts/home/Home';
 import Header from './layouts/header/Header';
 import GetRecord from './user/layouts/getrecord/GetRecord';
 import Search from './user/layouts/search/Search';
+import Permission from './user/layouts/permissions/Permissions';
 
 import ProtectedRoute from './ProtectedRoute';
 
@@ -35,6 +36,7 @@ class App extends Component {
           <Switch>
             <ProtectedRoute isAuthenticated={isAuthenticated} path="/get_record" component={GetRecord} />
             <ProtectedRoute isAuthenticated={isAuthenticated} path="/search" component={Search} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/permissions" component={Permission} />
             <Route exact path="*" render={() => <Home authError={authError}/>} />
           </Switch>
         </Router>

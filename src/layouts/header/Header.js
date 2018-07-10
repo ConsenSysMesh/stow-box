@@ -20,6 +20,9 @@ class Header extends Component {
             <li className="pure-menu-item">
               <span className="pure-menu-link" onClick={this.navigateTo("/search")}>Search</span>
             </li>
+            <li className="pure-menu-item">
+              <span className="pure-menu-link" onClick={this.navigateTo("/permissions")}>Permissions</span>
+            </li>
           </span>}
         </ul>
         <span onClick={this.navigateTo("/")} className="pure-menu-heading pure-menu-link">Truffle Box</span>

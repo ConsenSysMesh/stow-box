@@ -55,7 +55,7 @@
     "ethereumjs-util": "^5.2.0",
     "history": "^4.7.2",
     "ipfs-api": "^22.1.0",
-    "linnia": "git+ssh://github.com/ConsenSys/linnia-js.git#3ff17709941569abdddf4138a164b1e2736be56e",
+    "linnia": "git+https://github.com/ConsenSys/linnia-js.git",
     "material-ui": "^0.20.1",
     "metamask-logo": "^2.2.0",
     "prop-types": "^15.6.2",

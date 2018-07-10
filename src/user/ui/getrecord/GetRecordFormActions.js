@@ -13,7 +13,7 @@ export function getRecord(dataHash) {
 
   // Get Record from Linnia
   return async (dispatch) => {
-    const { linnia, web3 } = store.getState().auth;
+    const { linnia } = store.getState().auth;
     const record = await linnia.getRecord(dataHash);
     dispatch(assignRecord(record))
   }
