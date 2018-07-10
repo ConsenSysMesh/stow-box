@@ -1,5 +1,5 @@
 {
-  "name": "react-auth-box",
+  "name": "@linniaprotocol/linnia-box",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
