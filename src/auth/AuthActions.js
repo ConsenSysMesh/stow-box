@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import IPFS from 'ipfs-api';
-import Linnia from 'linnia';
+import Linnia from '@linniaprotocol/linnia-july-2018'
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
