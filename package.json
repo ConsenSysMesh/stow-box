@@ -55,7 +55,7 @@
     "eth-ecies": "^1.0.3",
     "ethereumjs-util": "^5.2.0",
     "history": "^4.7.2",
-    "ipfs-api": "^22.1.0",
+    "ipfs-api": "^22.2.3",
     "material-ui": "^0.20.1",
     "metamask-logo": "^2.2.0",
     "prop-types": "^15.6.2",
