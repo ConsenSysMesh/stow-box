@@ -1,5 +1,5 @@
 {
-  "name": "react-auth-box",
+  "name": "@linniaprotocol/linnia-box",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -66,8 +66,7 @@
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0",
-    "web3": "^1.0.0-beta.34"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
