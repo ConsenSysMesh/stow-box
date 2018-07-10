@@ -12,7 +12,8 @@ export function search(dataHash, owner, property) {
 
   // Get Record from Linnia
   return async function(dispatch) {
-    var req = process.env.LINNIA_SEARCH_URI + '/records'
+    let req = process.env.LINNIA_SEARCH_URI + '/records';
+
     if(dataHash){
       req = req + '/'+dataHash
     }
@@ -27,7 +28,7 @@ export function search(dataHash, owner, property) {
       req = req + '?property='+property
     } 
 
-    request(req, function (error, response, body) {
+    request(req, (error, response, body) => {
       dispatch(assignSearch(body))
     });
   }

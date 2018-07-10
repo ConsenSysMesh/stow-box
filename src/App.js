@@ -1,37 +1,48 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router'
+import React, { Component } from 'react';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 
 // Styles
-import './css/oswald.css'
-import './css/open-sans.css'
-import './css/pure-min.css'
-import './App.css'
+import './css/oswald.css';
+import './css/open-sans.css';
+import './css/pure-min.css';
+import './App.css';
+
+// Layouts
+import Home from './layouts/home/Home';
+import Header from './layouts/header/Header';
+import GetRecord from './user/layouts/getrecord/GetRecord';
+import Search from './user/layouts/search/Search';
+import Permission from './user/layouts/permissions/Permissions';
+
+import ProtectedRoute from './ProtectedRoute';
+
+const history =  createHistory({
+  basename: ''
+});
 
 class App extends Component {
+  componentDidMount() {
+    this.props.authenticate();
+  }
+
   render() {
+    const { isAuthenticated, authError } = this.props;
+
     return (
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-          <ul className="pure-menu-list navbar-right">
-            <span>
-              <li className="pure-menu-item">
-                <Link to="/get_record" className="pure-menu-link">Get Record</Link>
-              </li>
-              <li className="pure-menu-item">
-                <Link to="/search" className="pure-menu-link">Search</Link>
-              </li>
-              <li className="pure-menu-item">
-                <Link to="/permissions" className="pure-menu-link">Permissions</Link>
-              </li>
-            </span>
-          </ul>
-          <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
-        </nav>
-
-        {this.props.children}
+        <Header authError={authError} history={history}/>
+          <Router history={history}>
+          <Switch>
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/get_record" component={GetRecord} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/search" component={Search} />
+            <ProtectedRoute isAuthenticated={isAuthenticated} path="/permissions" component={Permission} />
+            <Route exact path="*" render={() => <Home authError={authError}/>} />
+          </Switch>
+        </Router>
       </div>
     );
   }
 }
 
-export default App
+export default App;

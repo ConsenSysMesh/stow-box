@@ -45,7 +45,7 @@ export const clearPermissionsError = () => async (dispatch) => {
 }
 
 export const getPermissions = () => async (dispatch) => {
-  const ownerAddress = store.getState().web3.web3Instance.eth.accounts[0]
+  const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts()
   const host = process.env.LINNIA_SEARCH_URI
   const url = `${host}/users/${ownerAddress}/permissions`
   const response = await axios.get(url)
@@ -55,8 +55,8 @@ export const getPermissions = () => async (dispatch) => {
 export const revokePermission = (permission) => async (dispatch) => {
   dispatch(uploadingPermission())
 
-  const linnia = store.getState().linnia.linniaInstance
-  const ownerAddress = store.getState().web3.web3Instance.eth.accounts[0]
+  const linnia = store.getState().auth.linnia;
+  const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts()
   const dataHash = permission.dataHash
   const viewer = permission.viewer
   const { permissions } = await linnia.getContractInstances()
@@ -81,7 +81,7 @@ export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey
 
   dispatch(uploadingPermission())
 
-  const linnia = store.getState().linnia.linniaInstance
+  const linnia = store.getState().auth.linnia
   const ipfs = linnia.ipfs
 
   const record = await linnia.getRecord(dataHash)
@@ -121,7 +121,7 @@ export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey
   }
 
   const dataUri = viewerFile[0].hash
-  const owner = store.getState().web3.web3Instance.eth.accounts[0]
+  const [owner] = await store.getState().auth.web3.eth.getAccounts()
 
   try {
     const { permissions } = await linnia.getContractInstances()

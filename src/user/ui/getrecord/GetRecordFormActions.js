@@ -12,33 +12,23 @@ function assignRecord(record) {
 export function getRecord(dataHash) {
 
   // Get Record from Linnia
-  return async function(dispatch) {
-    let linnia = store.getState().linnia.linniaInstance
-
-    // Double-check web3's status.
-    if (typeof store.getState().web3.web3Instance !== 'undefined') {
-      let record = await linnia.getRecord(dataHash)
-      record.dataHash = dataHash
-  
-      dispatch(assignRecord(record))
-    }
-    else{
-      console.log("No Web3")
-    }
-
+  return async (dispatch) => {
+    const { linnia } = store.getState().auth;
+    const record = await linnia.getRecord(dataHash);
+    dispatch(assignRecord(record))
   }
 }
 
 export function getDecryptedRecord(record, privateKey) {
 
   // Get Record from Linnia
-  return async function(dispatch) {
-    console.log('here')
-    let ipfs = store.getState().ipfs.ipfsInstance
+  return async (dispatch) => {
+    const { ipfs } = store.getState().auth;
 
     if (record.owner === "0x0000000000000000000000000000000000000000") {
       return(alert("Error: owner address is zero. does the file exist?"))
     }
+
     const ipfsRes = await ipfs.files.get(record.dataUri)
     const encrypted = ipfsRes[0].content
 
@@ -51,6 +41,5 @@ export function getDecryptedRecord(record, privateKey) {
       console.log(e)
       return(alert("Error decrypting data. Probably wrong private key"))
     }
-
   }
 }
