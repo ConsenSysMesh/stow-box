@@ -2,11 +2,24 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class AddPermission extends Component {
-  state = {
-    dataHash: '',
-    viewerAddress: '',
-    viewerPublicSharingKey: '',
-    ownerPrivateKey: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      dataHash: '',
+      viewerAddress: '',
+      viewerPublicSharingKey: '',
+      ownerPrivateKey: ''
+    }
+
+    // Set variables pass as url arguments
+    window.location.search.substr(1).split("&").forEach( (param) => {
+      const key = param.split("=")[0]
+      const val = param.split("=")[1]
+      if(this.state[key] !== undefined){
+        this.state[key] = val
+      }
+    })
   }
 
   onInputChange = (property) => (event) => {

@@ -8,6 +8,16 @@ class GetRecordForm extends Component {
       dataHash: '',
       privateKey: ''
     }
+
+    // Set variables pass as url arguments
+    window.location.search.substr(1).split("&").forEach( (param) => {
+      const key = param.split("=")[0]
+      const val = param.split("=")[1]
+      if(key === 'dataHash'){
+        this.state['dataHash'] = val
+      }
+    })
+
   }
 
   onInputChange = (property) => (event) => {
