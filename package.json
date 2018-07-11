@@ -6,7 +6,7 @@
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
     "babel-eslint": "7.1.1",
-    "babel-jest": "17.0.2",
+    "babel-jest": "^23.4.0",
     "babel-loader": "6.2.7",
     "babel-preset-react-app": "^2.0.1",
     "case-sensitive-paths-webpack-plugin": "1.1.4",
@@ -29,7 +29,7 @@
     "gzip-size": "3.0.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.2",
-    "jest": "18.1.0",
+    "jest": "^23.4.0",
     "json-loader": "0.5.4",
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
@@ -39,7 +39,6 @@
     "recursive-readdir": "2.1.0",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
-    "truffle-contract": "^1.1.8",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
@@ -47,15 +46,16 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
+    "@linniaprotocol/linnia-july-2018": "^0.1.6",
     "@material-ui/core": "^1.3.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^2.0.0",
+    "dotenv": "^6.0.0",
+    "es2015": "0.0.0",
     "eth-ecies": "^1.0.3",
     "ethereumjs-util": "^5.2.0",
     "history": "^4.7.2",
-    "ipfs-api": "^22.1.0",
-    "linnia": "git+https://github.com/ConsenSys/linnia-js.git",
+    "ipfs-api": "^22.2.3",
     "material-ui": "^0.20.1",
     "metamask-logo": "^2.2.0",
     "prop-types": "^15.6.2",
@@ -66,26 +66,22 @@
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "web3": "^1.0.0-beta.34"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/testRun.js --env=jsdom",
+    "test": "jest src/App.test.js",
     "ganache": "ganache-cli -p 7545 -i 5777 -a 61 -m 'drastic outer student holiday hour ordinary reduce absurd clever govern ensure merry keen sound pelican'"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.js?(x)",
-      "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
+      "<rootDir>/src/*test*"
     ],
-    "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
@@ -95,20 +91,13 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
     ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
     "moduleFileExtensions": [
       "web.js",
       "js",
       "json",
       "web.jsx",
-      "jsx"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
+      "jsx",
+      "node"
     ]
   },
   "eslintConfig": {
