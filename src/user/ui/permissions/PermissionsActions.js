@@ -76,7 +76,7 @@ export const revokePermission = (permission) => async (dispatch) => {
   dispatch(removePermission(permission))
 }
 
-export const addPermission = (dataHash, viewer, ownerPrivateKey, viewerPublicKey) => async (dispatch) => {
+export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey ) => async (dispatch) => {
   let file, decryptedData, reencrypted, viewerFile
 
   dispatch(uploadingPermission())

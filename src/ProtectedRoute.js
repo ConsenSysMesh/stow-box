@@ -1,14 +1,18 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Home from './layouts/home/Home';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const { isAuthenticated } = rest;
+  const { isAuthenticated, authError } = rest;
+
   return <Route {...rest} render={(props) => {
-    return isAuthenticated ? <Component {...props} /> : 
-      <Redirect to={{
-        pathname: '/',
-        state: { from: props.location }
-      }} />
+     if (isAuthenticated) {
+    	return <Component {...props} />;
+    } else if (authError) {
+    	return <Home authError={authError} />;
+    } else {
+    	return <div></div>;
+    }
   }} />
 }
 

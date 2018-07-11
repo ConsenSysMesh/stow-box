@@ -12,14 +12,12 @@ const linniaReducer = (state = initialState, action) => {
   if (action.type === AUTH_SUCCESS) {
     const { web3, ipfs, linnia } = action;
     const isAuthenticated = true;
-    const authenticationError = '';
 
     return Object.assign({}, state, {
       web3,
       ipfs,
       linnia,
-      isAuthenticated,
-      authenticationError
+      isAuthenticated
     });
   } else if (action.type === AUTH_FAILURE) {
     const { authError, isAuthenticated } = action;

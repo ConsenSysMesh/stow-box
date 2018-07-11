@@ -8,6 +8,16 @@ class GetRecordForm extends Component {
       dataHash: '',
       privateKey: ''
     }
+
+    // Set variables pass as url arguments
+    window.location.search.substr(1).split("&").forEach( (param) => {
+      const key = param.split("=")[0]
+      const val = param.split("=")[1]
+      if(key === 'dataHash'){
+        this.state['dataHash'] = val
+      }
+    })
+
   }
 
   onInputChange = (property) => (event) => {
@@ -73,7 +83,7 @@ class GetRecordForm extends Component {
             <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
-                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
+                <input id="privateKey" type="password" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
                 <span className="pure-form-message">This is a required field.</span>
       
                 <br />
