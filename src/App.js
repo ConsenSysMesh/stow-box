@@ -31,13 +31,32 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header authError={authError} history={history}/>
+        <Header history={history}/>
           <Router history={history}>
           <Switch>
-            <ProtectedRoute isAuthenticated={isAuthenticated} path="/get_record" component={GetRecord} />
-            <ProtectedRoute isAuthenticated={isAuthenticated} path="/search" component={Search} />
-            <ProtectedRoute isAuthenticated={isAuthenticated} path="/permissions" component={Permission} />
-            <Route exact path="*" render={() => <Home authError={authError}/>} />
+            <ProtectedRoute 
+              isAuthenticated={isAuthenticated} 
+              path="/get_record"
+              authError={authError}
+              component={GetRecord} 
+            />
+            <ProtectedRoute 
+              isAuthenticated={isAuthenticated} 
+              path="/search"
+              authError={authError}
+              component={Search} 
+            />
+            <ProtectedRoute 
+              isAuthenticated={isAuthenticated} 
+              path="/permissions" 
+              authError={authError}
+              component={Permission} 
+            />
+            <Route 
+              exact 
+              path="*" 
+              render={() => <Home authError={authError}/>} 
+            />
           </Switch>
         </Router>
       </div>

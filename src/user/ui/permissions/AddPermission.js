@@ -41,7 +41,7 @@ class AddPermission extends Component {
               <input 
                 name={property}
                 value={this.state[property]}
-                type={(property=='ownerPrivateKey') ? 'password' : 'text'}
+                type={(property === 'ownerPrivateKey') ? 'password' : 'text'}
                 onChange={this.onInputChange(property)}
               />
             </label>)
