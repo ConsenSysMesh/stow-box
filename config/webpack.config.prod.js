@@ -91,6 +91,7 @@ module.exports = {
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
+    // TODO: fix with LP-289
     // preLoaders: [
     //   {
     //     test: /\.(js|jsx)$/,
