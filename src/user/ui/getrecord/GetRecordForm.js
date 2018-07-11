@@ -73,7 +73,7 @@ class GetRecordForm extends Component {
             <form className="pure-form pure-form-stacked" onSubmit={this.handleDecrypt}>
               <fieldset>
                 <label htmlFor="privateKey">Private Key</label>
-                <input id="privateKey" type="text" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
+                <input id="privateKey" type="password" value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder="Private Key" />
                 <span className="pure-form-message">This is a required field.</span>
       
                 <br />
