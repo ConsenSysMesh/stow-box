@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2018,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -8,7 +8,6 @@
   },
   "rules": {
     //  https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/CHANGELOG.md#600--2017-06-05
-    "jsx-a11y/href-no-hash": "off",
-    
+    "jsx-a11y/href-no-hash": "off"
   }
 }
