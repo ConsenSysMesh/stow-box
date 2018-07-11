@@ -5,8 +5,8 @@ class AddPermission extends Component {
   state = {
     dataHash: '',
     viewerAddress: '',
-    ownerPrivateKey: '',
-    viewerPublicKey: ''
+    viewerPublicSharingKey: '',
+    ownerPrivateKey: ''
   }
 
   onInputChange = (property) => (event) => {
@@ -26,8 +26,8 @@ class AddPermission extends Component {
     this.props.addPermission(
       this.state.dataHash,
       this.state.viewerAddress,
-      this.state.ownerPrivateKey,
-      this.state.viewerPublicKey
+      this.state.viewerPublicSharingKey,
+      this.state.ownerPrivateKey
     )
   }
 
