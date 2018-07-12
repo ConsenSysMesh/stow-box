@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSearchSubmit: (dataHash, owner, property) => {
       dispatch(search(dataHash, owner, property))
-    }
+    },
   }
 }
 

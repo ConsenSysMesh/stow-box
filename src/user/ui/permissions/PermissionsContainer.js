@@ -1,21 +1,21 @@
 import Permissions from './Permissions'
-import { connect } from 'react-redux'
-import { 
-  getPermissions, 
-  revokePermission, 
+import {connect} from 'react-redux'
+import {
+  getPermissions,
+  revokePermission,
   addPermission,
-  clearPermissionsError
+  clearPermissionsError,
 } from './PermissionsActions'
 
 const mapStateToProps = (state, ownProps) => {
-	const permissions = state.permissions.asOwner
+  const permissions = state.permissions.asOwner
   const errorMessage = state.permissions.message
   const isLoading = state.permissions.isLoading
-  
+
   return {
-  	permissions,
+    permissions,
     errorMessage,
-    isLoading
+    isLoading,
   }
 }
 
@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearPermissionsError: () => {
       dispatch(clearPermissionsError())
-    }
+    },
   }
 }
 

@@ -17,45 +17,45 @@ import Permission from './user/layouts/permissions/Permissions';
 
 import ProtectedRoute from './ProtectedRoute';
 
-const history =  createHistory({
-  basename: ''
+const history = createHistory({
+  basename: '',
 });
 
 class App extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.authenticate();
   }
 
-  render() {
+  render () {
     const { isAuthenticated, authError } = this.props;
 
     return (
-      <div className="App">
-        <Header history={history}/>
-          <Router history={history}>
+      <div className='App'>
+        <Header history={history} />
+        <Router history={history}>
           <Switch>
-            <ProtectedRoute 
-              isAuthenticated={isAuthenticated} 
-              path="/get_record"
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              path='/get_record'
               authError={authError}
-              component={GetRecord} 
+              component={GetRecord}
             />
-            <ProtectedRoute 
-              isAuthenticated={isAuthenticated} 
-              path="/search"
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              path='/search'
               authError={authError}
-              component={Search} 
+              component={Search}
             />
-            <ProtectedRoute 
-              isAuthenticated={isAuthenticated} 
-              path="/permissions" 
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              path='/permissions'
               authError={authError}
-              component={Permission} 
+              component={Permission}
             />
-            <Route 
-              exact 
-              path="*" 
-              render={() => <Home authError={authError}/>} 
+            <Route
+              exact
+              path='*'
+              render={() => <Home authError={authError} />}
             />
           </Switch>
         </Router>

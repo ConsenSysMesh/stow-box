@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AuthError from './../../auth/authError/AuthError';
 
@@ -12,29 +12,39 @@ const Copy = () => {
       <h2>Metamask Authentication</h2>
       <p>This particular box comes with autentication via Metamask.</p>
       <h3>Further Reading</h3>
-      <p>The React/Redux portions of the authentication fuctionality are provided by <a href="https://github.com/mjrussell/redux-auth-wrapper" target="_blank">mjrussell/redux-auth-wrapper</a>.</p>
+      <p>
+        The React/Redux portions of the authentication fuctionality are provided by
+        {' '}
+        <a
+          href='https://github.com/mjrussell/redux-auth-wrapper'
+          target='_blank'
+        >
+          mjrussell/redux-auth-wrapper
+        </a>
+        .
+      </p>
     </div>
   );
 };
 
 class Home extends Component {
-  render() {
+  render () {
     const { authError } = this.props;
 
-    return(
-      <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
+    return (
+      <main className='container'>
+        <div className='pure-g'>
+          <div className='pure-u-1-1'>
             {authError ? <AuthError authError={authError} /> : <Copy />}
           </div>
         </div>
       </main>
-    )
+    );
   }
 }
 
 Home.propTypes = {
-  authError: PropTypes.string
+  authError: PropTypes.string,
 };
 
-export default Home
+export default Home;

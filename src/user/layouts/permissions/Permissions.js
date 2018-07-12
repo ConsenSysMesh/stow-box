@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import PermissionsContainer from '../../ui/permissions/PermissionsContainer'
 
 class Permissions extends Component {
-  render() {
+  render () {
     return (
-      <main className="container">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
+      <main className='container'>
+        <div className='pure-g'>
+          <div className='pure-u-1-1'>
             <h1>Permissions</h1>
             <PermissionsContainer />
           </div>

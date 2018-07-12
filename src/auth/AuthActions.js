@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import IPFS from 'ipfs-api';
-import Linnia from '@linniaprotocol/linnia-july-2018'
+import Linnia from '@linniaprotocol/linnia-july-2018';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
@@ -19,19 +19,19 @@ const authSuccess = (web3, ipfs, linnia) => ({
   type: AUTH_SUCCESS,
   web3,
   ipfs,
-  linnia
+  linnia,
 });
 
-const authFailure = (authError) => ({
+const authFailure = authError => ({
   type: AUTH_FAILURE,
   isAuthenticated: false,
-  authError
+  authError,
 });
 
 const getWeb3 = () => {
   return new Promise((resolve, reject) => {
     // Wait for loading completion to avoid race conditions with web3 injection timing.
-    window.addEventListener('load', async (dispatch) => {
+    window.addEventListener('load', async dispatch => {
       // Checking if Web3 has been injected by the browser (Mist/MetaMask)
       if (typeof window.web3 !== 'undefined') {
         // Use Mist/MetaMask's provider.
@@ -43,8 +43,7 @@ const getWeb3 = () => {
   });
 };
 
-
-export const authenticate = () => async (dispatch) => {
+export const authenticate = () => async dispatch => {
   let web3;
 
   try {
@@ -77,10 +76,8 @@ export const authenticate = () => async (dispatch) => {
     console.error('Linnia is not configured correctly!');
     return dispatch(authFailure(LINNIA_MISCONFIGURED));
   }
-  
+
   const linnia = new Linnia(web3, ipfs, { hubAddress });
 
   dispatch(authSuccess(web3, ipfs, linnia));
-}
-
-
+};
