@@ -41,7 +41,7 @@ class Header extends Component {
           onClick={this.navigateTo('/')}
           className='pure-menu-heading pure-menu-link'
         >
-          Truffle Box
+          Linnia Box
         </span>
       </nav>
     );
