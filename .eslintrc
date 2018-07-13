@@ -1,13 +1,27 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+  parser: "babel-eslint",
+  extends: ["standard","standard-react"],
+  plugins: ["flowtype", "jest"],
+  rules: {
+    "no-debugger": 0,
+    "no-unreachable":2,
+    "semi": 0,
+    "react/no-unused-prop-types": 0,
+    "react/prop-types": 0,
+    "comma-dangle": ["error", "always-multiline"],
   },
-  "rules": {
-    //  https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/CHANGELOG.md#600--2017-06-05
-    "jsx-a11y/href-no-hash": "off"
-  }
+  env: {
+    "jest/globals": true,
+  },
+  globals: {
+    artifacts: true,
+    contract: true,
+    assert: true,
+    cy: true,
+    context: true,
+    Cypress: true,
+    document: true,
+    window: true,
+    alert: true
+  },
 }

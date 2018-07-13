@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 class AddPermission extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
       dataHash: '',
       viewerAddress: '',
       viewerPublicSharingKey: '',
-      ownerPrivateKey: ''
+      ownerPrivateKey: '',
     }
 
     // Set variables pass as url arguments
-    window.location.search.substr(1).split("&").forEach( (param) => {
-      const key = param.split("=")[0]
-      const val = param.split("=")[1]
-      if(this.state[key] !== undefined){
+    window.location.search.substr(1).split('&').forEach((param) => {
+      const key = param.split('=')[0]
+      const val = param.split('=')[1]
+      if (this.state[key] !== undefined) {
         this.state[key] = val
       }
     })
@@ -29,8 +29,8 @@ class AddPermission extends Component {
   }
 
   camelToPretty = (string) => {
-  return string.replace(/([A-Z])/g, (match) => ` ${match}`)
-    .replace(/^./, (match) => match.toUpperCase());
+    return string.replace(/([A-Z])/g, (match) => ` ${match}`)
+      .replace(/^./, (match) => match.toUpperCase())
   }
 
   handleSubmit = (event) => {
@@ -44,14 +44,14 @@ class AddPermission extends Component {
     )
   }
 
-  render() {
+  render () {
     return (
-      <div className="permissions-form inline-block">
+      <div className='permissions-form inline-block'>
         <h2>Add Permission</h2>
-        <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+        <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
           {Object.keys(this.state).map((property, i) => {
             return (<label key={i}>{this.camelToPretty(property)}
-              <input 
+              <input
                 name={property}
                 value={this.state[property]}
                 type={(property === 'ownerPrivateKey') ? 'password' : 'text'}
@@ -60,7 +60,7 @@ class AddPermission extends Component {
             </label>)
           })}
           <br />
-          <button className="pure-button pure-button-primary" type="submit">Add Permission</button>
+          <button className='pure-button pure-button-primary' type='submit'>Add Permission</button>
         </form>
       </div>
     )
@@ -69,7 +69,7 @@ class AddPermission extends Component {
 
 AddPermission.propTypes = {
   addPermission: PropTypes.func.isRequired,
-  clearPermissionsError: PropTypes.func.isRequired
+  clearPermissionsError: PropTypes.func.isRequired,
 }
 
 export default AddPermission

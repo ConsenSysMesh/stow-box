@@ -10,7 +10,7 @@ const reducer = combineReducers({
   auth: authReducer,
   record: recordReducer,
   permissions: permissionsReducer,
-  search: searchReducer
+  search: searchReducer,
 });
 
 export default reducer;

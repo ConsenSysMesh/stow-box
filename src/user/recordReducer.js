@@ -1,22 +1,20 @@
 const initialState = {
-  data: null
-}
+  data: null,
+};
 
 const recordReducer = (state = initialState, action) => {
-  if (action.type === 'GET_RECORD')
-  {
+  if (action.type === 'GET_RECORD') {
     return Object.assign({}, state, {
-      data: action.payload
-    })
+      data: action.payload,
+    });
   }
-  if (action.type === 'REMOVE_RECORD')
-  {
+  if (action.type === 'REMOVE_RECORD') {
     return Object.assign({}, state, {
-      data: null
-    })
+      data: null,
+    });
   }
 
-  return state
-}
+  return state;
+};
 
-export default recordReducer
+export default recordReducer;

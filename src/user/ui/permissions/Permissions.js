@@ -2,39 +2,39 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AddPermission from './AddPermission'
 import OwnedPermissions from './OwnedPermissions'
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@material-ui/core/CircularProgress'
 
-const progressStyle = { 
-  color: 'black'
+const progressStyle = {
+  color: 'black',
 }
 
 class Permissions extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.getPermissions()
   }
 
-  render() {
-    const { 
-      permissions, 
-      revokePermission, 
-      addPermission, 
-      errorMessage, 
+  render () {
+    const {
+      permissions,
+      revokePermission,
+      addPermission,
+      errorMessage,
       clearPermissionsError,
-      isLoading
+      isLoading,
     } = this.props
 
     return (
       <div>
-        {errorMessage && <h2 className="error">{errorMessage}</h2>}
+        {errorMessage && <h2 className='error'>{errorMessage}</h2>}
         {isLoading && <div>
-          <div className="progress-background"></div>
-          <CircularProgress className="progress" style={progressStyle} thickness={7} />
+          <div className='progress-background' />
+          <CircularProgress className='progress' style={progressStyle} thickness={7} />
         </div>}
-        <AddPermission 
+        <AddPermission
           addPermission={addPermission}
           clearPermissionsError={clearPermissionsError}
         />
-        <OwnedPermissions 
+        <OwnedPermissions
           permissions={permissions}
           revokePermission={revokePermission}
         />
@@ -49,7 +49,7 @@ Permissions.propTypes = {
   revokePermission: PropTypes.func.isRequired,
   addPermission: PropTypes.func.isRequired,
   clearPermissionsError: PropTypes.func.isRequired,
-  errorMessage: PropTypes.string
-};
+  errorMessage: PropTypes.string,
+}
 
 export default Permissions

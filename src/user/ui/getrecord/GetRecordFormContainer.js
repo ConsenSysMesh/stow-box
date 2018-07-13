@@ -13,7 +13,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onGetRecordDecrypt: (record, privateKey) => {
       dispatch(getDecryptedRecord(record, privateKey))
-    }
+    },
   }
 }
 

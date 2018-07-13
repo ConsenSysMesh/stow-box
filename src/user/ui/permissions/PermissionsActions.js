@@ -1,12 +1,13 @@
 import store from '../../../store'
 import axios from 'axios'
 import ecies from 'eth-ecies'
+import {Buffer} from 'safe-buffer'
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS'
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION'
 export const ADD_PERMISSION = 'ADD_PERMISSION'
 export const PERMISSION_ERROR = 'PERMISSION_ERROR'
-export const UPLOADING_PERMISSION ='UPLOADING_PERMISSION'
+export const UPLOADING_PERMISSION = 'UPLOADING_PERMISSION'
 
 const gasPrice = 20000000000
 const gas = 500000
@@ -14,30 +15,30 @@ const canAccess = true
 
 const assignPermissions = (permissions) => ({
   type: SET_PERMISSIONS,
-  payload: permissions
+  payload: permissions,
 })
 
 const removePermission = (permission) => ({
   type: REMOVE_PERMISSION,
   payload: permission,
-  isLoading: false
+  isLoading: false,
 })
 
 const appendPermission = (permission) => ({
   type: ADD_PERMISSION,
   payload: permission,
-  isLoading: false
+  isLoading: false,
 })
 
 const showPermissionError = (message) => ({
   type: PERMISSION_ERROR,
   isLoading: false,
-  message
+  message,
 })
 
 const uploadingPermission = () => ({
   type: UPLOADING_PERMISSION,
-  isLoading: true
+  isLoading: true,
 })
 
 export const clearPermissionsError = () => async (dispatch) => {
@@ -55,7 +56,7 @@ export const getPermissions = () => async (dispatch) => {
 export const revokePermission = (permission) => async (dispatch) => {
   dispatch(uploadingPermission())
 
-  const linnia = store.getState().auth.linnia;
+  const linnia = store.getState().auth.linnia
   const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts()
   const dataHash = permission.dataHash
   const viewer = permission.viewer
@@ -65,7 +66,7 @@ export const revokePermission = (permission) => async (dispatch) => {
     await permissions.revokeAccess(dataHash, viewer, {
       from: ownerAddress,
       gasPrice,
-      gas
+      gas,
     })
   } catch (e) {
     console.error(e)
@@ -76,7 +77,7 @@ export const revokePermission = (permission) => async (dispatch) => {
   dispatch(removePermission(permission))
 }
 
-export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey ) => async (dispatch) => {
+export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey) => async (dispatch) => {
   let file, decryptedData, reencrypted, viewerFile
 
   dispatch(uploadingPermission())
@@ -88,7 +89,7 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
 
   if (!record.dataHash) {
     dispatch(showPermissionError('Unable to retreive record. Does a record with that dataHash exist?'))
-    return 
+    return
   }
 
   try {
@@ -107,10 +108,10 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   }
 
   try {
-    reencrypted = ecies.encrypt(new Buffer(viewerPublicKey,  'hex'), decryptedData)
+    reencrypted = ecies.encrypt(new Buffer(viewerPublicKey, 'hex'), decryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'))
-    return    
+    return
   }
 
   try {
@@ -126,14 +127,14 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   try {
     const { permissions } = await linnia.getContractInstances()
     await permissions.grantAccess(dataHash, viewer, dataUri, {
-        from: owner,
-        gasPrice,
-        gas
+      from: owner,
+      gasPrice,
+      gas,
     })
   } catch (e) {
     console.error(e)
     dispatch(showPermissionError('Transaction to ethereum network failed! Please check your console for errors.'))
-    return    
+    return
   }
 
   const permission = {
@@ -141,8 +142,8 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
     owner,
     dataUri,
     dataHash,
-    canAccess
-  };
+    canAccess,
+  }
 
   dispatch(appendPermission(permission))
 }

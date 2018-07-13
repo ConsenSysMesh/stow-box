@@ -1,22 +1,20 @@
 const initialState = {
-  results: null
-}
+  results: null,
+};
 
 const searchReducer = (state = initialState, action) => {
-  if (action.type === 'MAKE_SEARCH')
-  {
+  if (action.type === 'MAKE_SEARCH') {
     return Object.assign({}, state, {
-      results: action.payload
-    })
+      results: action.payload,
+    });
   }
-  if (action.type === 'REMOVE_SEARCH')
-  {
+  if (action.type === 'REMOVE_SEARCH') {
     return Object.assign({}, state, {
-      results: null
-    })
+      results: null,
+    });
   }
 
-  return state
-}
+  return state;
+};
 
-export default searchReducer
+export default searchReducer;

@@ -5,23 +5,20 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state, ownProps) => {
   const { isAuthenticated, authError } = state.auth;
 
-  return { 
+  return {
     isAuthenticated,
-    authError
+    authError,
   };
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     authenticate: () => {
       dispatch(authenticate());
-    }
+    },
   };
-}
+};
 
-const AppContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
-export default AppContainer
+export default AppContainer;
