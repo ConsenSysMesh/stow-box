@@ -75,12 +75,6 @@ This is the easiest way to start but if you have time we recommend to take a loo
 
 
 
-## Infura Ropsten Network Connection
-
-Go to https://infura.io/signup, signup and get you API KEY, then in the next step paste that where is says [INFURA API KEY] in the .env file.
-
-
-
 ### Config
 
 In order to config which instances of the services do you want to use. You have to create environmental variables in a  `.env` file in the root of the project with the following variables:
@@ -88,7 +82,6 @@ In order to config which instances of the services do you want to use. You have 
 #### .env (Sample file, this file has to be in the root of the project)
 
 ```
-LINNIA_ETH_PROVIDER=https://ropsten.infura.io/[INFURA API KEY]
 LINNIA_IPFS_HOST=ipfs.infura.io
 LINNIA_IPFS_PORT=5001
 LINNIA_IPFS_PROTOCOL=https
@@ -105,179 +98,6 @@ npm start
 ```
 
 Congrats your Linnia App is running!!
-
-
-
-
-
-
-
-## Full installation
-
-For the full installation we are going to run out local version of IPFS, our local Ethereum Client with the linnia contracts deployed there and your local version of Linnia-Server.
-
-This is the recommended setup for development purposes for the following reasons:
-
-- IPFS locally because otherwise you are going to contaminate Infura IPFS with a bunch of trash files. That data will persist there.
-- Local ethereum client for the same reason, if you use the ropsten contracts for development puposes, the data will keep there forever.
-- Local version of Linnia Server is because that way you don't need to trust any central server and you keep track directly of the data that is added to the linnia contracts.
-
-
-
-### Services
-
-### 1. IPFS
-
-IPFS is a storage network that we are going to use in order to store the encrypted data of the users.
-
-For development purposes we strongly recommend to use a local version of IPFS, this way you don't waste resource of the Infura network (Have in mind that when you add a file to Infura it will be there forever)
-
-#### In order to launch your local version of IPFS
-
-Install IPFS if you don't have it already:
-
-- Download IPFS from <https://ipfs.io/docs/install/>
-
-- For Mac:
-
-- Navigate to the folder and run:
-
-  ```
-  sudo mv ipfs /usr/local/bin/ipfs
-  ```
-
-- For Windows:
-
-- After downloading, unzip the archive, and move `ipfs.exe` somewhere in your `%PATH%`
-
-
-
-- Configure IPFS CORS in order to be able to access from the browser:
-
-  ```
-  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["*"]'
-  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["GET", "POST"]'
-  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Headers '["Authorization"]'
-  ipfs config --json API.HTTPHeaders.Access-Control-Expose-Headers '["Location"]'
-  ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials '["true"]'
-  ```
-
-- Run IPFS locally
-
-```
-ipfs init
-ipfs daemon
-```
-
-#### Change env IPFS variables (.env file)
-
-```
-..
-LINNIA_IPFS_HOST=localhost
-LINNIA_IPFS_PORT=5001
-LINNIA_IPFS_PROTOCOL=http
-...
-```
-
-
-
-
-
-
-
-### 2. Ethereum Network
-
-#### In order to launch your local Ethereum Client
-
-First you have to run your local ethereum client. In order to do this, you can use Ganache. Open another terminal window to keep your client running, and run the following commands:
-
-#### Install Ganache if you don't have it already
-
-```
-npm install -g ganache-cli
-```
-
-#### Run your local Ethereum Client (This will launch your client in the localhost port 7545)
-
-```
-npm run ganache
-```
-
-Now go to your Metamask and switch to Custom RPC and set the New RPC URL to: `http://localhost:7545`
-
-Keep that running and continue in another terminal window
-
-#### Now you have to deploy the Linnia Smart Contracts to your local Ethereum Client
-
-In order to deploy the contracts to the local ethereum client you just launch run:
-
-```
-node scripts/deploy-linnia.js
-```
-
-You will see an output like this:
-
-```
-Linnia instance deployed. Hub address is
-0x8acee021a27779d8e98b9650722676b850b25e11
-```
-
-Then copy the address, "0x..." and paste it in the .env file
-
-#### Change env Linnia HUB variable (.env file)
-
-```
-..
-LINNIA_HUB_ADDRESS=[PASTE ADDRESS HERE]
-...
-```
-
-
-
-
-
-
-
-### 3. Linnia Server
-
-The Linnia Server is a server that uses Node and Express with a Postgres DB and store every Log that the Linnia Smart Contracts emit. This is very useful to query the data.
-
-#### In order to launch your local Linnia Server
-
-If you don't want to trust the Linnia server, you can run your version of the server
-
-Check the repo and follow the instructions here: https://github.com/ConsenSys/linnia-server
-
-After you have your server running, set the URI in the env variables
-
-```
-...
-LINNIA_SEARCH_URI=http://localhost:5002
-```
-
-In the code above the linnia-server is running in the port 5002. Be careful that you have the linnia-server running in the port that you set here and also that the linnia-server is not using the same port as the linnia-box
-
-
-
-### Run
-
-Run the linnia box, go to linnia-box directory and run:
-
-```
-npm start
-```
-
-Congrats your Linnia App is running!!
-
-
-
-### Run Tests
-
-```
-npm run test
-```
-
-
 
 
 

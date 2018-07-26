@@ -24,7 +24,6 @@ function getClientEnvironment(publicUrl) {
       'PUBLIC_URL': JSON.stringify(publicUrl),
 
       // Other Env variables
-      'LINNIA_ETH_PROVIDER': JSON.stringify(process.env.LINNIA_ETH_PROVIDER),
       'LINNIA_IPFS_HOST': JSON.stringify(process.env.LINNIA_IPFS_HOST),
       'LINNIA_IPFS_PORT': JSON.stringify(process.env.LINNIA_IPFS_PORT),
       'LINNIA_IPFS_PROTOCOL': JSON.stringify(process.env.LINNIA_IPFS_PROTOCOL),
