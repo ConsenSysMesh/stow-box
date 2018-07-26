@@ -75,12 +75,6 @@ This is the easiest way to start but if you have time we recommend to take a loo
 
 
 
-## Infura Ropsten Network Connection
-
-Go to https://infura.io/signup, signup and get you API KEY, then in the next step paste that where is says [INFURA API KEY] in the .env file.
-
-
-
 ### Config
 
 In order to config which instances of the services do you want to use. You have to create environmental variables in a  `.env` file in the root of the project with the following variables:
