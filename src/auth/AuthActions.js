@@ -10,10 +10,11 @@ export const LOCKED_METAMASK = 'LOCKED_METAMASK';
 export const LINNIA_MISCONFIGURED = 'LINNIA_MISCONFIGURED';
 export const IPFS_MISCONFIGURED = 'IPFS_MISCONFIGURED';
 
-const hubAddress = process.env.LINNIA_HUB_ADDRESS;
-const protocol = process.env.LINNIA_IPFS_PROTOCOL;
-const port = process.env.LINNIA_IPFS_PORT;
-const host = process.env.LINNIA_IPFS_HOST;
+// TODO Setup global variables 
+const hubAddress = "0xc39f2e4645de2550ee3b64e6dc47f927e8a98934";
+const protocol = "https";
+const port = "5001";
+const host = "ipfs.infura.io";
 
 const authSuccess = (web3, ipfs, linnia) => ({
   type: AUTH_SUCCESS,

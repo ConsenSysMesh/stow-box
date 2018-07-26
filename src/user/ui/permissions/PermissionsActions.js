@@ -47,7 +47,8 @@ export const clearPermissionsError = () => async (dispatch) => {
 
 export const getPermissions = () => async (dispatch) => {
   const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts()
-  const host = process.env.LINNIA_SEARCH_URI
+  // TODO Setup global variable
+  const host = 'http://18.222.147.7:3000'
   const url = `${host}/users/${ownerAddress}/permissions`
   const response = await axios.get(url)
   dispatch(assignPermissions(response.data))

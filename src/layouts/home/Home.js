@@ -18,6 +18,7 @@ const Copy = () => {
         <a
           href='https://github.com/mjrussell/redux-auth-wrapper'
           target='_blank'
+          rel="noopener noreferrer"
         >
           mjrussell/redux-auth-wrapper
         </a>

@@ -11,7 +11,8 @@ function assignSearch (search) {
 export function search (dataHash, owner, property) {
   // Get Record from Linnia
   return async function (dispatch) {
-    let req = process.env.LINNIA_SEARCH_URI + '/records'
+    // TODO Setup global variable
+    let req = "http://18.222.147.7:3000/records"
 
     if (dataHash) {
       req = req + '/' + dataHash
