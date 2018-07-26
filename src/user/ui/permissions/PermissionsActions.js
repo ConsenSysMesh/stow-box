@@ -2,6 +2,7 @@ import store from '../../../store'
 import axios from 'axios'
 import ecies from 'eth-ecies'
 import {Buffer} from 'safe-buffer'
+import config from '../../../config'
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS'
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION'
@@ -47,8 +48,7 @@ export const clearPermissionsError = () => async (dispatch) => {
 
 export const getPermissions = () => async (dispatch) => {
   const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts()
-  // TODO Setup global variable
-  const host = 'http://18.222.147.7:3000'
+  const host = config.LINNIA_SEARCH_URI
   const url = `${host}/users/${ownerAddress}/permissions`
   const response = await axios.get(url)
   dispatch(assignPermissions(response.data))

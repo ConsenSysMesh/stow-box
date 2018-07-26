@@ -1,3 +1,4 @@
+import config from '../../../config'
 var request = require('request')
 
 export const MAKE_SEARCH = 'MAKE_SEARCH'
@@ -11,8 +12,7 @@ function assignSearch (search) {
 export function search (dataHash, owner, property) {
   // Get Record from Linnia
   return async function (dispatch) {
-    // TODO Setup global variable
-    let req = "http://18.222.147.7:3000/records"
+    let req = config.LINNIA_SEARCH_URI + "/records"
 
     if (dataHash) {
       req = req + '/' + dataHash

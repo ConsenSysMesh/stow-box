@@ -1,6 +1,7 @@
 import Web3 from 'web3';
 import IPFS from 'ipfs-api';
 import Linnia from '@linniaprotocol/linnia-july-2018';
+import config from '../config';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
@@ -10,11 +11,10 @@ export const LOCKED_METAMASK = 'LOCKED_METAMASK';
 export const LINNIA_MISCONFIGURED = 'LINNIA_MISCONFIGURED';
 export const IPFS_MISCONFIGURED = 'IPFS_MISCONFIGURED';
 
-// TODO Setup global variables 
-const hubAddress = "0xc39f2e4645de2550ee3b64e6dc47f927e8a98934";
-const protocol = "https";
-const port = "5001";
-const host = "ipfs.infura.io";
+const hubAddress = config.LINNIA_HUB_ADDRESS;
+const protocol = config.LINNIA_IPFS_PROTOCOL;
+const port = config.LINNIA_IPFS_PORT;
+const host = config.LINNIA_IPFS_HOST;
 
 const authSuccess = (web3, ipfs, linnia) => ({
   type: AUTH_SUCCESS,
