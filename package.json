@@ -54,7 +54,7 @@
     "whatwg-fetch": "1.0.0"
   },
   "dependencies": {
-    "@linniaprotocol/linnia-july-2018": "^0.1.6",
+    "@linniaprotocol/linnia-july-2018": "^0.1.7",
     "@material-ui/core": "^1.3.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
