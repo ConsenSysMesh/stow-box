@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import IPFS from 'ipfs-api';
+import IPFS from 'ipfs-mini';
 import Linnia from '@linniaprotocol/linnia-july-2018';
 import config from '../config';
 
@@ -65,6 +65,7 @@ export const authenticate = () => async dispatch => {
   const ipfs = new IPFS({ host, port, protocol });
 
   try {
+    console.log(ipfs)
     await ipfs.id();
   } catch (e) {
     console.error('IPFS is not configured correctly!');

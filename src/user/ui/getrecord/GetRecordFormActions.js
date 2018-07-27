@@ -1,5 +1,5 @@
-import ecies from 'eth-ecies'
 import store from '../../../store'
+import { decrypt } from '../../../utils';
 
 export const GET_RECORD = 'GET_RECORD'
 function assignRecord (record) {
@@ -32,7 +32,7 @@ export function getDecryptedRecord (record, privateKey) {
 
     // Try to decrypt with the provided key
     try {
-      const decrypted = ecies.decrypt(privateKey, encrypted)
+      const decrypted = decrypt(privateKey, encrypted)
       record.decrypted = decrypted.toString()
       dispatch(assignRecord(record))
     } catch (e) {

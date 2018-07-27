@@ -1,6 +1,6 @@
 import store from '../../../store'
 import axios from 'axios'
-import ecies from 'eth-ecies'
+import { encrypt, decrypt } from '../../../utils';
 import {Buffer} from 'safe-buffer'
 import config from '../../../config'
 
@@ -102,14 +102,14 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
 
   try {
     const encryptedData = file[0].content
-    decryptedData = ecies.decrypt(ownerPrivateKey, encryptedData)
+    decryptedData = await decrypt(ownerPrivateKey, encryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'))
     return
   }
 
   try {
-    reencrypted = ecies.encrypt(new Buffer(viewerPublicKey, 'hex'), decryptedData)
+    reencrypted = await encrypt(new Buffer(viewerPublicKey, 'hex'), decryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'))
     return
