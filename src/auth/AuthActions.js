@@ -66,7 +66,7 @@ export const authenticate = () => async dispatch => {
 
   try {
     console.log(ipfs)
-    await ipfs.id();
+    //await ipfs.id();
   } catch (e) {
     console.error('IPFS is not configured correctly!');
     return dispatch(authFailure(IPFS_MISCONFIGURED));
