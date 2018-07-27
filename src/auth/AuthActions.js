@@ -62,11 +62,10 @@ export const authenticate = () => async dispatch => {
     return dispatch(authFailure(LOCKED_METAMASK));
   }
 
-  const ipfs = new IPFS({ host, port, protocol });
+  const ipfs = new IPFS({ host: host, port: port, protocol: protocol });
 
   try {
-    console.log(ipfs)
-    //await ipfs.id();
+    //TODO Ping IPFS to check connection
   } catch (e) {
     console.error('IPFS is not configured correctly!');
     return dispatch(authFailure(IPFS_MISCONFIGURED));

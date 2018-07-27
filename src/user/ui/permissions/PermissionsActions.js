@@ -94,14 +94,19 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   }
 
   try {
-    file = await ipfs.files.get(record.dataUri)
+    file = await new Promise((resolve, reject) => {
+      ipfs.cat(record.dataUri, (err, ipfsRed) => {
+        err ? reject(err) : resolve(ipfsRed)
+      })
+    })
+
   } catch (e) {
     dispatch(showPermissionError('Unable to pull file from storage. Does record have valid dataUri?'))
     return
   }
 
   try {
-    const encryptedData = file[0].content
+    const encryptedData = file
     decryptedData = await decrypt(ownerPrivateKey, encryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'))
@@ -116,7 +121,11 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   }
 
   try {
-    viewerFile = await ipfs.files.add(reencrypted)
+    viewerFile = await new Promise((resolve, reject) => {
+      ipfs.add(reencrypted, (err, ipfsRed) => {
+        err ? reject(err) : resolve(ipfsRed)
+      })
+    })
   } catch (e) {
     dispatch(showPermissionError('Unable to reupload viewer file. Please try again later.'))
     return
