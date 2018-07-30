@@ -74,21 +74,6 @@ For the quick start we are going to use Infura (IPFS), Ropsten (Ethereum Client)
 This is the easiest way to start but if you have time we recommend to take a look at the full installation in which we explain how to run a local version of all of this services which is very helpful for development purposes. (Check the full installation here)
 
 
-
-### Config
-
-In order to config which instances of the services do you want to use. You have to create environmental variables in a  `.env` file in the root of the project with the following variables:
-
-#### .env (Sample file, this file has to be in the root of the project)
-
-```
-LINNIA_IPFS_HOST=ipfs.infura.io
-LINNIA_IPFS_PORT=5001
-LINNIA_IPFS_PROTOCOL=https
-LINNIA_HUB_ADDRESS=0xc39f2e4645de2550ee3b64e6dc47f927e8a98934
-LINNIA_SEARCH_URI=http://18.222.147.7:3000
-```
-
 Go to your Metamask and switch to Ropsten Test Network
 
 #### Run

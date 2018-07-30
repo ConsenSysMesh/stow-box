@@ -1,6 +1,7 @@
 import Web3 from 'web3';
-import IPFS from 'ipfs-api';
+import IPFS from 'ipfs-mini';
 import Linnia from '@linniaprotocol/linnia-july-2018';
+import config from '../config';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
@@ -10,10 +11,10 @@ export const LOCKED_METAMASK = 'LOCKED_METAMASK';
 export const LINNIA_MISCONFIGURED = 'LINNIA_MISCONFIGURED';
 export const IPFS_MISCONFIGURED = 'IPFS_MISCONFIGURED';
 
-const hubAddress = process.env.LINNIA_HUB_ADDRESS;
-const protocol = process.env.LINNIA_IPFS_PROTOCOL;
-const port = process.env.LINNIA_IPFS_PORT;
-const host = process.env.LINNIA_IPFS_HOST;
+const hubAddress = config.LINNIA_HUB_ADDRESS;
+const protocol = config.LINNIA_IPFS_PROTOCOL;
+const port = config.LINNIA_IPFS_PORT;
+const host = config.LINNIA_IPFS_HOST;
 
 const authSuccess = (web3, ipfs, linnia) => ({
   type: AUTH_SUCCESS,
@@ -61,10 +62,10 @@ export const authenticate = () => async dispatch => {
     return dispatch(authFailure(LOCKED_METAMASK));
   }
 
-  const ipfs = new IPFS({ host, port, protocol });
+  const ipfs = new IPFS({ host: host, port: port, protocol: protocol });
 
   try {
-    await ipfs.id();
+    //TODO Ping IPFS to check connection
   } catch (e) {
     console.error('IPFS is not configured correctly!');
     return dispatch(authFailure(IPFS_MISCONFIGURED));

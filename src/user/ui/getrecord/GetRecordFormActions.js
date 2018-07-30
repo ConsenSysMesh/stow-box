@@ -1,5 +1,5 @@
-import ecies from 'eth-ecies'
 import store from '../../../store'
+import { decrypt } from '../../../utils';
 
 export const GET_RECORD = 'GET_RECORD'
 function assignRecord (record) {
@@ -27,17 +27,22 @@ export function getDecryptedRecord (record, privateKey) {
       return (alert('Error: owner address is zero. does the file exist?'))
     }
 
-    const ipfsRes = await ipfs.files.get(record.dataUri)
-    const encrypted = ipfsRes[0].content
+    ipfs.cat(record.dataUri, (err, ipfsRes) => {
+      if(err){
+        console.log(err)
+      }else{
+        const encrypted = ipfsRes
 
-    // Try to decrypt with the provided key
-    try {
-      const decrypted = ecies.decrypt(privateKey, encrypted)
-      record.decrypted = decrypted.toString()
-      dispatch(assignRecord(record))
-    } catch (e) {
-      console.log(e)
-      return (alert('Error decrypting data. Probably wrong private key'))
-    }
+        // Try to decrypt with the provided key
+        try {
+          const decrypted = decrypt(privateKey, encrypted)
+          record.decrypted = decrypted.toString()
+          dispatch(assignRecord(record))
+        } catch (e) {
+          console.log(e)
+          return (alert('Error decrypting data. Probably wrong private key'))
+        }
+      }
+    });
   }
 }

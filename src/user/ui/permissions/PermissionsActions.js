@@ -1,7 +1,8 @@
 import store from '../../../store'
 import axios from 'axios'
-import ecies from 'eth-ecies'
+import { encrypt, decrypt } from '../../../utils';
 import {Buffer} from 'safe-buffer'
+import config from '../../../config'
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS'
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION'
@@ -47,7 +48,7 @@ export const clearPermissionsError = () => async (dispatch) => {
 
 export const getPermissions = () => async (dispatch) => {
   const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts()
-  const host = process.env.LINNIA_SEARCH_URI
+  const host = config.LINNIA_SEARCH_URI
   const url = `${host}/users/${ownerAddress}/permissions`
   const response = await axios.get(url)
   dispatch(assignPermissions(response.data))
@@ -93,29 +94,38 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   }
 
   try {
-    file = await ipfs.files.get(record.dataUri)
+    file = await new Promise((resolve, reject) => {
+      ipfs.cat(record.dataUri, (err, ipfsRed) => {
+        err ? reject(err) : resolve(ipfsRed)
+      })
+    })
+
   } catch (e) {
     dispatch(showPermissionError('Unable to pull file from storage. Does record have valid dataUri?'))
     return
   }
 
   try {
-    const encryptedData = file[0].content
-    decryptedData = ecies.decrypt(ownerPrivateKey, encryptedData)
+    const encryptedData = file
+    decryptedData = await decrypt(ownerPrivateKey, encryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'))
     return
   }
 
   try {
-    reencrypted = ecies.encrypt(new Buffer(viewerPublicKey, 'hex'), decryptedData)
+    reencrypted = await encrypt(new Buffer(viewerPublicKey, 'hex'), decryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'))
     return
   }
 
   try {
-    viewerFile = await ipfs.files.add(reencrypted)
+    viewerFile = await new Promise((resolve, reject) => {
+      ipfs.add(reencrypted, (err, ipfsRed) => {
+        err ? reject(err) : resolve(ipfsRed)
+      })
+    })
   } catch (e) {
     dispatch(showPermissionError('Unable to reupload viewer file. Please try again later.'))
     return
