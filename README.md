@@ -74,7 +74,6 @@ For the quick start we are going to use Infura (IPFS), Ropsten (Ethereum Client)
 This is the easiest way to start but if you have time we recommend to take a look at the full installation in which we explain how to run a local version of all of this services which is very helpful for development purposes. (Check the full installation here)
 
 
-
 Go to your Metamask and switch to Ropsten Test Network
 
 #### Run
