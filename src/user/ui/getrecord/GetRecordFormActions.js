@@ -27,7 +27,7 @@ export function getDecryptedRecord (record, privateKey) {
       return (alert('Error: owner address is zero. does the file exist?'))
     }
 
-    ipfs.cat(record.dataUri, (err, ipfsRes) => {
+    ipfs.cat(record.dataUri, async (err, ipfsRes) => {
       if(err){
         console.log(err)
       }else{
@@ -35,8 +35,8 @@ export function getDecryptedRecord (record, privateKey) {
 
         // Try to decrypt with the provided key
         try {
-          const decrypted = decrypt(privateKey, encrypted)
-          record.decrypted = decrypted.toString()
+          const decrypted = await decrypt(privateKey, encrypted)
+          record.decrypted = JSON.stringify(decrypted.toString())
           dispatch(assignRecord(record))
         } catch (e) {
           console.log(e)
