@@ -88,7 +88,7 @@ Congrats your Linnia App is running!!
 
 ### Decryption keys
 
-In order to decrypt the test files that we uploaded to the contracts, click [HERE](PrivateKeys.md)
+In order to decrypt the test files that we uploaded to the contracts, click [HERE](TestPrivateKeys.md)
 
 
 
