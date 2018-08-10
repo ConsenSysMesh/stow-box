@@ -37,8 +37,8 @@ class SearchForm extends Component {
     const searchForm = () =>
       <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
         <fieldset>
-          <label htmlFor='dataHash'>Data Hash</label>
-          <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder='Data Hash' />
+          <label htmlFor='dataHash'>Record Data Hash</label>
+          <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder='Record Data Hash' />
 
           <br />
 
