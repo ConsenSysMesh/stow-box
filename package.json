@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@linniaprotocol/linnia-july-2018": "^0.1.7",
+    "@linniaprotocol/linnia-js": "^0.1.4",
     "@material-ui/core": "^1.4.1",
     "axios": "^0.18.0",
     "eth-lib": "https://github.com/alan2207/eth-lib",
