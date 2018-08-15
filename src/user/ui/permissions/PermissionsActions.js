@@ -131,7 +131,7 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
     return
   }
 
-  const dataUri = viewerFile[0].hash
+  const dataUri = viewerFile
   const [owner] = await store.getState().auth.web3.eth.getAccounts()
 
   try {
