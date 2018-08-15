@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="App"
+>
+  <nav
+    className="navbar pure-menu pure-menu-horizontal"
+  >
+    <ul
+      className="pure-menu-list navbar-right"
+    >
+      <span>
+        <li
+          className="pure-menu-item"
+        >
+          <span
+            className="pure-menu-link"
+            onClick={[Function]}
+          >
+            Get Record
+          </span>
+        </li>
+        <li
+          className="pure-menu-item"
+        >
+          <span
+            className="pure-menu-link"
+            onClick={[Function]}
+          >
+            Search
+          </span>
+        </li>
+        <li
+          className="pure-menu-item"
+        >
+          <span
+            className="pure-menu-link"
+            onClick={[Function]}
+          >
+            Permissions
+          </span>
+        </li>
+      </span>
+    </ul>
+    <span
+      className="pure-menu-heading pure-menu-link"
+      onClick={[Function]}
+    >
+      Linnia Box
+    </span>
+  </nav>
+  <main
+    className="container"
+  >
+    <div
+      className="pure-g"
+    >
+      <div
+        className="pure-u-1-1"
+      >
+        <div>
+          <h1>
+            Good to Go!
+          </h1>
+          <p>
+            Your Truffle Box is installed and ready.
+          </p>
+          <h2>
+            Linnia as a decentralized backend
+          </h2>
+          <p>
+            TODO, text about linnia and link to the public documentation
+          </p>
+          <h2>
+            Metamask Authentication
+          </h2>
+          <p>
+            This particular box comes with autentication via Metamask.
+          </p>
+          <h3>
+            Further Reading
+          </h3>
+          <p>
+            The React/Redux portions of the authentication fuctionality are provided by
+             
+            <a
+              href="https://github.com/mjrussell/redux-auth-wrapper"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              mjrussell/redux-auth-wrapper
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
