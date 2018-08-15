@@ -51,7 +51,8 @@ class GetRecordForm extends Component {
       <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor='dataHash'>Record Data Hash</label>
-          <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder='Record Data Hash' />
+          <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')}
+                 placeholder='Record Data Hash' required={true} />
           <span className='pure-form-message'>This is a required field.</span>
 
           <br />
