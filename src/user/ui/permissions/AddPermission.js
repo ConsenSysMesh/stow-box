@@ -5,6 +5,7 @@ class AddPermission extends Component {
   constructor (props) {
     super(props)
 
+    //TODO: rename recordDataHash
     this.state = {
       dataHash: '',
       viewerAddress: '',
@@ -53,6 +54,7 @@ class AddPermission extends Component {
             return (<label key={i}>{this.camelToPretty(property)}
               <input
                 name={property}
+                required={true}
                 value={this.state[property]}
                 type={(property === 'ownerPrivateKey') ? 'password' : 'text'}
                 onChange={this.onInputChange(property)}
