@@ -79,7 +79,7 @@ export const revokePermission = (permission) => async (dispatch) => {
 }
 
 export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey) => async (dispatch) => {
-  let file, decryptedData, reencrypted, viewerFile
+  let file, decryptedData, reencrypted, IPFSDataUri
 
   dispatch(uploadingPermission())
 
@@ -121,7 +121,7 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   }
 
   try {
-    viewerFile = await new Promise((resolve, reject) => {
+    IPFSDataUri = await new Promise((resolve, reject) => {
       ipfs.add(reencrypted, (err, ipfsRed) => {
         err ? reject(err) : resolve(ipfsRed)
       })
@@ -131,12 +131,15 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
     return
   }
 
-  const dataUri = viewerFile
+  if(!IPFSDataUri) {
+    dispatch(showPermissionError('IPFS URI is not valid, please check ipfs setup'));
+  }
+
   const [owner] = await store.getState().auth.web3.eth.getAccounts()
 
   try {
     const { permissions } = await linnia.getContractInstances()
-    await permissions.grantAccess(dataHash, viewer, dataUri, {
+    await permissions.grantAccess(dataHash, viewer, IPFSDataUri, {
       from: owner,
       gasPrice,
       gas,
@@ -150,7 +153,7 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   const permission = {
     viewer,
     owner,
-    dataUri,
+    IPFSDataUri,
     dataHash,
     canAccess,
   }
