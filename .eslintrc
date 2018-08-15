@@ -1,11 +1,11 @@
 {
   parser: "babel-eslint",
-  extends: ["standard","standard-react"],
+  extends: ["standard-react"],
   plugins: ["flowtype", "jest"],
   rules: {
     "no-debugger": 0,
     "no-unreachable":2,
-    "semi": 0,
+    "semi": 1,
     "react/no-unused-prop-types": 0,
     "react/prop-types": 0,
     "comma-dangle": ["error", "always-multiline"],

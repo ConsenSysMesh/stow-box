@@ -11,7 +11,7 @@ it('renders without crashing', () => {
 
 it('renders correctly', () => {
   const tree = renderer
-     .create(<App authenticate={console.log}/>)
+     .create(<App authenticate={console.log} />)
      .toJSON();
   expect(tree).toMatchSnapshot();
 });

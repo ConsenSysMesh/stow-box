@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import GetRecordFormContainer from '../../ui/getrecord/GetRecordFormContainer'
+import React, { Component } from 'react';
+import GetRecordFormContainer from '../../ui/getrecord/GetRecordFormContainer';
 
 class GetRecord extends Component {
   render () {
@@ -12,8 +12,8 @@ class GetRecord extends Component {
           </div>
         </div>
       </main>
-    )
+    );
   }
 }
 
-export default GetRecord
+export default GetRecord;

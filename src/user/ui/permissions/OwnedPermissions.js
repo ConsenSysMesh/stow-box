@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Permission from './Permission'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Permission from './Permission';
 
 class OwnedPermissions extends Component {
   render () {
-    const { permissions, revokePermission } = this.props
+    const { permissions, revokePermission } = this.props;
 
     return (
       <div className='permissions inline-block'>
@@ -15,13 +15,13 @@ class OwnedPermissions extends Component {
           revoke={revokePermission}
         />)}
       </div>
-    )
+    );
   }
 }
 
 OwnedPermissions.propTypes = {
   permissions: PropTypes.arrayOf(PropTypes.object).isRequired,
   revokePermission: PropTypes.func.isRequired,
-}
+};
 
-export default OwnedPermissions
+export default OwnedPermissions;
