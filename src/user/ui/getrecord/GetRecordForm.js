@@ -1,49 +1,49 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class GetRecordForm extends Component {
   constructor (props) {
-    super(props)
+    super(props);
 
     this.state = {
       dataHash: '',
       privateKey: '',
-    }
+    };
 
     // Set variables pass as url arguments
     window.location.search.substr(1).split('&').forEach((param) => {
-      const key = param.split('=')[0]
-      const val = param.split('=')[1]
+      const key = param.split('=')[0];
+      const val = param.split('=')[1];
       if (key === 'dataHash') {
-        this.state['dataHash'] = val
+        this.state['dataHash'] = val;
       }
-    })
+    });
   }
 
   onInputChange = (property) => (event) => {
-    const value = event.target.value
-    this.setState({ [property]: value })
+    const value = event.target.value;
+    this.setState({ [property]: value });
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
-    const dataHash = event.target.elements.dataHash.value
+    event.preventDefault();
+    const dataHash = event.target.elements.dataHash.value;
 
     if (dataHash.length < 2) {
-      return alert('Please fill the data hash.')
+      return alert('Please fill the data hash.');
     }
 
-    this.props.onGetRecordSubmit(dataHash)
+    this.props.onGetRecordSubmit(dataHash);
   }
 
   handleDecrypt = (event) => {
-    event.preventDefault()
-    const privateKey = event.target.elements.privateKey.value
+    event.preventDefault();
+    const privateKey = event.target.elements.privateKey.value;
 
     if (privateKey.length < 2) {
-      return alert('Please fill the Private Key.')
+      return alert('Please fill the Private Key.');
     }
 
-    this.props.onGetRecordDecrypt(this.props.record.data, privateKey)
+    this.props.onGetRecordDecrypt(this.props.record.data, privateKey);
   }
 
   render () {
@@ -52,14 +52,14 @@ class GetRecordForm extends Component {
         <fieldset>
           <label htmlFor='dataHash'>Record Data Hash</label>
           <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')}
-                 placeholder='Record Data Hash' required={true} />
+            placeholder='Record Data Hash' required />
           <span className='pure-form-message'>This is a required field.</span>
 
           <br />
 
           <button type='submit' className='pure-button pure-button-primary'>Get Record</button>
         </fieldset>
-      </form>
+      </form>;
 
     const comp2 = () =>
       <div>
@@ -69,7 +69,7 @@ class GetRecordForm extends Component {
         <p>sigCount: {this.props.record.data.sigCount.toString()}</p>
         <p>irisScore: {this.props.record.data.irisScore.toString()}</p>
         <p>dataUri: {this.props.record.data.dataUri}</p>
-      </div>
+      </div>;
 
     // Got Results
     if (this.props.record.data) {
@@ -91,7 +91,7 @@ class GetRecordForm extends Component {
               </fieldset>
             </form>
           </div>
-        )
+        );
       } else { // Decrypted File
         return (
           <div>
@@ -102,12 +102,12 @@ class GetRecordForm extends Component {
               <p>{this.props.record.data.decrypted}</p>
             </div>
           </div>
-        )
+        );
       }
     } else { // New Search
-      return (comp1())
+      return (comp1());
     }
   }
 }
 
-export default GetRecordForm
+export default GetRecordForm;

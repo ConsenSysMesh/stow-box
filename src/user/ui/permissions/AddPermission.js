@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddPermission extends Component {
   constructor (props) {
-    super(props)
+    super(props);
 
     //TODO: rename recordDataHash
     this.state = {
@@ -11,38 +11,38 @@ class AddPermission extends Component {
       viewerEthereumAddress: '',
       viewerEncyptionPublicKey: '',
       ownerEncryptionPrivateKey: '',
-    }
+    };
 
     // Set variables pass as url arguments
     window.location.search.substr(1).split('&').forEach((param) => {
-      const key = param.split('=')[0]
-      const val = param.split('=')[1]
+      const key = param.split('=')[0];
+      const val = param.split('=')[1];
       if (this.state[key] !== undefined) {
-        this.state[key] = val
+        this.state[key] = val;
       }
-    })
+    });
   }
 
   onInputChange = (property) => (event) => {
-    this.props.clearPermissionsError()
-    const value = event.target.value
-    this.setState({ [property]: value })
+    this.props.clearPermissionsError();
+    const value = event.target.value;
+    this.setState({ [property]: value });
   }
 
   camelToPretty = (string) => {
     return string.replace(/([A-Z])/g, (match) => ` ${match}`)
-      .replace(/^./, (match) => match.toUpperCase())
+      .replace(/^./, (match) => match.toUpperCase());
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     this.props.addPermission(
       this.state.dataHash,
       this.state.viewerEthereumAddress,
       this.state.viewerEncyptionPublicKey,
       this.state.ownerEncryptionPrivateKey
-    )
+    );
   }
 
   render () {
@@ -54,12 +54,12 @@ class AddPermission extends Component {
             return (<label key={i}>{this.camelToPretty(property)}
               <input
                 name={property}
-                required={true}
+                required
                 value={this.state[property]}
                 type={(property === 'ownerEncryptionPrivateKey') ? 'password' : 'text'}
                 onChange={this.onInputChange(property)}
               />
-            </label>)
+            </label>);
           })}
           <br />
           <button className='pure-button pure-button-primary' type='submit'>Add Permission</button>
@@ -71,13 +71,13 @@ class AddPermission extends Component {
         <p><span>Viewer Encyption Public Key</span>: The Encryption Public Key of the user that you are sharing with</p>
         <p><span>Owner Encryption Private Key</span>: Your personal Encryption Private Key</p>
       </div>
-    )
+    );
   }
 }
 
 AddPermission.propTypes = {
   addPermission: PropTypes.func.isRequired,
   clearPermissionsError: PropTypes.func.isRequired,
-}
+};
 
-export default AddPermission
+export default AddPermission;

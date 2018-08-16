@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Permission extends Component {
   render () {
-    const { permission, revoke } = this.props
+    const { permission, revoke } = this.props;
 
     return (
       <div>
@@ -14,13 +14,13 @@ class Permission extends Component {
           onClick={() => revoke(permission)}
         >Revoke</button>
       </div>
-    )
+    );
   }
 }
 
 Permission.propTypes = {
   permission: PropTypes.object.isRequired,
   revoke: PropTypes.func.isRequired,
-}
+};
 
-export default Permission
+export default Permission;
