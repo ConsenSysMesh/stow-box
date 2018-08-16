@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import AddPermission from './AddPermission'
-import OwnedPermissions from './OwnedPermissions'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import AddPermission from './AddPermission';
+import OwnedPermissions from './OwnedPermissions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const progressStyle = {
   color: 'black',
-}
+};
 
 class Permissions extends Component {
   componentDidMount () {
-    this.props.getPermissions()
+    this.props.getPermissions();
   }
 
   render () {
@@ -21,7 +21,7 @@ class Permissions extends Component {
       errorMessage,
       clearPermissionsError,
       isLoading,
-    } = this.props
+    } = this.props;
 
     return (
       <div>
@@ -39,7 +39,7 @@ class Permissions extends Component {
           revokePermission={revokePermission}
         />
       </div>
-    )
+    );
   }
 }
 
@@ -50,6 +50,6 @@ Permissions.propTypes = {
   addPermission: PropTypes.func.isRequired,
   clearPermissionsError: PropTypes.func.isRequired,
   errorMessage: PropTypes.string,
-}
+};
 
-export default Permissions
+export default Permissions;

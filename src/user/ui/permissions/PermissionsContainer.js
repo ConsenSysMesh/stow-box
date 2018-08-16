@@ -1,44 +1,44 @@
-import Permissions from './Permissions'
-import {connect} from 'react-redux'
+import Permissions from './Permissions';
+import {connect} from 'react-redux';
 import {
   getPermissions,
   revokePermission,
   addPermission,
   clearPermissionsError,
-} from './PermissionsActions'
+} from './PermissionsActions';
 
 const mapStateToProps = (state, ownProps) => {
-  const permissions = state.permissions.asOwner
-  const errorMessage = state.permissions.message
-  const isLoading = state.permissions.isLoading
+  const permissions = state.permissions.asOwner;
+  const errorMessage = state.permissions.message;
+  const isLoading = state.permissions.isLoading;
 
   return {
     permissions,
     errorMessage,
     isLoading,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getPermissions: () => {
-      dispatch(getPermissions())
+      dispatch(getPermissions());
     },
     revokePermission: (permission) => {
-      dispatch(revokePermission(permission))
+      dispatch(revokePermission(permission));
     },
     addPermission: (dataHash, viewerAddress, viewerPublicKey, ownerPrivateKey) => {
-      dispatch(addPermission(dataHash, viewerAddress, viewerPublicKey, ownerPrivateKey))
+      dispatch(addPermission(dataHash, viewerAddress, viewerPublicKey, ownerPrivateKey));
     },
     clearPermissionsError: () => {
-      dispatch(clearPermissionsError())
+      dispatch(clearPermissionsError());
     },
-  }
-}
+  };
+};
 
 const PermissionsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Permissions)
+)(Permissions);
 
-export default PermissionsContainer
+export default PermissionsContainer;

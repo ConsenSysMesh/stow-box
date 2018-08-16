@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import SearchFormContainer from '../../ui/searchform/SearchFormContainer'
+import React, { Component } from 'react';
+import SearchFormContainer from '../../ui/searchform/SearchFormContainer';
 
 class Search extends Component {
   render () {
@@ -13,8 +13,8 @@ class Search extends Component {
           </div>
         </div>
       </main>
-    )
+    );
   }
 }
 
-export default Search
+export default Search;
