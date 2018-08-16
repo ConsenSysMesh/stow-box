@@ -42,8 +42,8 @@ class SearchForm extends Component {
 
           <br />
 
-          <label htmlFor='owner'>Owner</label>
-          <input id='owner' type='text' value={this.state.owner} onChange={this.onInputChange('owner')} placeholder='Owner' />
+          <label htmlFor='owner'>Owner Ethereum Address</label>
+          <input id='owner' type='text' value={this.state.owner} onChange={this.onInputChange('owner')} placeholder='Owner Ethereum Address' />
 
           <br />
 
@@ -62,10 +62,10 @@ class SearchForm extends Component {
           <div key={record.dataHash}>
             <h2>Record: {record.dataHash}</h2>
             <p>Owner: {record.owner}</p>
-            <p>metadata: {record.metadata}</p>
-            <p>sigCount: {record.sigCount.toString()}</p>
-            <p>irisScore: {record.irisScore.toString()}</p>
-            <p>dataUri: {record.dataUri}</p>
+            <p>Metadata: {record.metadata}</p>
+            <p>SigCount: {record.sigCount.toString()}</p>
+            <p>IrisScore: {record.irisScore.toString()}</p>
+            <p>DataUri: {record.dataUri}</p>
           </div>)
       })
 

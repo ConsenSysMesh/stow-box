@@ -78,7 +78,7 @@ export const revokePermission = (permission) => async (dispatch) => {
   dispatch(removePermission(permission))
 }
 
-export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey) => async (dispatch) => {
+export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPublicKey, ownerEncryptionPrivateKey) => async (dispatch) => {
   let file, decryptedData, reencrypted, IPFSDataUri
 
   dispatch(uploadingPermission())
@@ -107,14 +107,14 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
 
   try {
     const encryptedData = file
-    decryptedData = await decrypt(ownerPrivateKey, encryptedData)
+    decryptedData = await decrypt(ownerEncryptionPrivateKey, encryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'))
     return
   }
 
   try {
-    reencrypted = await encrypt(new Buffer(viewerPublicKey, 'hex'), decryptedData)
+    reencrypted = await encrypt(new Buffer(viewerEncyptionPublicKey, 'hex'), decryptedData)
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'))
     return
@@ -139,7 +139,7 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
 
   try {
     const { permissions } = await linnia.getContractInstances()
-    await permissions.grantAccess(dataHash, viewer, IPFSDataUri, {
+    await permissions.grantAccess(dataHash, viewerEthereumAddress, IPFSDataUri, {
       from: owner,
       gasPrice,
       gas,
@@ -151,7 +151,7 @@ export const addPermission = (dataHash, viewer, viewerPublicKey, ownerPrivateKey
   }
 
   const permission = {
-    viewer,
+    viewerEthereumAddress,
     owner,
     IPFSDataUri,
     dataHash,

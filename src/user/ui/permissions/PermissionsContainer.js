@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => {
     revokePermission: (permission) => {
       dispatch(revokePermission(permission))
     },
-    addPermission: (dataHash, viewerAddress, viewerPublicKey, ownerPrivateKey) => {
-      dispatch(addPermission(dataHash, viewerAddress, viewerPublicKey, ownerPrivateKey))
+    addPermission: (dataHash, viewerEthereumAddress, viewerEncyptionPublicKey, ownerEncryptionPrivateKey) => {
+      dispatch(addPermission(dataHash, viewerEthereumAddress, viewerEncyptionPublicKey, ownerEncryptionPrivateKey))
     },
     clearPermissionsError: () => {
       dispatch(clearPermissionsError())
