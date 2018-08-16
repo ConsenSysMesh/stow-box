@@ -101,9 +101,9 @@ Replace the following variables in the following URL and send to the owner of th
 
 
 
-## Keys
+## Encryption Keys
 
-To learn more about the Keys that Linnia uses go [HERE](https://github.com/ConsenSys/linnia-resources/blob/master/KEYS.md)
+To learn more about encryption patterns and how Linnia uses them, go  [HERE](https://github.com/ConsenSys/linnia-resources/blob/master/KEYS.md)
 
 
 
