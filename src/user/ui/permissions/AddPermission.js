@@ -65,7 +65,6 @@ class AddPermission extends Component {
           <button className='pure-button pure-button-primary' type='submit'>Add Permission</button>
         </form>
         <p>In order to share a file using the Linnia Protocol you have to give permission to access the file to the viewer</p>
-        <br></br>
         <p><span>Data Hash</span> of the file you are sharing</p>
         <p><span>Viewer Ethereum Address</span>: The Ethereum Address of the user that you are sharing with</p>
         <p><span>Viewer Encyption Public Key</span>: The Encryption Public Key of the user that you are sharing with</p>
