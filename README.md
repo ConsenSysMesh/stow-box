@@ -103,13 +103,13 @@ Replace the following variables in the following URL and send to the owner of th
 
 ## Encryption Keys
 
-To learn more about encryption patterns and how Linnia uses them, go  [HERE](https://github.com/ConsenSys/linnia-resources/blob/master/KEYS.md)
+To learn more about encryption patterns and how Linnia uses them, go [HERE](https://github.com/ConsenSys/linnia-resources/blob/master/KEYS.md)
 
 
 
 ## Create User and Upload Data
 
-In order to create the keys, register the user and upload data to Linnia you can use our Linnia Faucet [HERE](https://consensys.github.io/linnia-faucet/)
+In order to create the keys, register a user and upload data to Linnia you can use our Linnia Faucet [HERE](https://consensys.github.io/linnia-faucet/)
 
 
 
