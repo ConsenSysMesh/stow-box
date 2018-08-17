@@ -120,3 +120,8 @@ code {
   height: 16px;
   margin-right: 10px;
 }
+
+.permissions-form p span {
+  font-weight: 600;
+  font-size: 19px;
+}

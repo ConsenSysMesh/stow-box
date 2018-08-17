@@ -8,9 +8,9 @@ class AddPermission extends Component {
     //TODO: rename recordDataHash
     this.state = {
       dataHash: '',
-      viewerAddress: '',
-      viewerPublicSharingKey: '',
-      ownerPrivateKey: '',
+      viewerEthereumAddress: '',
+      viewerEncyptionPublicKey: '',
+      ownerEncryptionPrivateKey: '',
     };
 
     // Set variables pass as url arguments
@@ -39,9 +39,9 @@ class AddPermission extends Component {
 
     this.props.addPermission(
       this.state.dataHash,
-      this.state.viewerAddress,
-      this.state.viewerPublicSharingKey,
-      this.state.ownerPrivateKey
+      this.state.viewerEthereumAddress,
+      this.state.viewerEncyptionPublicKey,
+      this.state.ownerEncryptionPrivateKey
     );
   }
 
@@ -56,7 +56,7 @@ class AddPermission extends Component {
                 name={property}
                 required
                 value={this.state[property]}
-                type={(property === 'ownerPrivateKey') ? 'password' : 'text'}
+                type={(property === 'ownerEncryptionPrivateKey') ? 'password' : 'text'}
                 onChange={this.onInputChange(property)}
               />
             </label>);
@@ -64,6 +64,11 @@ class AddPermission extends Component {
           <br />
           <button className='pure-button pure-button-primary' type='submit'>Add Permission</button>
         </form>
+        <p>In order to share a file using the Linnia Protocol you have to give permission to access the file to the viewer</p>
+        <p><span>Data Hash</span> of the file you are sharing</p>
+        <p><span>Viewer Ethereum Address</span>: The Ethereum Address of the user that you are sharing with</p>
+        <p><span>Viewer Encyption Public Key</span>: The Encryption Public Key of the user that you are sharing with</p>
+        <p><span>Owner Encryption Private Key</span>: Your personal Encryption Private Key</p>
       </div>
     );
   }

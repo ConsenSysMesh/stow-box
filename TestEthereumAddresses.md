@@ -1,7 +1,7 @@
-# Addresses
+# Test Ethereum Addresses
 
-|      Name             |                    Addresses                                     |
-| --------------------- | ---------------------------------------------------------------- |
+|      Name             |              Ethereum Address               |
+| --------------------- | ------------------------------------------- |
 | 1. Angel Marvin       |  0xf25aac279a27e94bfb0f84929471e093bb0a63fd |
 | 2. Annemarie Nicolas  |  0x7f1cd0f9085d7e5f14993b2e275af1451c4c0973 |
 | 3. Arden Barton       |  0x9a513f4ad88681bfa4565ddb41aaef1fffd84462 |

@@ -1,8 +1,8 @@
-# Decryption keys
+# Test Encryption Private keys
 
-In order to decrypt the test files that we upload to the contracts, this are the following keys of each user:
+In order to decrypt the test files that we upload to the contracts, this are the following encryption private keys of each user:
 
-|      Name             |                    Private Key                                   |
+|      Name             |                    Encryption Private Key                        |
 | --------------------- | ---------------------------------------------------------------- |
 | 1. Angel Marvin       | e2bdbbb1081f9f17b34dadb4f7b7145b90ab0f86c759e5fa678a9489b3be7922 |
 | 2. Annemarie Nicolas  | ab134241816b4557aaa3d5e639a0fea5e60591b07bef780bedcc4c53904f48f9 |

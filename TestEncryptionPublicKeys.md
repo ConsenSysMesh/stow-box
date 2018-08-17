@@ -1,9 +1,9 @@
-# Public keys
+# Test Encryption Public keys
 
-In order to share a file you need the public key of the receiver.
+In order to share a file you need the encryption public key of the receiver.
 
-|      Name             |                    Public Key                                                                                                    |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+|      Name             |                    Encryption Public Key                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------ |
 | 1. Angel Marvin       | 5db5f3b5a602022a5d9a059faff9bd98de81c58c6de8ad6a95636d468536acab87d74d2319f6edaaf27c8061c6b941de3b97768498b1610ae89dd7eb5a7d5ac6 |
 | 2. Annemarie Nicolas  | 4532ba663ddbfefabe05f6c2875bea094039462e3328434940e872c3f4ac1a38738c7f9d9ae5050a04255bf4cad4d2ec92e52250490f37b1430f50111717cec9 |
 | 3. Arden Barton       | 2567d712b709217a04978b686c231c8fbfdf74b88a204c8bd779349e5b176ee7c2f185856624a0a673d569f3039e31db88e08909a335ffc4501e0ee033019ca7 |
