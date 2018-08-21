@@ -5,7 +5,7 @@ export const GET_RECORD = 'GET_RECORD';
 
 const assignRecord = (record) => ({
   type: GET_RECORD,
-  payload: record
+  payload: record,
 });
 
 export const getRecord = (dataHash) => async (dispatch) => {
@@ -31,7 +31,7 @@ export const getDecryptedRecord = (record, privateKey) => async (dispatch) => {
     it's successful, we add the decrypted data to the state. If not, we display an
     error.
   */
-  
+
   const { ipfs } = store.getState().auth;
 
   if (record.owner === '0x0000000000000000000000000000000000000000') {

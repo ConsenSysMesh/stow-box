@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     isAuthenticated,
-    authError
+    authError,
   };
 };
 

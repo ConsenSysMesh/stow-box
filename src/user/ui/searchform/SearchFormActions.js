@@ -5,7 +5,7 @@ export const MAKE_SEARCH = 'MAKE_SEARCH';
 
 const assignSearch = (search) => ({
   type: MAKE_SEARCH,
-  payload: search
+  payload: search,
 });
 
 export const search = (dataHash, owner, property) => async (dispatch) => {

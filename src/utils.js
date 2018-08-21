@@ -22,7 +22,7 @@ export const encrypt = async (pubKeyTo, plaintext) => {
   return EthCrypto.cipher.stringify(encrypted);
 };
 
-export const decrypt = async (privKey, encrypted) {
+export const decrypt = async (privKey, encrypted) => {
 
   /*
     This function does the opposite of the above function. It takes a private
