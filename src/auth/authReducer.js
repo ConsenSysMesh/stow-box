@@ -10,6 +10,11 @@ const initialState = {
 
 const linniaReducer = (state = initialState, action) => {
   if (action.type === AUTH_SUCCESS) {
+
+    /*
+      On success, we make the services available to our app state.
+    */
+
     const { web3, ipfs, linnia } = action;
     const isAuthenticated = true;
 
@@ -20,6 +25,12 @@ const linniaReducer = (state = initialState, action) => {
       isAuthenticated,
     });
   } else if (action.type === AUTH_FAILURE) {
+
+    /*
+      On failure, we return an authentication error which locks down the app and displays
+      the AuthError component
+    */
+
     const { authError, isAuthenticated } = action;
     return Object.assign({}, state, { authError, isAuthenticated });
   }

@@ -1,36 +1,39 @@
 import config from '../../../config';
-var request = require('request');
+import request from 'request';
 
 export const MAKE_SEARCH = 'MAKE_SEARCH';
-function assignSearch (search) {
-  return {
-    type: MAKE_SEARCH,
-    payload: search,
-  };
-}
 
-export function search (dataHash, owner, property) {
-  // Get Record from Linnia
-  return async function (dispatch) {
-    let req = config.LINNIA_SEARCH_URI + "/records";
+const assignSearch = (search) => ({
+  type: MAKE_SEARCH,
+  payload: search,
+});
 
-    if (dataHash) {
-      req = req + '/' + dataHash;
-    } else if (owner) {
-      if (property) {
-        req = req + '?owner=' + owner + '&property=' + property;
-      } else {
-        req = req + '?owner=' + owner;
-      }
-    } else if (property) {
-      req = req + '?property=' + property;
+export const search = (dataHash, owner, property) => async (dispatch) => {
+
+  /*
+    This action builds a URI based on the arguments provided, then queries
+    the Linnia server to find records that match. This is a normal AJAX request.
+    Property is a string that is compared to the metadata of records.
+  */
+
+  let req = config.LINNIA_SEARCH_URI + "/records";
+
+  if (dataHash) {
+    req = req + '/' + dataHash;
+  } else if (owner) {
+    if (property) {
+      req = req + '?owner=' + owner + '&property=' + property;
+    } else {
+      req = req + '?owner=' + owner;
     }
+  } else if (property) {
+    req = req + '?property=' + property;
+  }
 
-    request(req, (error, response, body) => {
-      if (error) {
-        console.error(error.stack);
-      }
-      dispatch(assignSearch(body));
-    });
-  };
-}
+  request(req, (error, response, body) => {
+    if (error) {
+      console.error(error.stack);
+    }
+    dispatch(assignSearch(body));
+  });
+};
