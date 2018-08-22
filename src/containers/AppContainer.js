@@ -1,5 +1,5 @@
-import App from './App';
-import { authenticate } from './auth/AuthActions';
+import App from '../components/App';
+import { authenticate } from '../actions/AuthActions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {

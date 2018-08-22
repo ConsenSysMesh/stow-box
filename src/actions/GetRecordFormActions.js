@@ -1,5 +1,5 @@
-import store from '../../../store';
-import { decrypt } from '../../../utils';
+import store from '../store';
+import { decrypt } from '../utils';
 
 export const GET_RECORD = 'GET_RECORD';
 

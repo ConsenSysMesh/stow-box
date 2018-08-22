@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SearchForm from './SearchForm';
-import { search } from './SearchFormActions';
+import SearchForm from '../components/SearchForm';
+import { search } from '../actions/SearchFormActions';
 
 const mapStateToProps = (state, ownProps) => {
   return { search: state.search };

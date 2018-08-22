@@ -7,7 +7,7 @@ import {
   NO_METAMASK,
   LINNIA_MISCONFIGURED,
   IPFS_MISCONFIGURED,
-} from './../AuthActions';
+} from '../actions/AuthActions';
 
 const errorCopy = {
   [NO_METAMASK]: 'No Metamask found. Please install Metamask and try again.',

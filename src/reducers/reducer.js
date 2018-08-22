@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import authReducer from './auth/authReducer';
-import recordReducer from './user/recordReducer';
-import searchReducer from './user/searchReducer';
-import permissionsReducer from './user/permissionsReducer';
+import authReducer from './authReducer';
+import recordReducer from './recordReducer';
+import searchReducer from './searchReducer';
+import permissionsReducer from './permissionsReducer';
 
 const reducer = combineReducers({
   routing: routerReducer,

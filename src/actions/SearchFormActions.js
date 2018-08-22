@@ -1,4 +1,4 @@
-import config from '../../../config';
+import config from '../config';
 import request from 'request';
 
 export const MAKE_SEARCH = 'MAKE_SEARCH';

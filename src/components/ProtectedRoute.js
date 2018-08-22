@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Home from './layouts/home/Home';
+import Home from './Home';
 
 /*
   This component wraps all of our routes. If this authentication reducer
