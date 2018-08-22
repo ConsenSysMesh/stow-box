@@ -1,8 +1,8 @@
-import store from '../../../store';
+import store from '../store';
 import axios from 'axios';
-import { encrypt, decrypt } from '../../../utils';
+import { encrypt, decrypt } from '../utils';
 import { Buffer } from 'safe-buffer';
-import config from '../../../config';
+import config from '../config';
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS';
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION';

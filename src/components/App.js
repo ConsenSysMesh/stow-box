@@ -3,17 +3,17 @@ import { Router, Route, Switch } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
 // Styles
-import './css/oswald.css';
-import './css/open-sans.css';
-import './css/pure-min.css';
-import './App.css';
+import '../css/oswald.css';
+import '../css/open-sans.css';
+import '../css/pure-min.css';
+import '../css/App.css';
 
 // Layouts
-import Home from './layouts/home/Home';
-import Header from './layouts/header/Header';
-import GetRecord from './user/layouts/getrecord/GetRecord';
-import Search from './user/layouts/search/Search';
-import Permission from './user/layouts/permissions/Permissions';
+import Home from './Home';
+import Header from './Header';
+import GetRecord from './GetRecord';
+import Search from './Search';
+import Permission from './Permissions';
 
 import ProtectedRoute from './ProtectedRoute';
 

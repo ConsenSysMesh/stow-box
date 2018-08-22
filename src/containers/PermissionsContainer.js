@@ -1,11 +1,11 @@
-import Permissions from './Permissions';
+import Permissions from '../components/PermissionsUI';
 import {connect} from 'react-redux';
 import {
   getPermissions,
   revokePermission,
   addPermission,
   clearPermissionsError,
-} from './PermissionsActions';
+} from '../actions/PermissionsActions';
 
 const mapStateToProps = (state, ownProps) => {
   const permissions = state.permissions.asOwner;

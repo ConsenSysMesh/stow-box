@@ -4,7 +4,7 @@ import {
   ADD_PERMISSION,
   UPLOADING_PERMISSION,
   PERMISSION_ERROR,
-} from './ui/permissions/PermissionsActions';
+} from '../actions/PermissionsActions';
 
 const initialState = {
   asOwner: [],

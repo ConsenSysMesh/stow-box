@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GetRecordFormContainer from '../../ui/getrecord/GetRecordFormContainer';
+import GetRecordFormContainer from '../containers/GetRecordFormContainer';
 
 class GetRecord extends Component {
   render () {

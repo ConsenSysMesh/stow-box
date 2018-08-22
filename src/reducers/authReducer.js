@@ -1,4 +1,4 @@
-import { AUTH_SUCCESS, AUTH_FAILURE } from './AuthActions';
+import { AUTH_SUCCESS, AUTH_FAILURE } from '../actions/AuthActions';
 
 const initialState = {
   web3: null,

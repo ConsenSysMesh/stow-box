@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AuthError from './../../auth/authError/AuthError';
+import AuthError from '../components/AuthError';
 
 const Copy = () => {
   return (

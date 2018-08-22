@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PermissionsContainer from '../../ui/permissions/PermissionsContainer';
+import PermissionsContainer from '../containers/PermissionsContainer';
 
 class Permissions extends Component {
   render () {
