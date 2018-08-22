@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest src/App.test.js",
+    "test": "jest src/test/App.test.js",
     "eject": "react-scripts eject",
     "lint": "eslint src"
   },

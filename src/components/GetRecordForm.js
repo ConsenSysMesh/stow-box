@@ -51,7 +51,7 @@ class GetRecordForm extends Component {
       <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor='dataHash'>Record Data Hash</label>
-          <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')}
+          <input id='dataHash' type='text' value={this.state.dataHash.replace(/\s/g, '')} onChange={this.onInputChange('dataHash')}
             placeholder='Record Data Hash' required />
           <span className='pure-form-message'>This is a required field.</span>
 
@@ -82,7 +82,7 @@ class GetRecordForm extends Component {
             <form className='pure-form pure-form-stacked' onSubmit={this.handleDecrypt}>
               <fieldset>
                 <label htmlFor='privateKey'>Encryption Private Key</label>
-                <input id='privateKey' type='password' value={this.state.privateKey} onChange={this.onInputChange('privateKey')} placeholder='Encryption Private Key' />
+                <input id='privateKey' type='password' value={this.state.privateKey.replace(/\s/g, '')} onChange={this.onInputChange('privateKey')} placeholder='Encryption Private Key' />
                 <span className='pure-form-message'>This is a required field.</span>
 
                 <br />

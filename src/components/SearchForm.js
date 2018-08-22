@@ -38,12 +38,12 @@ class SearchForm extends Component {
       <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
         <fieldset>
           <label htmlFor='dataHash'>Record Data Hash</label>
-          <input id='dataHash' type='text' value={this.state.dataHash} onChange={this.onInputChange('dataHash')} placeholder='Record Data Hash' />
+          <input id='dataHash' type='text' value={this.state.dataHash.replace(/\s/g, '')} onChange={this.onInputChange('dataHash')} placeholder='Record Data Hash' />
 
           <br />
 
           <label htmlFor='owner'>Owner Ethereum Address</label>
-          <input id='owner' type='text' value={this.state.owner} onChange={this.onInputChange('owner')} placeholder='Owner Ethereum Address' />
+          <input id='owner' type='text' value={this.state.owner.replace(/\s/g, '')} onChange={this.onInputChange('owner')} placeholder='Owner Ethereum Address' />
 
           <br />
 
