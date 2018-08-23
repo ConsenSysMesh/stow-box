@@ -1,4 +1,4 @@
-import Permissions from '../components/PermissionsUI';
+import Permissions from '../components/Permissions';
 import {connect} from 'react-redux';
 import {
   getPermissions,

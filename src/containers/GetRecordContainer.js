@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import GetRecordForm from '../components/GetRecordForm';
-import { getRecord, getDecryptedRecord } from '../actions/GetRecordFormActions';
+import GetRecordForm from '../components/GetRecord';
+import { getRecord, getDecryptedRecord } from '../actions/GetRecord';
 
 const mapStateToProps = (state, ownProps) => {
   return { record: state.record };
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const GetRecordFormContainer = connect(
+const GetRecordContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(GetRecordForm);
 
-export default GetRecordFormContainer;
+export default GetRecordContainer;

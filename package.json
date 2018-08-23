@@ -4,13 +4,14 @@
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
-    "eth-lib": "https://github.com/alan2207/eth-lib#cacfdbf5ffe7453168f9dfbf8bba281be3c229d0",
     "@linniaprotocol/linnia-js": "^0.1.4",
-    "@material-ui/core": "^1.4.1",
+    "@material-ui/core": "^1.5.1",
     "axios": "^0.18.0",
+    "eth-lib": "https://github.com/alan2207/eth-lib#cacfdbf5ffe7453168f9dfbf8bba281be3c229d0",
     "ethereumjs-util": "^5.2.0",
     "history": "^4.7.2",
     "ipfs-mini": "^1.1.2",
+    "linnia-brand": "^1.0.17",
     "material-ui": "^0.20.1",
     "metamask-logo": "^2.2.0",
     "prop-types": "^15.6.2",
@@ -32,7 +33,7 @@
     "build": "react-scripts build",
     "test": "jest src/test/App.test.js",
     "eject": "react-scripts eject",
-    "lint": "eslint src"
+    "lint": "eslint src --fix"
   },
   "jest": {
     "setupFiles": [

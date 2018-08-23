@@ -1,18 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  text: {
+    wordWrap: 'break-word',
+  },
+  button: {
+    marginTop: 20,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 20,
+    marginTop: 20,
+  },
+};
 
 class Permission extends Component {
   render () {
-    const { permission, revoke } = this.props;
+    const { permission, revoke, classes } = this.props;
 
     return (
       <div>
-        <p>Record: {permission.dataHash}</p>
-        <p>Viewer: {permission.viewer}</p>
-        <button
-          className='pure-button pure-button-primary'
+        <Typography
+          variant='title'
+          className={classes.title}
+        >
+          Data Hash
+        </Typography>
+        <Typography
+          variant='body1'
+          className={classes.text}
+        >
+          {permission.dataHash}
+        </Typography>
+        <Typography
+          variant='title'
+          className={classes.title}
+        >
+          Viewer
+        </Typography>
+        <Typography
+          variant='body1'
+          className={classes.text}
+        >
+          Viewer: {permission.viewer}
+        </Typography>
+        <Button
           onClick={() => revoke(permission)}
-        >Revoke</button>
+          className={classes.button}
+        >
+          Revoke
+        </Button>
       </div>
     );
   }
@@ -23,4 +64,4 @@ Permission.propTypes = {
   revoke: PropTypes.func.isRequired,
 };
 
-export default Permission;
+export default withStyles(styles)(Permission);

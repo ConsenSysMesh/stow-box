@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
@@ -14,29 +14,28 @@ const styles = (theme) => ({
   },
 });
 
-class GetRecordForm extends Component {
+class DecryptRecordForm extends Component {
   render() {
-    const { dataHash, onInputChange, handleSubmit, classes } = this.props;
+    const { handleDecrypt, privateKey, onInputChange, classes } = this.props;
 
     return (
       <div>
         <Typography variant='body1' className={classes.text}>
-          First, we can fetch a record from the smart contracts by inputting its data hash.
+          Now we can decrypt the plain text content of the record by putting in our encryption
+          private key.
         </Typography>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleDecrypt}>
           <TextField
-            id='dataHash'
-            label='Record Data Hash'
+            id='privateKey'
+            label='Encryption Private Key'
             required
-            className={classes.space}
-            value={dataHash.replace(/\s/g, '')}
+            value={privateKey.replace(/\s/g, '')}
             onChange={onInputChange}
+            className={classes.space}
             margin='normal'
           />
-          <Button
-            type='submit'
-          >
-            Get Record
+          <Button type='submit'>
+            Decrypt Data
           </Button>
         </form>
       </div>
@@ -44,10 +43,10 @@ class GetRecordForm extends Component {
   }
 }
 
-GetRecordForm.propTypes = {
-  dataHash: PropTypes.string.isRequired,
+DecryptRecordForm.propTypes = {
+  privateKey: PropTypes.string.isRequired,
+  handleDecrypt: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(GetRecordForm);
+export default withStyles(styles)(DecryptRecordForm);

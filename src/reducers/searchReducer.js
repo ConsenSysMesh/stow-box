@@ -1,5 +1,6 @@
 const initialState = {
-  results: null,
+  results: [],
+  message: '',
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -10,7 +11,7 @@ const searchReducer = (state = initialState, action) => {
   }
   if (action.type === 'REMOVE_SEARCH') {
     return Object.assign({}, state, {
-      results: null,
+      results: [],
     });
   }
 
