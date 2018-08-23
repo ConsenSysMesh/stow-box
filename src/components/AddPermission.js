@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  important: {
+    fontFamily: 'Heavitas',
+    display: 'inline',
+  },
+  text: {
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  title: {
+    marginBottom: 20,
+  },
+};
 
 class AddPermission extends Component {
   constructor (props) {
     super(props);
 
-    //TODO: rename recordDataHash
     this.state = {
       dataHash: '',
       viewerEthereumAddress: '',
@@ -29,11 +46,6 @@ class AddPermission extends Component {
     this.setState({ [property]: value });
   }
 
-  camelToPretty = (string) => {
-    return string.replace(/([A-Z])/g, (match) => ` ${match}`)
-      .replace(/^./, (match) => match.toUpperCase());
-  }
-
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -46,29 +58,82 @@ class AddPermission extends Component {
   }
 
   render () {
+    const {
+      dataHash,
+      viewerEthereumAddress,
+      viewerEncyptionPublicKey,
+      ownerEncryptionPrivateKey,
+    } = this.state;
+
+    const { classes } = this.props;
+
     return (
-      <div className='permissions-form inline-block'>
-        <h2>Add Permission</h2>
-        <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
-          {Object.keys(this.state).map((property, i) => {
-            return (<label key={i}>{this.camelToPretty(property)}
-              <input
-                name={property}
-                required
-                value={this.state[property]}
-                type={(property === 'ownerEncryptionPrivateKey') ? 'password' : 'text'}
-                onChange={this.onInputChange(property)}
-              />
-            </label>);
-          })}
-          <br />
-          <button className='pure-button pure-button-primary' type='submit'>Add Permission</button>
+      <div>
+        <Typography variant='title' className={classes.title}>
+          Add Permission
+        </Typography>
+        <Typography variant='body1'>
+          In order to share a file using the Linnia Protocol you have to give permission
+          to access the file to the viewer.
+        </Typography>
+        <form onSubmit={this.handleSubmit}>
+          <Typography variant='body1'>
+            To start, we need the <span className={classes.important}>Data Hash</span> of
+            the file you are sharing.
+          </Typography>
+          <TextField
+            name='dataHash'
+            required
+            fullWidth
+            className={classes.text}
+            label='Data Hash'
+            value={dataHash}
+            onChange={this.onInputChange('dataHash')}
+          />
+          <Typography variant='body1'>
+            Next, we need the <span className={classes.important}>Ethereum Address</span> of
+            the user you want to share the record with.
+          </Typography>
+          <TextField
+            name='viewerEthereumAddress'
+            required
+            fullWidth
+            className={classes.text}
+            label='Viewer Ethereum Address'
+            value={viewerEthereumAddress}
+            onChange={this.onInputChange('viewerEthereumAddress')}
+          />
+          <Typography variant='body1'>
+            We also need the viewer's <span className={classes.important}>Encryption Public Key</span>
+            so we can encrypt their copy of our record.
+          </Typography>
+          <TextField
+            name='viewerEncyptionPublicKey'
+            required
+            fullWidth
+            className={classes.text}
+            label='Viewer Encryption Public Key'
+            value={viewerEncyptionPublicKey}
+            onChange={this.onInputChange('viewerEncyptionPublicKey')}
+          />
+          <Typography variant='body1'>
+            Finally, we need your <span className={classes.important}>Private Encryption Key</span>
+            so that we can decrypt the original copy of the data. Don't worry, we won't save it!
+          </Typography>
+          <TextField
+            name='ownerEncryptionPrivateKey'
+            required
+            fullWidth
+            className={classes.text}
+            label='Your Encryption Private Key'
+            value={ownerEncryptionPrivateKey}
+            type='password'
+            onChange={this.onInputChange('ownerEncryptionPrivateKey')}
+          />
+          <Button type='submit'>
+            Add Permission
+          </Button>
         </form>
-        <p>In order to share a file using the Linnia Protocol you have to give permission to access the file to the viewer</p>
-        <p><span>Data Hash</span> of the file you are sharing</p>
-        <p><span>Viewer Ethereum Address</span>: The Ethereum Address of the user that you are sharing with</p>
-        <p><span>Viewer Encyption Public Key</span>: The Encryption Public Key of the user that you are sharing with</p>
-        <p><span>Owner Encryption Private Key</span>: Your personal Encryption Private Key</p>
       </div>
     );
   }
@@ -79,4 +144,4 @@ AddPermission.propTypes = {
   clearPermissionsError: PropTypes.func.isRequired,
 };
 
-export default AddPermission;
+export default withStyles(styles)(AddPermission);

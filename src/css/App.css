@@ -1,29 +1,8 @@
-/* PAGE */
-
-body,
-.pure-g [class*=pure-u] {
-  font-family: 'Open Sans', sans-serif;
-}
-
-h1, h2, h3 {
-  font-family: 'Oswald', 'Arial Narrow', sans-serif;
-}
-
 code {
   display: block;
   margin: 20px 0 15px 0;
   padding: 10px;
   background: #eee;
-}
-
-.container {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 45px 20px;
-}
-
-.permissions-form {
-  vertical-align: top;
 }
 
 .progress {
@@ -32,7 +11,7 @@ code {
   margin-left: -20px;
   margin-top: -20px;
   top: 50%;
-  left: 50%; 
+  left: 50%;
 }
 
 .progress-background {
@@ -45,83 +24,4 @@ code {
   margin: 0;
   top: 0;
   left: 0;
-}
-
-.error {
-  color: red;
-  margin-top: 0px;
-}
-
-.permissions {
-  margin-left: 50px;
-}
-.inline-block {
-  display: inline-block;
-}
-
-.auth-error {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.pure-button-primary {
-  background-color: #0c1a2b;
-}
-
-.pure-button-primary:hover {
-  background-color: #233e5e;
-}
-
-.pure-form input[type="text"]:focus {
-  border-color: #0c1a2b;
-}
-
-.pure-form, input {
-  width: 610px;
-}
-
-.error-message {
-  color: red;
-  font-size: 18px;
-}
-
-/* NAVBAR */
-
-.navbar {
-  position: fixed;
-  padding: 5px;
-  background: #0c1a2b;
-  font-family: 'Oswald', 'Arial Narrow', sans-serif;
-}
-
-.pure-menu-item {
-  margin: 0px 5px;
-}
-
-.navbar span {
-  color: #fff;
-  cursor: pointer;
-}
-
-.pure-menu-link:hover {
-  background: #233e5e;
-}
-
-.navbar .pure-menu-heading {
-  font-weight: bold;
-  text-transform: none;
-}
-
-.navbar .navbar-right {
-  float: right;
-}
-
-.navbar .uport-logo {
-  height: 16px;
-  margin-right: 10px;
-}
-
-.permissions-form p span {
-  font-weight: 600;
-  font-size: 19px;
 }

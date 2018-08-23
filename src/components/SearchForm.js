@@ -1,102 +1,67 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
+import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = (theme) => ({
+  space: {
+    marginRight: theme.spacing.unit * 5,
+  },
+});
 
 class SearchForm extends Component {
-  constructor (props) {
-    super(props);
+  render() {
+    const {
+      handleSubmit,
+      onInputChange,
+      dataHash,
+      owner,
+      property,
+      classes,
+    } = this.props;
 
-    this.state = {
-      dataHash: '',
-      owner: '',
-      property: '',
-    };
-
-    // Set variables pass as url arguments
-    window.location.search.substr(1).split('&').forEach((param) => {
-      const key = param.split('=')[0];
-      const val = param.split('=')[1];
-      if (this.state[key] !== undefined) {
-        this.state[key] = val;
-      }
-    });
-  }
-
-  onInputChange = (property) => (event) => {
-    const value = event.target.value;
-    this.setState({ [property]: value });
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const dataHash = event.target.elements.dataHash.value;
-    const owner = event.target.elements.owner.value;
-    const property = event.target.elements.property.value;
-    this.props.onSearchSubmit(dataHash, owner, property);
-  }
-
-  render () {
-    const searchForm = () =>
-      <form className='pure-form pure-form-stacked' onSubmit={this.handleSubmit}>
-        <fieldset>
-          <label htmlFor='dataHash'>Record Data Hash</label>
-          <input id='dataHash' type='text' value={this.state.dataHash.replace(/\s/g, '')} onChange={this.onInputChange('dataHash')} placeholder='Record Data Hash' />
-
-          <br />
-
-          <label htmlFor='owner'>Owner Ethereum Address</label>
-          <input id='owner' type='text' value={this.state.owner.replace(/\s/g, '')} onChange={this.onInputChange('owner')} placeholder='Owner Ethereum Address' />
-
-          <br />
-
-          <label htmlFor='property'>Property</label>
-          <input id='property' type='text' value={this.state.property} onChange={this.onInputChange('property')} placeholder='Property' />
-
-          <br />
-
-          <button type='submit' className='pure-button pure-button-primary'>Search</button>
-        </fieldset>
-      </form>;
-
-    const searchResults = (records) =>
-      records.map(record => {
-        return (
-          <div key={record.dataHash}>
-            <h2>Record: {record.dataHash}</h2>
-            <p>Owner: {record.owner}</p>
-            <p>Metadata: {record.metadata}</p>
-            <p>SigCount: {record.sigCount.toString()}</p>
-            <p>IrisScore: {record.irisScore.toString()}</p>
-            <p>DataUri: {record.dataUri}</p>
-          </div>);
-      });
-
-    if (this.props.search.results) {
-      var res = JSON.parse(this.props.search.results);
-      if (res.constructor !== Array) {
-        res = [res];
-      }
-      if (res.message) {
-        return (
-          <div>
-            <p className='error-message'>{res.message}</p>
-            {searchForm()}
-          </div>
-        );
-      } else {
-        return (
-          <div>
-            {searchForm()}
-            {searchResults(res)}
-          </div>
-        );
-      }
-    } else {
-      return (
-        <div>
-          {searchForm()}
-        </div>
-      );
-    }
+    return (
+      <form onSubmit={handleSubmit}>
+        <TextField
+          id='dataHash'
+          label='Record Data Hash'
+          value={dataHash.replace(/\s/g, '')}
+          onChange={onInputChange('dataHash')}
+          className={classes.space}
+          margin='normal'
+        />
+        <TextField
+          id='owner'
+          label='Owner Address'
+          value={owner.replace(/\s/g, '')}
+          onChange={onInputChange('owner')}
+          className={classes.space}
+          margin='normal'
+        />
+        <TextField
+          id='property'
+          label='MetaData'
+          value={property.replace(/\s/g, '')}
+          onChange={onInputChange('property')}
+          className={classes.space}
+          margin='normal'
+        />
+        <Button type='submit'>
+          Search
+        </Button>
+      </form>
+    );
   }
 }
 
-export default SearchForm;
+SearchForm.propType = {
+  handleSubmit: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  dataHash: PropTypes.string.isRequired,
+  property: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
+};
+
+export default withStyles(styles)(SearchForm);
+

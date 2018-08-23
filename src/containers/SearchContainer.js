@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SearchForm from '../components/SearchForm';
-import { search } from '../actions/SearchFormActions';
+import Search from '../components/Search';
+import { search } from '../actions/SearchActions';
 
 const mapStateToProps = (state, ownProps) => {
   return { search: state.search };
@@ -14,9 +14,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const SearchFormContainer = connect(
+const SearchContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchForm);
+)(Search);
 
-export default SearchFormContainer;
+export default SearchContainer;

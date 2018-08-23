@@ -9,7 +9,6 @@ const assignSearch = (search) => ({
 });
 
 export const search = (dataHash, owner, property) => async (dispatch) => {
-
   /*
     This action builds a URI based on the arguments provided, then queries
     the Linnia server to find records that match. This is a normal AJAX request.
@@ -34,6 +33,9 @@ export const search = (dataHash, owner, property) => async (dispatch) => {
     if (error) {
       console.error(error.stack);
     }
-    dispatch(assignSearch(body));
+
+    const parsedBody = JSON.parse(body);
+
+    dispatch(assignSearch(parsedBody));
   });
 };
