@@ -8,7 +8,7 @@ This starter kit is powered by Truffle Box and uses Metamask to authenticate use
 
 ## Getting Started
 
-First you have to install truffle
+First you have to install Truffle
 
 ```
 npm install -g truffle
