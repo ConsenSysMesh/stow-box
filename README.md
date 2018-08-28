@@ -1,4 +1,4 @@
-# Linnia, truffle box starter kit
+# Linnia, Truffle Box starter kit
 
 This is a starter kit to start developing your app using the decentralized protocol Linnia as the backend and data manager. Linnia is going to be used to store any data you want and relate it to your users.
 
