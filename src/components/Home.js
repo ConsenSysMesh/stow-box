@@ -26,13 +26,13 @@ class Home extends Component {
         </Typography>
         <Typography variant='body1' className={classes.text}>
           Linnia is a decentralized data storage and sharing protocol. With Linnia, you can quickly build
-          apps that give user's agency over their own data.
+          apps that give users agency over their own data.
         </Typography>
         <Typography variant='title' className={classes.text}>
           Metamask Authentication
         </Typography>
         <Typography variant='body1' className={classes.text}>
-          This particular box comes with autentication via Metamask. You need it to use this app.
+          This particular box comes with authentication via MetaMask. You need it to use this app.
           You can learn more about it and download it <a href='https://metamask.io/'>here</a>.
         </Typography>
         <Typography variant='title' className={classes.text}>
@@ -41,7 +41,7 @@ class Home extends Component {
         <Typography variant='body1' className={classes.text}>
           The Linnia team highly recommends building out applications using the MaterialUI CSS
           framework. This starter kit incorporates the React version. You can read more about it
-          and see the docs <a href='https://material-ui.com/'>here</a>.You can quickly re-style
+          and see the docs <a href='https://material-ui.com/'>here</a>. You can quickly re-style
           the application by replacing the theme in the starter kits index with your own!
         </Typography>
       </div>
