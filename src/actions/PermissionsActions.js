@@ -1,7 +1,6 @@
 import store from '../store';
 import axios from 'axios';
 import { encrypt, decrypt } from '../utils';
-import { Buffer } from 'safe-buffer';
 import config from '../config';
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS';
@@ -164,7 +163,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
 
   // Re-encrypt the file using the viewer's public key
   try {
-    reencrypted = await encrypt(new Buffer(viewerEncyptionPublicKey, 'hex'), decryptedData);
+    reencrypted = await encrypt(viewerEncyptionPublicKey, decryptedData);
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'));
     return;
