@@ -125,13 +125,13 @@ Here you can check the Ethereum Addresses of each of the test users, click [HERE
 
 
 
-### **Encryption Private Keys** (This are use to decrypt)
+### **Encryption Private Keys** (These are used to decrypt data)
 
 In order to decrypt the test files that we uploaded to the contracts, click [HERE](TestEncryptionPrivateKeys.md)
 
 
 
-### **Encryption Public Key** (This are use to share data)
+### **Encryption Public Key** (These are used to share data)
 
-In order to share a files you have to use the public key of the receiver, to find them click [HERE](TestEncryptionPublicKeys.md)
+In order to share files you have to use the public key of the receiver, to find them click [HERE](TestEncryptionPublicKeys.md)
 
