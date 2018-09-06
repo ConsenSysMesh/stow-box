@@ -10,6 +10,7 @@ import '../css/App.css';
 // Components
 import Home from './Home';
 import Header from './Header';
+import GetUser from './../containers/GetUserContainer';
 import GetRecord from './../containers/GetRecordContainer';
 import Search from './../containers/SearchContainer';
 import Permission from './../containers/PermissionsContainer';
@@ -39,6 +40,12 @@ class App extends Component {
         <Router history={history}>
           <main className={classes.main}>
             <Switch>
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                path='/get_user'
+                authError={authError}
+                component={GetUser}
+              />
               <ProtectedRoute
                 isAuthenticated={isAuthenticated}
                 path='/get_record'

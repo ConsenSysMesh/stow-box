@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
-import Record from './Record';
-import GetRecordForm from './GetRecordForm';
-import DecryptRecordForm from './DecryptRecordForm';
+import User from './User';
+import GetUserForm from './GetUserForm';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -11,7 +10,7 @@ const styles = {
   },
 };
 
-class GetRecord extends Component {
+class GetUser extends Component {
   constructor (props) {
     super(props);
 
@@ -33,51 +32,37 @@ class GetRecord extends Component {
   onInputChange = (property) => (event) => {
     const value = event.target.value;
     this.setState({ [property]: value });
-  };
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const dataHash = event.target.elements.dataHash.value;
-    this.props.onGetRecordSubmit(dataHash);
+    this.props.onGetUserSubmit();
   };
 
   handleDecrypt = (event) => {
     event.preventDefault();
     const privateKey = event.target.elements.privateKey.value;
     this.props.onGetRecordDecrypt(this.props.record.data, privateKey);
-  };
+  }
 
   render () {
-    const { dataHash, privateKey } = this.state;
-    const { record, classes } = this.props;
+    const { dataHash } = this.state;
+    const { record } = this.props;
 
     return (
       <section>
         <Typography variant='title'>
-          Get Record
+          Register a User
         </Typography>
-        <GetRecordForm
+        <GetUserForm
           dataHash={dataHash}
           onInputChange={this.onInputChange('dataHash')}
           handleSubmit={this.handleSubmit}
         />
-        {record.data && <Record record={record.data} />}
-        {record.data && <DecryptRecordForm
-          privateKey={privateKey}
-          onInputChange={this.onInputChange('privateKey')}
-          handleDecrypt={this.handleDecrypt}
-        />}
-        {record.data && record.data.decrypted && <div>
-          <Typography variant='title' className={classes.text}>
-            Success! Here is our decrypted data
-          </Typography>
-          <Typography variant='body2' className={classes.text}>
-            {this.props.record.data.decrypted}
-          </Typography>
-        </div>}
+        {record.data && <User record={record.data} />}
       </section>
     );
   }
 }
 
-export default withStyles(styles)(GetRecord);
+export default withStyles(styles)(GetUser);
