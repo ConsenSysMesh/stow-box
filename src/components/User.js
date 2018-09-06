@@ -33,9 +33,6 @@ class User extends Component {
         <Typography variant='body1'>
             It is your responsibility to store them safely. If you loose your keys or they get stolen, there is nothing we can do in order to recover them. Save them carefully!
         </Typography>
-        <Typography variant='body1'>
-            Next up, we need to register your ethereum address with the Linnia Protocol smart contracts.
-        </Typography>
       </div>
     );
   }

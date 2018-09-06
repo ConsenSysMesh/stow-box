@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import GetUserForm from '../components/GetUser';
-import { generateUser, getDecryptedRecord } from '../actions/GetUser';
+import { generateUser, registerUser } from '../actions/GetUser';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return { record: state.record };
 };
 
@@ -11,8 +11,8 @@ const mapDispatchToProps = (dispatch) => {
     onGetUserSubmit: () => {
       dispatch(generateUser());
     },
-    onGetRecordDecrypt: (record, privateKey) => {
-      dispatch(getDecryptedRecord(record, privateKey));
+    onGetRegisterUser: () => {
+      dispatch(registerUser());
     },
   };
 };

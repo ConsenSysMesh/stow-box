@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import User from './User';
+import RegisteredUser from './RegisteredUser';
 import GetUserForm from './GetUserForm';
+import RegisterUserForm from './RegisterUserForm';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -29,24 +31,18 @@ class GetUser extends Component {
     });
   }
 
-  onInputChange = (property) => (event) => {
-    const value = event.target.value;
-    this.setState({ [property]: value });
-  }
-
-  handleSubmit = (event) => {
+  generateUser = (event) => {
     event.preventDefault();
     this.props.onGetUserSubmit();
   };
 
-  handleDecrypt = (event) => {
+  registerUser = (event) => {
     event.preventDefault();
-    const privateKey = event.target.elements.privateKey.value;
-    this.props.onGetRecordDecrypt(this.props.record.data, privateKey);
-  }
+    this.props.onGetRegisterUser();
+  };
 
   render () {
-    const { dataHash } = this.state;
+    const { dataHash, privateKey } = this.state;
     const { record } = this.props;
 
     return (
@@ -56,10 +52,15 @@ class GetUser extends Component {
         </Typography>
         <GetUserForm
           dataHash={dataHash}
-          onInputChange={this.onInputChange('dataHash')}
-          handleSubmit={this.handleSubmit}
+          handleSubmit={this.generateUser}
         />
         {record.data && <User record={record.data} />}
+        {record.data && <RegisterUserForm
+          record={record.data}
+          privateKey={privateKey}
+          handleSubmit={this.registerUser}
+        />}
+        {record.data && record.data.address && <RegisteredUser record={record.data} />}
       </section>
     );
   }
