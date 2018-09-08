@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-  layout: {
+  text: {
     marginTop: 30,
   },
   highlightBox: {
@@ -20,10 +20,13 @@ class RegisteredUser extends Component {
     return (
       <div className={classes.layout}>
         <Typography variant='body1' className={classes.text}>
-          Your account has been successfully registered with the Linnia User Contract at address: {user.address}
+          Your account has been successfully registered with the Linnia User Contract at address:
+        </Typography>
+        <Typography variant='body1' className={classes.highlightBox}>
+          Address: {user.address}
         </Typography>
         <Typography variant='body1' className={classes.text}>
-          Check out out your transaction record on <a href='https://ropsten.etherscan.io/address/{user.address}' target='_blank' rel='noopener noreferrer'>Etherscan</a>.
+          Check out out your transaction record on <a href={`https://ropsten.etherscan.io/address/${user.address}`} target='_blank' rel='noopener noreferrer'>Etherscan</a>.
         </Typography>
       </div>
     );
