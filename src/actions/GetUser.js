@@ -1,13 +1,13 @@
 import store from '../store';
 import Wallet from "ethereumjs-wallet";
 
-export const GET_RECORD = 'GET_RECORD';
+export const USER_GENERATED = 'USER_GENERATED';
 export const USER_REGISTERED = 'USER_REGISTERED';
 export const REGISTRATION_ERROR = 'REGISTRATION_ERROR';
 
-const assignRecord = (record) => ({
-  type: GET_RECORD,
-  payload: record,
+const userGenerated = (user) => ({
+  type: USER_GENERATED,
+  payload: user,
 });
 
 const userRegistered = (user) => ({
@@ -27,9 +27,9 @@ export const generateUser = () => async (dispatch) => {
   const wallet = Wallet.generate();
   let privateKey = wallet.getPrivateKeyString();
   let publicKey = wallet.getPublicKeyString();
-  let record = { privateKey: privateKey, publicKey: publicKey };
+  let user = { privateKey: privateKey, publicKey: publicKey };
 
-  dispatch(assignRecord(record));
+  dispatch(userGenerated(user));
 };
 
 export const registerUser = () => async (dispatch) => {
@@ -45,7 +45,8 @@ export const registerUser = () => async (dispatch) => {
     }
 
     dispatch(userRegistered(users));
-  } catch(e){
-    dispatch(registrationError("Unable to register the user", userAddress, users));
+  }
+  catch (e) {
+    dispatch(registrationError('Unable to register the user', userAddress, users));
   }
 };

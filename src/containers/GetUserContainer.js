@@ -3,7 +3,7 @@ import GetUserForm from '../components/GetUser';
 import { generateUser, registerUser } from '../actions/GetUser';
 
 const mapStateToProps = (state) => {
-  return { record: state.record };
+  return { user: state.user };
 };
 
 const mapDispatchToProps = (dispatch) => {

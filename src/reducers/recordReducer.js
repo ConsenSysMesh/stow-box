@@ -13,11 +13,6 @@ const recordReducer = (state = initialState, action) => {
       data: null,
     });
   }
-  if (action.type === 'USER_REGISTERED') {
-    return Object.assign({}, state, {
-      registration: action.payload,
-    });
-  }
 
   return state;
 };

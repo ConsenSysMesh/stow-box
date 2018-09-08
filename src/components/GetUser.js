@@ -42,7 +42,7 @@ class GetUser extends Component {
   };
 
   render () {
-    const { record } = this.props;
+    const { user } = this.props;
 
     return (
       <section>
@@ -53,12 +53,12 @@ class GetUser extends Component {
         <GetUserForm
           handleSubmit={this.generateUser}
         />
-        {record.data && <User user={record.data} />}
+        {user.data && <User user={user.data} />}
 
-        {record.data && <RegisterUserForm
+        {user.data && <RegisterUserForm
           handleSubmit={this.registerUser}
         />}
-        {record.registration && <RegisteredUser user={record.registration} />}
+        {user.registration && <RegisteredUser user={user.registration} />}
       </section>
     );
   }
