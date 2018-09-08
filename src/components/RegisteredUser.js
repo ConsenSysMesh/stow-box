@@ -15,15 +15,15 @@ const styles = {
 
 class RegisteredUser extends Component {
   render() {
-    const { record, classes } = this.props;
+    const { user, classes } = this.props;
 
     return (
       <div className={classes.layout}>
         <Typography variant='body1' className={classes.text}>
-          Your account has been successfully registered with the Linnia User Contract at address: {record.address}
+          Your account has been successfully registered with the Linnia User Contract at address: {user.address}
         </Typography>
         <Typography variant='body1' className={classes.text}>
-          Check out out your transaction record on <a href='https://ropsten.etherscan.io/address/{record.address}' target='_blank' rel='noopener noreferrer'>Etherscan</a>.
+          Check out out your transaction record on <a href='https://ropsten.etherscan.io/address/{user.address}' target='_blank' rel='noopener noreferrer'>Etherscan</a>.
         </Typography>
       </div>
     );

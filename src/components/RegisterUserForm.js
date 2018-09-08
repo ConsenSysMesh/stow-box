@@ -33,7 +33,6 @@ class RegisterUserForm extends Component {
 }
 
 RegisterUserForm.propTypes = {
-  privateKey: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 

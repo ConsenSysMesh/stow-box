@@ -15,7 +15,7 @@ const styles = {
 
 class User extends Component {
   render() {
-    const { record, classes } = this.props;
+    const { user, classes } = this.props;
 
     return (
       <div className={classes.layout}>
@@ -24,10 +24,10 @@ class User extends Component {
         </Typography>
         <div className={classes.highlightBox}>
           <Typography variant='body1'>
-            <b>Private Key:</b> {record.privateKey}
+            <b>Private Key:</b> {user.privateKey}
           </Typography>
           <Typography variant='body1'>
-            <b>Public Key:</b> {record.publicKey}
+            <b>Public Key:</b> {user.publicKey}
           </Typography>
         </div>
         <Typography variant='body1'>

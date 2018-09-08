@@ -42,7 +42,6 @@ class GetUser extends Component {
   };
 
   render () {
-    const { dataHash, privateKey } = this.state;
     const { record } = this.props;
 
     return (
@@ -50,17 +49,16 @@ class GetUser extends Component {
         <Typography variant='title'>
           Register a User
         </Typography>
+
         <GetUserForm
-          dataHash={dataHash}
           handleSubmit={this.generateUser}
         />
-        {record.data && <User record={record.data} />}
+        {record.data && <User user={record.data} />}
+
         {record.data && <RegisterUserForm
-          record={record.data}
-          privateKey={privateKey}
           handleSubmit={this.registerUser}
         />}
-        {record.data && record.data.address && <RegisteredUser record={record.data} />}
+        {record.registration && <RegisteredUser user={record.registration} />}
       </section>
     );
   }
