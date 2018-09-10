@@ -13,10 +13,6 @@ const styles = {
 };
 
 class GetUser extends Component {
-  constructor (props) {
-    super(props);
-  }
-
   generateUser = (event) => {
     event.preventDefault();
     this.props.onGetUserSubmit();
