@@ -33,19 +33,19 @@ class GetRecord extends Component {
   onInputChange = (property) => (event) => {
     const value = event.target.value;
     this.setState({ [property]: value });
-  }
+  };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const dataHash = event.target.elements.dataHash.value;
     this.props.onGetRecordSubmit(dataHash);
-  }
+  };
 
   handleDecrypt = (event) => {
     event.preventDefault();
     const privateKey = event.target.elements.privateKey.value;
     this.props.onGetRecordDecrypt(this.props.record.data, privateKey);
-  }
+  };
 
   render () {
     const { dataHash, privateKey } = this.state;
@@ -69,7 +69,7 @@ class GetRecord extends Component {
         />}
         {record.data && record.data.decrypted && <div>
           <Typography variant='title' className={classes.text}>
-            Success! Here is our decryted data
+            Success! Here is our decrypted data
           </Typography>
           <Typography variant='body2' className={classes.text}>
             {this.props.record.data.decrypted}

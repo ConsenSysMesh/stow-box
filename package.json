@@ -9,6 +9,7 @@
     "axios": "^0.18.0",
     "eth-lib": "https://github.com/alan2207/eth-lib#cacfdbf5ffe7453168f9dfbf8bba281be3c229d0",
     "ethereumjs-util": "^5.2.0",
+    "ethereumjs-wallet": "^0.6.2",
     "history": "^4.7.2",
     "ipfs-mini": "^1.1.2",
     "linnia-brand": "^1.0.17",
