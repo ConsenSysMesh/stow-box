@@ -24,141 +24,64 @@ const dataUploaded = () => ({
 });
 
 export const uploadData = (file, public_key, metadata) => {
-  let uploadLocalFile = async function (dispatch, ipfs, linnia) {
-    const fileReader = new FileReader();
-    fileReader.onloadend = async (e) => {
-      let content = fileReader.result;
-
-      if(typeof content !== 'object'){
-        content = JSON.parse(content);
-      }
-
-      let encrypted, dataUri;
-      //Encrypt
-      try {
-        dispatch(uploadingToIpfs());
-        encrypted = await encrypt(
-          public_key,
-          content,
-        );
-      } catch (e) {
-        console.error('Unable to encrypt file. Check the Public Key');
-        dispatch(uploadError("Unable to encrypt file. Check the Public Key"));
-        return;
-      }
-
-      //Upload to IPFS
-      try {
-        dataUri = await new Promise((resolve, reject) => {
-          ipfs.add(encrypted, (err, ipfsRed) => {
-            err ? reject(err) : resolve(ipfsRed);
-          });
-        });
-      } catch (e) {
-        console.error('Unable to upload file to IPFS');
-        dispatch(uploadError("Unable to upload file to IPFS"));
-        return;
-      }
-
-      const [owner] = await store.getState().auth.web3.eth.getAccounts();
-      const {records} = await linnia.getContractInstances();
-
-      content.nonce = crypto.randomBytes(256).toString('hex');
-      // hash of the plain file
-      const hash = linnia.web3.utils.sha3(JSON.stringify(content));
-
-      //Upload file to Linnia
-      try {
-        await records.addRecord(
-          hash,
-          metadata,
-          dataUri,
-          {
-            from: owner,
-            gas: 500000,
-            gasPrice: 20000000000
-          },
-        );
-      } catch (e) {
-        console.error('Unable to upload file to Linnia');
-        dispatch(uploadError("Unable to upload file to Linnia"));
-        return;
-      }
-
-      dispatch(dataUploaded());
-
-    };
-
-    fileReader.readAsText(file);
-  };
-
-  // Upload data to Linnia
   return async (dispatch) => {
     const linnia = store.getState().auth.linnia;
     const ipfs = linnia.ipfs;
+    const content = file;
+    let encrypted, dataUri;
 
-    //TODO: clean this up so that there is less duplicate code
-    if(file instanceof Blob) {
-      // Read File
-      await uploadLocalFile(dispatch, ipfs, linnia);
-    } else {
-      const content = file;
-
-      let encrypted, dataUri;
-      //Encrypt
-      try {
-        dispatch(uploadingToIpfs());
-        encrypted = await encrypt(
-          public_key,
-          JSON.stringify(content),
-        );
-      } catch (e) {
-        console.error('Unable to encrypt file. Check the Public Key');
-        dispatch(uploadError("Unable to encrypt file. Check the Public Key"));
-        return;
-      }
-
-      //Upload to IPFS
-      try {
-        dataUri = await new Promise((resolve, reject) => {
-          ipfs.add(encrypted, (err, ipfsRed) => {
-            err ? reject(err) : resolve(ipfsRed);
-          });
-        });
-      } catch (e) {
-        console.error('Unable to upload file to IPFS');
-        dispatch(uploadError("Unable to upload file to IPFS"));
-        return;
-      }
-
-      const [owner] = await store.getState().auth.web3.eth.getAccounts();
-      const {records} = await linnia.getContractInstances();
-
-      // hash of the plain file plus nonce
-      content.nonce = crypto.randomBytes(256).toString('hex');
-
-      const hash = linnia.web3.utils.sha3(JSON.stringify(content));
-
-      //Upload file to Linnia
-      try {
-        await records.addRecord(
-          hash,
-          metadata,
-          dataUri,
-          {
-            from: owner,
-            gas: 500000,
-            gasPrice: 20000000000
-          },
-        );
-      } catch (e) {
-        console.error('Unable to upload file to Linnia');
-        dispatch(uploadError("Unable to upload file to Linnia"));
-        return;
-      }
-
-      dispatch(dataUploaded());
-
+    // Encrypt
+    try {
+      dispatch(uploadingToIpfs());
+      encrypted = await encrypt(
+        public_key,
+        JSON.stringify(content),
+      );
     }
+    catch (e) {
+      dispatch(uploadError('Unable to encrypt file. Check the Public Key'));
+      return;
+    }
+
+    // Upload to IPFS
+    try {
+      dataUri = await new Promise((resolve, reject) => {
+        ipfs.add(encrypted, (err, ipfsRed) => {
+          err ? reject(err) : resolve(ipfsRed);
+        });
+      });
+    }
+    catch (e) {
+      dispatch(uploadError('Unable to upload file to IPFS'));
+      return;
+    }
+
+    const [owner] = await store.getState().auth.web3.eth.getAccounts();
+    const {records} = await linnia.getContractInstances();
+
+    // Hash of the plain file plus nonce
+    content.nonce = crypto.randomBytes(256).toString('hex');
+
+    const hash = linnia.web3.utils.sha3(JSON.stringify(content));
+
+    // Upload to Linnia
+    try {
+      await records.addRecord(
+        hash,
+        metadata,
+        dataUri,
+        {
+          from: owner,
+          gas: 500000,
+          gasPrice: 20000000000,
+        },
+      );
+    }
+    catch (e) {
+      dispatch(uploadError('Unable to upload file to Linnia'));
+      return;
+    }
+
+    dispatch(dataUploaded());
   };
 };

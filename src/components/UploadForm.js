@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   paragraph: {
-    marginTop: 10,
+    marginTop: 50,
     marginBottom: 10,
   },
   space: {
@@ -20,7 +20,7 @@ const styles = {
 
 class UploadForm extends Component {
   render () {
-    const { public_key, metadata, onInputChange, handleSubmit, classes } = this.props;
+    const { file, public_key, metadata, onInputChange, handleSubmit, classes } = this.props;
 
     return (
       <div>
@@ -33,6 +33,24 @@ class UploadForm extends Component {
             value={public_key.replace(/\s/g, '')}
             onChange={onInputChange}
             margin='normal'
+            fullWidth
+          />
+
+          <Typography variant='body1' className={classes.paragraph}>
+            <b>JSON file data</b> to upload. Here is some dummy data you can user, edit or replace.
+          </Typography>
+
+          <TextField
+            id='file'
+            label='file'
+            required
+            className={classes.space}
+            value={file}
+            onChange={onInputChange}
+            margin='normal'
+            multiline='true'
+            rows='25'
+            fullWidth
           />
 
           <Typography variant='body1' className={classes.paragraph}>
@@ -47,6 +65,7 @@ class UploadForm extends Component {
             value={metadata.replace(/\s/g, '')}
             onChange={onInputChange}
             margin='normal'
+            fullWidth
           />
 
           <Button
@@ -64,6 +83,7 @@ class UploadForm extends Component {
 }
 
 UploadForm.propTypes = {
+  file: PropTypes.string.isRequired,
   public_key: PropTypes.string.isRequired,
   metadata: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired,
