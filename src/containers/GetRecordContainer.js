@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import GetRecordForm from '../components/GetRecord';
-import { getRecord, getDecryptedRecord } from '../actions/GetRecord';
+import { getRecord, getDecryptedRecord } from '../actions/GetRecordActions';
 
 const mapStateToProps = (state, ownProps) => {
   return { record: state.record };
