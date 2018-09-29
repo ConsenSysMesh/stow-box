@@ -17,10 +17,10 @@ const uploadingToIpfs = () => ({
   isLoading: true,
 });
 
-const dataUploaded = () => ({
+const dataUploaded = (hash) => ({
   type: DATA_UPLOADED,
   isLoading: false,
-  done: true,
+  hash: hash,
 });
 
 export const uploadData = (file, public_key, metadata) => {
@@ -82,6 +82,6 @@ export const uploadData = (file, public_key, metadata) => {
       return;
     }
 
-    dispatch(dataUploaded());
+    dispatch(dataUploaded(hash));
   };
 };

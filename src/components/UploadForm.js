@@ -48,7 +48,7 @@ class UploadForm extends Component {
             value={file}
             onChange={onInputChange}
             margin='normal'
-            multiline='true'
+            multiline
             rows='25'
             fullWidth
           />

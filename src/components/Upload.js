@@ -102,10 +102,10 @@ class Upload extends Component {
           />
         </div>}
 
-        {upload.done && <Typography
+        {upload.hash && <Typography
           variant='body1'
           className={classes.success}>
-          The file was uploaded to Linnia!
+          The file was uploaded to Linnia! Hash: <b>{upload.hash}</b>
         </Typography>
         }
 

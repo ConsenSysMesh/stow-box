@@ -16,8 +16,8 @@ const uploadDataReducer = (state = initialState, action) => {
     return Object.assign({}, state, { isLoading, message });
   }
   else if (action.type === DATA_UPLOADED) {
-    const { isLoading, done } = action;
-    return Object.assign({}, state, { isLoading, done });
+    const { isLoading, hash } = action;
+    return Object.assign({}, state, { isLoading, hash });
   }
   else if (action.type === UPLOAD_ERROR) {
     const { isLoading, message } = action;
