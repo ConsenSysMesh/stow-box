@@ -27,8 +27,18 @@ export const uploadData = (file, public_key, metadata) => {
   return async (dispatch) => {
     const linnia = store.getState().auth.linnia;
     const ipfs = linnia.ipfs;
-    const content = file;
-    let encrypted, dataUri;
+    let content, encrypted, dataUri;
+
+    // Validate
+    try {
+      content = JSON.parse(file);
+      JSON.parse(metadata);
+    }
+    catch (e) {
+      console.error(e);
+      dispatch(uploadError('File and metadata must be valid JSON'));
+      return;
+    }
 
     // Encrypt
     try {

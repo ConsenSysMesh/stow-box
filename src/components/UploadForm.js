@@ -37,7 +37,7 @@ class UploadForm extends Component {
           />
 
           <Typography variant='body1' className={classes.paragraph}>
-            <b>JSON file data</b> to upload. Here is some dummy data you can user, edit or replace.
+            <b>JSON File Data</b> to upload. Dummy data provided.
           </Typography>
 
           <TextField
@@ -54,7 +54,8 @@ class UploadForm extends Component {
           />
 
           <Typography variant='body1' className={classes.paragraph}>
-            <b>Metadata</b> should be text that people will use to find your data. What will be useful to query later?
+            <b>JSON Metadata</b> that will be used to query and find the data.
+            <a href='https://github.com/ConsenSys/linnia-resources/blob/master/METADATA.md' target='_blank' rel='noopener noreferrer'>Metadata guidelines</a> and dummy data provided.
           </Typography>
 
           <TextField
@@ -62,9 +63,11 @@ class UploadForm extends Component {
             label='Metadata'
             required
             className={classes.space}
-            value={metadata.replace(/\s/g, '')}
+            value={metadata}
             onChange={onInputChange}
             margin='normal'
+            multiline
+            rows='11'
             fullWidth
           />
 

@@ -51,7 +51,17 @@ class Upload extends Component {
       '  ]\n' +
       '}',
       public_key: '',
-      metadata: '',
+      metadata: '{\n' +
+      '    "dataFormat": "json",\n' +
+      '    "domain": "social media",\n' +
+      '    "storage": "IPFS",\n' +
+      '    "encryptionScheme": "x25519-xsalsa20-poly1305",\n' +
+      '    "encryptionPublicKey": "hQYhHJpzZH/tGhz1wtqSjkL17tJSnEEC4yVGyNTHNQY=",\n' +
+      '    "linniajsVersion": "0.1.4",\n' +
+      '    "providerName": "Facebook",\n' +
+      '    "providerEthereumAddress": "0x349e31e92027f86b0ffeb5cd5e07003c7f229872",\n' +
+      '    "keywords": [ "facebook", "friends list", "people" ]\n' +
+      '}',
     };
   }
 
@@ -63,7 +73,7 @@ class Upload extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const file = JSON.parse(this.state.file);
+    const file = this.state.file;
     const public_key = this.state.public_key;
     const metadata = this.state.metadata;
     this.props.uploadData(file, public_key, metadata);
