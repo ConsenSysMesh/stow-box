@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import GetUserForm from '../components/GetUser';
-import { generateUser, registerUser } from '../actions/GetUser';
+import { generateUser, registerUser } from '../actions/GetUserActions';
 
 const mapStateToProps = (state) => {
   return { user: state.user };

@@ -11,6 +11,7 @@ import '../css/App.css';
 import Home from './Home';
 import Header from './Header';
 import GetUser from './../containers/GetUserContainer';
+import Upload from './../containers/UploadContainer';
 import GetRecord from './../containers/GetRecordContainer';
 import Search from './../containers/SearchContainer';
 import Permission from './../containers/PermissionsContainer';
@@ -45,6 +46,12 @@ class App extends Component {
                 path='/get_user'
                 authError={authError}
                 component={GetUser}
+              />
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                path='/upload'
+                authError={authError}
+                component={Upload}
               />
               <ProtectedRoute
                 isAuthenticated={isAuthenticated}

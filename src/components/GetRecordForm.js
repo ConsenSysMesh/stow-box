@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
+import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,7 +21,7 @@ class GetRecordForm extends Component {
     return (
       <div>
         <Typography variant='body1' className={classes.text}>
-          First, we can fetch a record from the smart contracts by inputting its data hash.
+          Fetch a record from the smart contracts by inputting its data hash.
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
