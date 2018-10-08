@@ -4,14 +4,15 @@
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
-    "@linniaprotocol/linnia-js": "^0.1.4",
+    "@babel/core": "^7.1.2",
+    "@linniaprotocol/linnia-js": "^0.3.0",
     "@material-ui/core": "^1.5.1",
     "axios": "^0.18.0",
-    "eth-lib": "https://github.com/alan2207/eth-lib#cacfdbf5ffe7453168f9dfbf8bba281be3c229d0",
-    "ethereumjs-util": "^5.2.0",
+    "babel-core": "^7.0.0-bridge.0",
     "ethereumjs-wallet": "^0.6.2",
     "history": "^4.7.2",
     "ipfs-mini": "^1.1.2",
+    "jest": "^23.6.0",
     "linnia-brand": "^1.0.17",
     "material-ui": "^0.20.1",
     "metamask-logo": "^2.2.0",
@@ -22,12 +23,11 @@
     "react-router": "^3.2.1",
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^4.0.8",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.0.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "safe-buffer": "^5.1.2",
-    "web3": "^1.0.0-beta.34",
-    "webpack": "^3.11.0"
+    "web3": "^1.0.0-beta.34"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,9 +39,6 @@
   "jest": {
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/*test*"
     ],
     "testURL": "http://localhost",
     "transform": {
@@ -61,6 +58,9 @@
       "node"
     ]
   },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -75,5 +75,11 @@
     "promise": "7.1.1",
     "react-test-renderer": "^16.4.2",
     "whatwg-fetch": "1.0.0"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

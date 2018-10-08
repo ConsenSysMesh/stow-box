@@ -1,5 +1,5 @@
 import store from '../store';
-import { decrypt } from '../utils';
+import Linnia from '@linniaprotocol/linnia-js';
 
 export const GET_RECORD = 'GET_RECORD';
 
@@ -43,11 +43,11 @@ export const getDecryptedRecord = (record, privateKey) => async (dispatch) => {
     if (err) {
       console.log(err);
     } else {
-      const encrypted = ipfsRes;
+      const encrypted = JSON.parse(ipfsRes);
 
       // Try to decrypt with the provided key
       try {
-        const decrypted = await decrypt(privateKey, encrypted);
+        const decrypted = await Linnia.util.decrypt(privateKey, encrypted);
         record.decrypted = JSON.stringify(decrypted.toString());
         dispatch(assignRecord(record));
       } catch (e) {
