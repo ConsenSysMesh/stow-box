@@ -1,7 +1,7 @@
 import store from '../store';
 import axios from 'axios';
-import { encrypt, decrypt } from '../utils';
 import config from '../config';
+import Linnia from '@linniaprotocol/linnia-js';
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS';
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION';
@@ -129,7 +129,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
   */
 
   const linnia = store.getState().auth.linnia;
-  const ipfs = linnia.ipfs;
+  const ipfs = store.getState().auth.ipfs;
 
   // Get the record from the blockchain
   const record = await linnia.getRecord(dataHash);
@@ -155,7 +155,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
   // Decrypt the file using the owner's private key
   try {
     const encryptedData = file;
-    decryptedData = await decrypt(ownerEncryptionPrivateKey, encryptedData);
+    decryptedData = await Linnia.util.decrypt(ownerEncryptionPrivateKey, encryptedData);
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'));
     return;
@@ -163,7 +163,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
 
   // Re-encrypt the file using the viewer's public key
   try {
-    reencrypted = await encrypt(viewerEncyptionPublicKey, decryptedData);
+    reencrypted = await Linnia.util.encrypt(viewerEncyptionPublicKey, decryptedData);
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'));
     return;

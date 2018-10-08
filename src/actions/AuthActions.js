@@ -105,7 +105,7 @@ export const authenticate = () => async dispatch => {
     return dispatch(authFailure(LINNIA_MISCONFIGURED));
   }
 
-  const linnia = new Linnia(web3, ipfs, { hubAddress });
+  const linnia = new Linnia(web3, { linniaContractUpgradeHubAddress: hubAddress });
 
   /*
     Success! Our user is ready to start interacting with the Linnia Protocol. We add the
