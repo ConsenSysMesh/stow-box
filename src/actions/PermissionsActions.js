@@ -154,7 +154,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
 
   // Decrypt the file using the owner's private key
   try {
-    const encryptedData = file;
+    const encryptedData = JSON.parse(file);
     decryptedData = await Linnia.util.decrypt(ownerEncryptionPrivateKey, encryptedData);
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'));
@@ -172,10 +172,11 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
   // Upload the viewer encrypted file up to a new location in IPFS
   try {
     IPFSDataUri = await new Promise((resolve, reject) => {
-      ipfs.add(reencrypted, (err, ipfsRed) => {
+      ipfs.add(JSON.stringify(reencrypted), (err, ipfsRed) => {
         err ? reject(err) : resolve(ipfsRed);
       });
     });
+
   } catch (e) {
     dispatch(showPermissionError('Unable to reupload viewer file. Please try again later.'));
     return;
