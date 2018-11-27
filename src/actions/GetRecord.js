@@ -1,5 +1,5 @@
 import store from '../store';
-import Linnia from '@linniaprotocol/linnia-js';
+import Stow from '@stowprotocol/stow-js';
 
 export const GET_RECORD = 'GET_RECORD';
 
@@ -11,14 +11,14 @@ const assignRecord = (record) => ({
 export const getRecord = (dataHash) => async (dispatch) => {
 
   /*
-    Here, we pulled the linnia libray object from the state,
+    Here, we pulled the stow libray object from the state,
     get the record for the dataHash provided as an argument
     from the contract state, the dispatch an action that adds
     the record to the state.
   */
 
-  const { linnia } = store.getState().auth;
-  const record = await linnia.getRecord(dataHash);
+  const { stow } = store.getState().auth;
+  const record = await stow.getRecord(dataHash);
   dispatch(assignRecord(record)); 
 };
 
@@ -47,7 +47,7 @@ export const getDecryptedRecord = (record, privateKey) => async (dispatch) => {
 
       // Try to decrypt with the provided key
       try {
-        const decrypted = await Linnia.util.decrypt(privateKey, encrypted);
+        const decrypted = await Stow.util.decrypt(privateKey, encrypted);
         record.decrypted = JSON.stringify(decrypted);
         dispatch(assignRecord(record));
       } catch (e) {

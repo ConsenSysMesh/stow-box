@@ -20,11 +20,11 @@ class RegisterUserForm extends Component {
     return (
       <div>
         <Typography variant='body1' className={classes.text}>
-          Next up, we need to register your ethereum address with the Linnia Protocol smart contracts.
+          Next up, we need to register your ethereum address with the Stow Protocol smart contracts.
         </Typography>
         <form onSubmit={handleSubmit}>
           <Button type='submit'>
-            Register Linnia User
+            Register Stow User
           </Button>
         </form>
       </div>

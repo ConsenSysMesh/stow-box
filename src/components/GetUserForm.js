@@ -17,14 +17,14 @@ class GetUserForm extends Component {
     return (
       <div>
         <Typography variant='body1' className={classes.text}>
-            First, we need to generate a pair of encryption keys. You will use these keys to encrypt and decrypt files on behalf of your user. To understand more about Private and Public Encryption Keys please: <a href='https://github.com/ConsenSys/linnia-resources/' target='_blank' rel='noopener noreferrer'>Go Here</a>
+            First, we need to generate a pair of encryption keys. You will use these keys to encrypt and decrypt files on behalf of your user. To understand more about Private and Public Encryption Keys please: <a href='https://github.com/ConsenSys/stow-resources/' target='_blank' rel='noopener noreferrer'>Go Here</a>
         </Typography>
         <form onSubmit={handleSubmit}>
           <Button
             type='submit'
             className={classes.button}
           >
-            Generate Linnia Encryption Keys
+            Generate Stow Encryption Keys
           </Button>
         </form>
       </div>

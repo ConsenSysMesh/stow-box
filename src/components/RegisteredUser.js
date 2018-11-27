@@ -20,7 +20,7 @@ class RegisteredUser extends Component {
     return (
       <div className={classes.layout}>
         <Typography variant='body1' className={classes.text}>
-          Your account has been successfully registered with the Linnia User Contract at address:
+          Your account has been successfully registered with the Stow User Contract at address:
         </Typography>
         <Typography variant='body1' className={classes.highlightBox}>
           Address: {user.address}
