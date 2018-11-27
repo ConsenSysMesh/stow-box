@@ -33,9 +33,9 @@ export const generateUser = () => async (dispatch) => {
 };
 
 export const registerUser = () => async (dispatch) => {
-  const linnia = store.getState().auth.linnia;
+  const stow = store.getState().auth.stow;
   const [userAddress] = await store.getState().auth.web3.eth.getAccounts();
-  const { users } = await linnia.getContractInstances();
+  const { users } = await stow.getContractInstances();
 
   try {
     const alreadyRegistered = await users.isUser(userAddress);

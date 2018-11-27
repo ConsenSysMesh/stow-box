@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from '@material-ui/core/styles';
-import Logo from 'linnia-brand/components/Logo';
+import Logo from '@stowprotocol/brand/components/Logo';
 
 const height = 35;
 const width = 35;

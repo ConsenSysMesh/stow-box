@@ -1,9 +1,9 @@
 const config = {
-  LINNIA_IPFS_HOST: 'ipfs.infura.io',
-  LINNIA_IPFS_PORT: '5001',
-  LINNIA_IPFS_PROTOCOL: 'https',
-  LINNIA_HUB_ADDRESS: '0x76305411d861ecc48153336be8b8c255e1aec823',
-  LINNIA_SEARCH_URI: 'https://linniaserver.com',
+  STOW_IPFS_HOST: 'ipfs.infura.io',
+  STOW_IPFS_PORT: '5001',
+  STOW_IPFS_PROTOCOL: 'https',
+  STOW_HUB_ADDRESS: '0xa8afd97368403ca160d4d8e02afa966100d97621',
+  STOW_SEARCH_URI: 'https://qastg.api.stow-protocol.com',
 };
 
 export default config;

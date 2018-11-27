@@ -73,7 +73,7 @@ class AddPermission extends Component {
           Add Permission
         </Typography>
         <Typography variant='body1'>
-          In order to share a file using the Linnia Protocol you have to give permission
+          In order to share a file using the Stow Protocol you have to give permission
           to access the file to the viewer.
         </Typography>
         <form onSubmit={this.handleSubmit}>

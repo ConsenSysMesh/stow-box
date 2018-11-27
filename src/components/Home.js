@@ -16,16 +16,16 @@ class Home extends Component {
     return (
       <div>
         <Typography variant='display2' className={classes.text}>
-          Welcome to Linnia!
+          Welcome to Stow!
         </Typography>
         <Typography variant='body1' className={classes.text}>
           Time to start building the decentralized future.
         </Typography>
         <Typography variant='title' className={classes.text}>
-          Linnia as a decentralized backend
+          Stow as a decentralized backend
         </Typography>
         <Typography variant='body1' className={classes.text}>
-          Linnia is a decentralized data storage and sharing protocol. With Linnia, you can quickly build
+          Stow is a decentralized data storage and sharing protocol. With Stow, you can quickly build
           apps that give users agency over their own data.
         </Typography>
         <Typography variant='title' className={classes.text}>
@@ -39,7 +39,7 @@ class Home extends Component {
           Styled with Material-UI
         </Typography>
         <Typography variant='body1' className={classes.text}>
-          The Linnia team highly recommends building out applications using the MaterialUI CSS
+          The Stow team highly recommends building out applications using the MaterialUI CSS
           framework. This starter kit incorporates the React version. You can read more about it
           and see the docs <a href='https://material-ui.com/'>here</a>. You can quickly re-style
           the application by replacing the theme in the starter kits index with your own!

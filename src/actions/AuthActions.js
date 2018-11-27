@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import IPFS from 'ipfs-mini';
-import Linnia from '@linniaprotocol/linnia-js';
+import Stow from '@stowprotocol/stow-js';
 import config from '../config';
 
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
@@ -8,19 +8,19 @@ export const AUTH_FAILURE = 'AUTH_FAILURE';
 
 export const NO_METAMASK = 'NO_METAMASK';
 export const LOCKED_METAMASK = 'LOCKED_METAMASK';
-export const LINNIA_MISCONFIGURED = 'LINNIA_MISCONFIGURED';
+export const STOW_MISCONFIGURED = 'STOW_MISCONFIGURED';
 export const IPFS_MISCONFIGURED = 'IPFS_MISCONFIGURED';
 
-const hubAddress = config.LINNIA_HUB_ADDRESS;
-const protocol = config.LINNIA_IPFS_PROTOCOL;
-const port = config.LINNIA_IPFS_PORT;
-const host = config.LINNIA_IPFS_HOST;
+const hubAddress = config.STOW_HUB_ADDRESS;
+const protocol = config.STOW_IPFS_PROTOCOL;
+const port = config.STOW_IPFS_PORT;
+const host = config.STOW_IPFS_HOST;
 
-const authSuccess = (web3, ipfs, linnia) => ({
+const authSuccess = (web3, ipfs, stow) => ({
   type: AUTH_SUCCESS,
   web3,
   ipfs,
-  linnia,
+  stow,
 });
 
 const authFailure = authError => ({
@@ -94,23 +94,23 @@ export const authenticate = () => async dispatch => {
   }
 
   /*
-    Finally, we make sure that we are able to connect to the Linnia Smart contracts. We use 
+    Finally, we make sure that we are able to connect to the Stow Smart contracts. We use 
     Web3 to ping the contract address. If we receive and empty hex, we have provided the wrong
     hub address. This is another developer check.
   */
 
   const code = await web3.eth.getCode(hubAddress);
   if (!code || code === '0x0' || code === '0x') {
-    console.error('Linnia is not configured correctly!');
-    return dispatch(authFailure(LINNIA_MISCONFIGURED));
+    console.error('Stow is not configured correctly!');
+    return dispatch(authFailure(STOW_MISCONFIGURED));
   }
 
-  const linnia = new Linnia(web3, { linniaContractUpgradeHubAddress: hubAddress });
+  const stow = new Stow(web3);
 
   /*
-    Success! Our user is ready to start interacting with the Linnia Protocol. We add the
+    Success! Our user is ready to start interacting with the Stow Protocol. We add the
     services to our state so that other actions and components can use them.
   */
 
-  dispatch(authSuccess(web3, ipfs, linnia));
+  dispatch(authSuccess(web3, ipfs, stow));
 };

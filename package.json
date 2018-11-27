@@ -1,11 +1,11 @@
 {
-  "name": "@linniaprotocol/linnia-box",
+  "name": "@stowprotocol/stow-box",
   "version": "0.1.0",
   "private": true,
   "license": "Apache-2.0",
   "dependencies": {
     "@babel/core": "^7.1.2",
-    "@linniaprotocol/linnia-js": "^0.3.0",
+    "@stowprotocol/stow-js": "^0.3.5",
     "@material-ui/core": "^1.5.1",
     "axios": "^0.18.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -13,7 +13,7 @@
     "history": "^4.7.2",
     "ipfs-mini": "^1.1.2",
     "jest": "^23.6.0",
-    "linnia-brand": "^1.0.17",
+    "@stowprotocol/brand": "^0.0.2",
     "material-ui": "^0.20.1",
     "metamask-logo": "^2.2.0",
     "prop-types": "^15.6.2",

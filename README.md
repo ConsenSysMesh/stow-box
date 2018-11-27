@@ -1,6 +1,6 @@
-# Linnia, Truffle Box starter kit
+# Stow, Truffle Box starter kit
 
-This is a starter kit to start developing your app using the decentralized protocol Linnia as the backend and data manager. Linnia is going to be used to store any data you want and relate it to your users.
+This is a starter kit to start developing your app using the decentralized protocol Stow as the backend and data manager. Stow is going to be used to store any data you want and relate it to your users.
 
 This starter kit is powered by Truffle Box and uses Metamask to authenticate users and sign transactions.
 
@@ -21,9 +21,9 @@ npm install -g truffle
 Create a directory for your project and download the truffle box.
 
 ```
-mkdir my_linnia_app
-cd my_linnia_app
-truffle unbox ConsenSys/linnia-box
+mkdir my_stow_app
+cd my_stow_app
+truffle unbox ConsenSys/stow-box
 ```
 
 
@@ -31,8 +31,8 @@ truffle unbox ConsenSys/linnia-box
 ### Download the Kit
 
 ```
-git clone git@github.com:ConsenSys/linnia-box.git
-cd linnia-box
+git clone git@github.com:ConsenSys/stow-box.git
+cd stow-box
 ```
 
 Install the dependencies:
@@ -53,7 +53,7 @@ If you don't have Metamask yet, go to the following link, download and install i
 
 ## Run
 
-You have everything setup, now you have to run some services in order to have you first Linnia app working.
+You have everything setup, now you have to run some services in order to have you first Stow app working.
 
 There are 3 services that the starter kit need. For all of them you have the default running version or you local one.
 
@@ -61,13 +61,13 @@ There are 3 services that the starter kit need. For all of them you have the def
 
 ## Services Needed
 
-In order to start using your Linnia Box you need to use 3 services: IPFS, Ethereum Client (With Linnia SC), Linnia-Server
+In order to start using your Stow Box you need to use 3 services: IPFS, Ethereum Client (With Stow SC), Stow-Server
 
 
 
 ## Quick Start
 
-For the quick start we are going to use Infura (IPFS), Ropsten (Ethereum Client), AWS Linnia-Server
+For the quick start we are going to use Infura (IPFS), Ropsten (Ethereum Client), AWS Stow-Server
 
 This is the easiest way to start but if you have time we recommend to take a look at the full installation in which we explain how to run a local version of all of this services which is very helpful for development purposes. (Check the full installation here)
 
@@ -80,42 +80,42 @@ Go to your Metamask and switch to Ropsten Test Network
 npm start
 ```
 
-Congrats your Linnia App is running!!
+Congrats your Stow App is running!!
 
 
 
 ## Request User to Share file
 
-If you created an app using the Linnia Box and you want to request a user to share specific file with you, you can send a URL that will ask the user only for the Encryption Private Key and to sign the transaction in MetaMask.
+If you created an app using the Stow Box and you want to request a user to share specific file with you, you can send a URL that will ask the user only for the Encryption Private Key and to sign the transaction in MetaMask.
 
 Replace the following variables in the following URL and send to the owner of that data:
 
-- LINNIA_BOX_URL
+- STOW_BOX_URL
 - YOUR_ENCRYPTION_PUBLIC_KEY
 - YOUR_ETHEREUM_ADDRESS
 - DATA_HASH_YOU_WANT
 
 ```
-[LINNIA_BOX_URL]/permissions?viewerEncyptionPublicKey=[YOUR_ENCRYPTION_PUBLIC_KEY]&viewerEthereumAddress=[YOUR_ETHEREUM_ADDRESS]&dataHash=[DATA_HASH_YOU_WANT]
+[STOW_BOX_URL]/permissions?viewerEncyptionPublicKey=[YOUR_ENCRYPTION_PUBLIC_KEY]&viewerEthereumAddress=[YOUR_ETHEREUM_ADDRESS]&dataHash=[DATA_HASH_YOU_WANT]
 ```
 
 
 
 ## Encryption Keys
 
-To learn more about encryption patterns and how Linnia uses them, go [HERE](https://github.com/ConsenSys/linnia-resources/blob/master/KEYS.md)
+To learn more about encryption patterns and how Stow uses them, go [HERE](https://github.com/ConsenSys/stow-resources/blob/master/KEYS.md)
 
 
 
 ## Create User and Upload Data
 
-In order to create the keys, register a user and upload data to Linnia you can use our Linnia Faucet [HERE](https://consensys.github.io/linnia-faucet/)
+In order to create the keys, register a user and upload data to Stow you can use our Stow Faucet [HERE](https://consensys.github.io/stow-faucet/)
 
 
 
 ## Test Users
 
-In order to test Linnia you can use the following keys. We already uploaded data of 40 different diabetic patients (This is not real data)
+In order to test Stow you can use the following keys. We already uploaded data of 40 different diabetic patients (This is not real data)
 
 
 

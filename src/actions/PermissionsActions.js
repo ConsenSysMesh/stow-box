@@ -1,7 +1,7 @@
 import store from '../store';
 import axios from 'axios';
 import config from '../config';
-import Linnia from '@linniaprotocol/linnia-js';
+import Stow from '@stowprotocol/stow-js';
 
 export const SET_PERMISSIONS = 'SET_PERMISSIONS';
 export const REMOVE_PERMISSION = 'REMOVE_PERMISSION';
@@ -62,13 +62,13 @@ export const getPermissions = () => async (dispatch) => {
 
   /*
     First, we get the user's address from the contract state.
-    Next, we query the linnia server to find all of the permissions
+    Next, we query the stow server to find all of the permissions
     for that user. The URI is built here. Finally, we add the array of permissions
     we receive to the state by dispatching an action.
   */
 
   const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts();
-  const host = config.LINNIA_SEARCH_URI;
+  const host = config.STOW_SEARCH_URI;
   const url = `${host}/users/${ownerAddress}/permissions`;
   const response = await axios.get(url);
   dispatch(assignPermissions(response.data));
@@ -79,7 +79,7 @@ export const revokePermission = (permission) => async (dispatch) => {
   /*
     First, we dispatch an event the ultimately renders a "loading" component
     so the user knows the application is working asynchronously. Next, we
-    pull the linnia library object from the state and use it to get the permissions
+    pull the stow library object from the state and use it to get the permissions
     contract object. Finally, we use the permissions contract object to revoke the permission.
     The user will be prompted to approve the transaction by MetaMask or whatever identity
     provider they are using. If it's successful, an action kickes off that removes the permission
@@ -88,11 +88,11 @@ export const revokePermission = (permission) => async (dispatch) => {
 
   dispatch(uploadingPermission());
 
-  const linnia = store.getState().auth.linnia;
+  const stow = store.getState().auth.stow;
   const [ownerAddress] = await store.getState().auth.web3.eth.getAccounts();
   const dataHash = permission.dataHash;
   const viewer = permission.viewer;
-  const { permissions } = await linnia.getContractInstances();
+  const { permissions } = await stow.getContractInstances();
 
   try {
     // This will prompt the user to sign the transaction, then make it
@@ -116,23 +116,23 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
   dispatch(uploadingPermission());
 
   /*
-    This one is a bit of a doozy. First, we pull the ipfs api wrapper and the linnia
+    This one is a bit of a doozy. First, we pull the ipfs api wrapper and the stow
     library object from the state. Next, we pull the owner encrypted data down from
     IPFS. Next, we try to decrypt the data using the provided ownerPrivateKey. If the key
     isn't valid, we kick off an action that exposes the error. If it works, we then attempt
     to encrypt the file using the viewer's public key. If that doesn't work, we kick off an
     action that exposes an error in the UI. If it does work, we then try to upload the newly
     viewer encryped data up to IPFS. Once the data is in IPFS, we call the permissions contract
-    and attempt to add the new Permission to the Linnia contract. The user will be prompted to
+    and attempt to add the new Permission to the Stow contract. The user will be prompted to
     sign the transaction. If she consents, the permission will be added to the blockchain,
     then added to the UI via an action getting kicked off.
   */
 
-  const linnia = store.getState().auth.linnia;
+  const stow = store.getState().auth.stow;
   const ipfs = store.getState().auth.ipfs;
 
   // Get the record from the blockchain
-  const record = await linnia.getRecord(dataHash);
+  const record = await stow.getRecord(dataHash);
 
   if (!record.dataHash) {
     dispatch(showPermissionError('Unable to retreive record. Does a record with that dataHash exist?'));
@@ -155,7 +155,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
   // Decrypt the file using the owner's private key
   try {
     const encryptedData = JSON.parse(file);
-    decryptedData = await Linnia.util.decrypt(ownerEncryptionPrivateKey, encryptedData);
+    decryptedData = await Stow.util.decrypt(ownerEncryptionPrivateKey, encryptedData);
   } catch (e) {
     dispatch(showPermissionError('Unable to decrypt file. Is the owner private key correct?'));
     return;
@@ -163,7 +163,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
 
   // Re-encrypt the file using the viewer's public key
   try {
-    reencrypted = await Linnia.util.encrypt(viewerEncyptionPublicKey, decryptedData);
+    reencrypted = await Stow.util.encrypt(viewerEncyptionPublicKey, decryptedData);
   } catch (e) {
     dispatch(showPermissionError('Unable to encrypt file for viewer. Is the viewer public key correct?'));
     return;
@@ -190,7 +190,7 @@ export const addPermission = (dataHash, viewerEthereumAddress, viewerEncyptionPu
 
   // Create a new permissions record on the blockchain
   try {
-    const { permissions } = await linnia.getContractInstances();
+    const { permissions } = await stow.getContractInstances();
     await permissions.grantAccess(dataHash, viewerEthereumAddress, IPFSDataUri, {
       from: owner,
       gasPrice,
