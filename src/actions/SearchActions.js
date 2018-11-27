@@ -21,12 +21,12 @@ export const search = (dataHash, owner, property) => async (dispatch) => {
     req = req + '/' + dataHash;
   } else if (owner) {
     if (property) {
-      req = req + '/?owner=' + owner + '&property=' + property;
+      req = req + '?owner=' + owner + '&property=' + property;
     } else {
-      req = req + '/?owner=' + owner;
+      req = req + '?owner=' + owner;
     }
   } else if (property) {
-    req = req + '/?property=' + property;
+    req = req + '?property=' + property;
   }
 
   request(req, (error, response, body) => {

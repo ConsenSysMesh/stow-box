@@ -109,7 +109,7 @@ To learn more about encryption patterns and how Stow uses them, go [HERE](https:
 
 ## Create User and Upload Data
 
-In order to create the keys, register a user and upload data to Stow you can use our Stow Faucet [HERE](https://consensys.github.io/stow-faucet/)
+In order to create the keys, register a user and upload data to Stow you can use our Stow Faucet [HERE](https://faucet.ropsten.stow-protocol.com/)
 
 
 

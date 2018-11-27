@@ -105,7 +105,7 @@ export const authenticate = () => async dispatch => {
     return dispatch(authFailure(STOW_MISCONFIGURED));
   }
 
-  const stow = new Stow(web3);
+  const stow = new Stow(web3, { hubAddress });
 
   /*
     Success! Our user is ready to start interacting with the Stow Protocol. We add the
