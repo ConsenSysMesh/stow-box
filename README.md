@@ -99,8 +99,6 @@ Replace the following variables in the following URL and send to the owner of th
 [STOW_BOX_URL]/permissions?viewerEncyptionPublicKey=[YOUR_ENCRYPTION_PUBLIC_KEY]&viewerEthereumAddress=[YOUR_ETHEREUM_ADDRESS]&dataHash=[DATA_HASH_YOU_WANT]
 ```
 
-
-
 ## Encryption Keys
 
 To learn more about encryption patterns and how Stow uses them, go [HERE](https://github.com/ConsenSys/stow-resources/blob/master/KEYS.md)
@@ -135,3 +133,8 @@ In order to decrypt the test files that we uploaded to the contracts, click [HER
 
 In order to share files you have to use the public key of the receiver, to find them click [HERE](TestEncryptionPublicKeys.md)
 
+
+
+## FAQ
+
+If you have any questions, check the FAQ's [here](FAQ.md) or ask in our [slack channel](http://bit.ly/StowProtocolSlack) 
