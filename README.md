@@ -137,4 +137,10 @@ In order to share files you have to use the public key of the receiver, to find 
 
 ## FAQ
 
-If you have any questions, check the FAQ's [here](FAQ.md) or ask in our [slack channel](http://bit.ly/StowProtocolSlack) 
+If you have any questions, check the FAQ's [here](FAQ.md) or ask in any of our channels:
+
+- [Slack](http://bit.ly/StowProtocolSlack) 
+- [Telegram](https://t.me/linnia)
+- [Instagram](https://www.instagram.com/stow.protocol/)
+- [Twitter](https://twitter.com/StowProtocol)
+
